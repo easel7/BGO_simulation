@@ -279,3 +279,4 @@
    is automatically executed if Geant4 is built with any GUI session.
    It is also possible to customise the icons menu bar which is
    demonstrated in the icons.mac macro in example B5.
+
