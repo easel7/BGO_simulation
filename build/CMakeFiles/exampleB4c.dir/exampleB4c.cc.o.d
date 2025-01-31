@@ -1,8 +1,8 @@
 CMakeFiles/exampleB4c.dir/exampleB4c.cc.o: \
-  /Users/xiongzheng/software/build/B4/B4c/exampleB4c.cc \
-  /Users/xiongzheng/software/build/B4/B4c/include/ActionInitialization.hh \
+  /Users/xiongzheng/software/B4/B4c/exampleB4c.cc \
+  /Users/xiongzheng/software/B4/B4c/include/ActionInitialization.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VUserActionInitialization.hh \
-  /Users/xiongzheng/software/build/B4/B4c/include/DetectorConstruction.hh \
+  /Users/xiongzheng/software/B4/B4c/include/DetectorConstruction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VUserDetectorConstruction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/globals.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ios.hh \

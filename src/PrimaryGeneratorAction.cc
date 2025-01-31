@@ -48,7 +48,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
   G4int nofParticles = 1;
   fParticleGun = new G4ParticleGun(nofParticles);
   // default particle kinematic
-  auto particleDefinition = G4ParticleTable::GetParticleTable()->FindParticle("deuteron");
+  auto particleDefinition = G4ParticleTable::GetParticleTable()->FindParticle("proton");
   fParticleGun->SetParticleDefinition(particleDefinition);
   fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0., 0., 1.));
 
@@ -97,6 +97,8 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
   // G4long seed = time(NULL);  // Use current time as seed
   // G4Random::setTheSeed(seed);
   G4double energy =  G4UniformRand() * (100 * GeV - 10 * GeV) + 10 * GeV;
+  // G4double energy =  20 * GeV;
+
   fParticleGun->SetParticleEnergy(energy);
   // G4cout<< "Watch out !!! energy" << energy << G4endl;
   fParticleGun->GeneratePrimaryVertex(event);

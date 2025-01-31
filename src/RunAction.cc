@@ -56,48 +56,41 @@ RunAction::RunAction()
   analysisManager->SetVerboseLevel(1);
   analysisManager->SetNtupleMerging(true);
   // Note: merging ntuples is available only with Root output
-
-  // Book histograms, ntuple
-  //
-
-  // Creating ntuple
   analysisManager->CreateNtuple("B4", "Edep and TrackL");
   analysisManager->CreateNtupleIColumn("Particle");
-  analysisManager->CreateNtupleDColumn("Energy(MeV)");
-  analysisManager->CreateNtupleDColumn("Layer0 E dep(MeV)");
-  analysisManager->CreateNtupleDColumn("Layer1 E dep(MeV)");
-  analysisManager->CreateNtupleDColumn("Layer2 E dep(MeV)");
-  analysisManager->CreateNtupleDColumn("Layer3 E dep(MeV)");
-  analysisManager->CreateNtupleDColumn("Layer4 E dep(MeV)");
-  analysisManager->CreateNtupleDColumn("Layer5 E dep(MeV)");
-  analysisManager->CreateNtupleDColumn("Layer6 E dep(MeV)");
-  analysisManager->CreateNtupleDColumn("Layer7 E dep(MeV)");
-  analysisManager->CreateNtupleDColumn("Layer8 E dep(MeV)");
-  analysisManager->CreateNtupleDColumn("Layer9 E dep(MeV)");
-  analysisManager->CreateNtupleDColumn("Layer10 E dep(MeV)");
-  analysisManager->CreateNtupleDColumn("Layer11 E dep(MeV)");
-  analysisManager->CreateNtupleDColumn("Layer12 E dep(MeV)");
-  analysisManager->CreateNtupleDColumn("Layer13 E dep(MeV)");
-
-  analysisManager->CreateNtupleDColumn("Total E dep(MeV)");
-  analysisManager->CreateNtupleDColumn("Layer0 Track Length(mm)");
-  analysisManager->CreateNtupleDColumn("Layer1 Track Length(mm)");
-  analysisManager->CreateNtupleDColumn("Layer2 Track Length(mm)");
-  analysisManager->CreateNtupleDColumn("Layer3 Track Length(mm)");
-  analysisManager->CreateNtupleDColumn("Layer4 Track Length(mm)");
-  analysisManager->CreateNtupleDColumn("Layer5 Track Length(mm)");
-  analysisManager->CreateNtupleDColumn("Layer6 Track Length(mm)");
-  analysisManager->CreateNtupleDColumn("Layer7 Track Length(mm)");
-  analysisManager->CreateNtupleDColumn("Layer8 Track Length(mm)");
-  analysisManager->CreateNtupleDColumn("Layer9 Track Length(mm)");
-  analysisManager->CreateNtupleDColumn("Layer10 Track Length(mm)");
-  analysisManager->CreateNtupleDColumn("Layer11 Track Length(mm)");
-  analysisManager->CreateNtupleDColumn("Layer12 Track Length(mm)");
-  analysisManager->CreateNtupleDColumn("Layer13 Track Length(mm)");
-  analysisManager->CreateNtupleDColumn("Total Track Length(mm)");
-
-  analysisManager->CreateNtupleDColumn("Interaction Depth(mm)");
-  analysisManager->CreateNtupleIColumn("Interaction Layer");
+  analysisManager->CreateNtupleDColumn("Energy"); // (MeV)
+  analysisManager->CreateNtupleDColumn("L0_E");
+  analysisManager->CreateNtupleDColumn("L1_E");
+  analysisManager->CreateNtupleDColumn("L2_E");
+  analysisManager->CreateNtupleDColumn("L3_E");
+  analysisManager->CreateNtupleDColumn("L4_E");
+  analysisManager->CreateNtupleDColumn("L5_E");
+  analysisManager->CreateNtupleDColumn("L6_E");
+  analysisManager->CreateNtupleDColumn("L7_E");
+  analysisManager->CreateNtupleDColumn("L8_E");
+  analysisManager->CreateNtupleDColumn("L9_E");
+  analysisManager->CreateNtupleDColumn("L10_E");
+  analysisManager->CreateNtupleDColumn("L11_E");
+  analysisManager->CreateNtupleDColumn("L12_E");
+  analysisManager->CreateNtupleDColumn("L13_E");
+  analysisManager->CreateNtupleDColumn("Total_E");
+  analysisManager->CreateNtupleDColumn("L0_L"); 
+  analysisManager->CreateNtupleDColumn("L1_L");
+  analysisManager->CreateNtupleDColumn("L2_L");
+  analysisManager->CreateNtupleDColumn("L3_L");
+  analysisManager->CreateNtupleDColumn("L4_L");
+  analysisManager->CreateNtupleDColumn("L5_L");
+  analysisManager->CreateNtupleDColumn("L6_L");
+  analysisManager->CreateNtupleDColumn("L7_L");
+  analysisManager->CreateNtupleDColumn("L8_L");
+  analysisManager->CreateNtupleDColumn("L9_L");
+  analysisManager->CreateNtupleDColumn("L10_L");
+  analysisManager->CreateNtupleDColumn("L11_L");
+  analysisManager->CreateNtupleDColumn("L12_L");
+  analysisManager->CreateNtupleDColumn("L13_L");
+  analysisManager->CreateNtupleDColumn("Total_L");
+  analysisManager->CreateNtupleDColumn("Interaction_D"); // Depth
+  analysisManager->CreateNtupleIColumn("Interaction_L"); // length
 
   // analysisManager->CreateNtupleDColumn("Egap");
   // analysisManager->CreateNtupleDColumn("Lgap");
@@ -118,7 +111,7 @@ void RunAction::BeginOfRunAction(const G4Run* /*run*/)
 
   // Open an output file
   //
-  G4String fileName = "B4_deuteron_10GeV_100GeV.root";
+  G4String fileName = "B4_proton_10GeV_100GeV.root";
   // Other supported output types:
   // G4String fileName = "B4.csv";
   // G4String fileName = "B4.hdf5";

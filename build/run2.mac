@@ -17,10 +17,6 @@
 # Default kinemtics:  
 # electron 300 MeV in direction (0.,0.,1.)
 # 10000 events
-
-# Enable trajectory generation
-/tracking/storeTrajectory 1
-
-/run/verbose 0
+#
 /run/printProgress 1000
-/run/beamOn 1
+/run/beamOn 100

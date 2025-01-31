@@ -1,6 +1,6 @@
 CMakeFiles/exampleB4c.dir/src/PrimaryGeneratorAction.cc.o: \
-  /Users/xiongzheng/software/build/B4/B4c/src/PrimaryGeneratorAction.cc \
-  /Users/xiongzheng/software/build/B4/B4c/include/PrimaryGeneratorAction.hh \
+  /Users/xiongzheng/software/B4/B4c/src/PrimaryGeneratorAction.cc \
+  /Users/xiongzheng/software/B4/B4c/include/PrimaryGeneratorAction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VUserPrimaryGeneratorAction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Box.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4GeomTypes.hh \

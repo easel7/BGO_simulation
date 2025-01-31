@@ -104,6 +104,7 @@ void EventAction::EndOfEventAction(const G4Event* event)
   else {particleID = -1;  } 
 
   G4double energy = primary->GetKineticEnergy();
+  G4cout << "!! particleName: " << particleName << " ,Kinetic Energy = " << energy << "MeV" << G4endl;
 
   // Print per event (modulo n)
   auto eventID = event->GetEventID();
@@ -134,8 +135,8 @@ void EventAction::EndOfEventAction(const G4Event* event)
   if (detector) {
       calorThickness = detector->GetCalorThickness();
       layerThickness = detector->GetLayerThickness();
-      G4cout << "Calorimeter Thickness: " << calorThickness << " mm" << G4endl;
-      G4cout << "Layer Thickness: " << layerThickness << " mm" << G4endl;
+      // G4cout << "Calorimeter Thickness: " << calorThickness << " mm" << G4endl;
+      // G4cout << "Layer Thickness: " << layerThickness << " mm" << G4endl;
   }
 
   G4TrajectoryContainer* trajectoryContainer = event->GetTrajectoryContainer();
@@ -192,7 +193,7 @@ void EventAction::EndOfEventAction(const G4Event* event)
     }
   }
   analysisManager->FillNtupleDColumn(16, Total_Energy_Deposit);
-  analysisManager->FillNtupleIColumn(31, Total_Track_Length);
+  analysisManager->FillNtupleDColumn(31, Total_Track_Length);
   analysisManager->FillNtupleDColumn(32, firstDepth);
   analysisManager->FillNtupleIColumn(33, firstLayer);
 

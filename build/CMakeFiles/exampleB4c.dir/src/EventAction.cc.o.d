@@ -1,8 +1,8 @@
 CMakeFiles/exampleB4c.dir/src/EventAction.cc.o: \
-  /Users/xiongzheng/software/build/B4/B4c/src/EventAction.cc \
-  /Users/xiongzheng/software/build/B4/B4c/include/EventAction.hh \
+  /Users/xiongzheng/software/B4/B4c/src/EventAction.cc \
+  /Users/xiongzheng/software/B4/B4c/include/EventAction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4UserEventAction.hh \
-  /Users/xiongzheng/software/build/B4/B4c/include/CalorHit.hh \
+  /Users/xiongzheng/software/B4/B4c/include/CalorHit.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Allocator.hh \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/cstddef \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__assert \
@@ -1016,7 +1016,7 @@ CMakeFiles/exampleB4c.dir/src/EventAction.cc.o: \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Utility/defs.h \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Vector/ThreeVector.icc \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VHit.hh \
-  /Users/xiongzheng/software/build/B4/B4c/include/RunAction.hh \
+  /Users/xiongzheng/software/B4/B4c/include/RunAction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4UserRunAction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4AnalysisManager.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4GenericAnalysisManager.hh \
@@ -1114,7 +1114,7 @@ CMakeFiles/exampleB4c.dir/src/EventAction.cc.o: \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4TrajectoryContainer.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VTrajectory.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VUserEventInformation.hh \
-  /Users/xiongzheng/software/build/B4/B4c/include/DetectorConstruction.hh \
+  /Users/xiongzheng/software/B4/B4c/include/DetectorConstruction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VUserDetectorConstruction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4SystemOfUnits.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Units/SystemOfUnits.h \

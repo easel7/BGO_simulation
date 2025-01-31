@@ -1,10 +1,10 @@
 CMakeFiles/exampleB4c.dir/src/ActionInitialization.cc.o: \
-  /Users/xiongzheng/software/build/B4/B4c/src/ActionInitialization.cc \
-  /Users/xiongzheng/software/build/B4/B4c/include/ActionInitialization.hh \
+  /Users/xiongzheng/software/B4/B4c/src/ActionInitialization.cc \
+  /Users/xiongzheng/software/B4/B4c/include/ActionInitialization.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VUserActionInitialization.hh \
-  /Users/xiongzheng/software/build/B4/B4c/include/EventAction.hh \
+  /Users/xiongzheng/software/B4/B4c/include/EventAction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4UserEventAction.hh \
-  /Users/xiongzheng/software/build/B4/B4c/include/CalorHit.hh \
+  /Users/xiongzheng/software/B4/B4c/include/CalorHit.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Allocator.hh \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/cstddef \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__assert \
@@ -1018,7 +1018,7 @@ CMakeFiles/exampleB4c.dir/src/ActionInitialization.cc.o: \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Utility/defs.h \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Vector/ThreeVector.icc \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VHit.hh \
-  /Users/xiongzheng/software/build/B4/B4c/include/PrimaryGeneratorAction.hh \
+  /Users/xiongzheng/software/B4/B4c/include/PrimaryGeneratorAction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VUserPrimaryGeneratorAction.hh \
-  /Users/xiongzheng/software/build/B4/B4c/include/RunAction.hh \
+  /Users/xiongzheng/software/B4/B4c/include/RunAction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4UserRunAction.hh

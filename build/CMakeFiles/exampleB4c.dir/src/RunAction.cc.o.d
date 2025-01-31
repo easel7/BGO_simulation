@@ -1,6 +1,6 @@
 CMakeFiles/exampleB4c.dir/src/RunAction.cc.o: \
-  /Users/xiongzheng/software/build/B4/B4c/src/RunAction.cc \
-  /Users/xiongzheng/software/build/B4/B4c/include/RunAction.hh \
+  /Users/xiongzheng/software/B4/B4c/src/RunAction.cc \
+  /Users/xiongzheng/software/B4/B4c/include/RunAction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4UserRunAction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Types.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4GlobalConfig.hh \

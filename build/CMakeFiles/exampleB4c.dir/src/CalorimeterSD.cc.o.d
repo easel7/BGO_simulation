@@ -1,7 +1,7 @@
 CMakeFiles/exampleB4c.dir/src/CalorimeterSD.cc.o: \
-  /Users/xiongzheng/software/build/B4/B4c/src/CalorimeterSD.cc \
-  /Users/xiongzheng/software/build/B4/B4c/include/CalorimeterSD.hh \
-  /Users/xiongzheng/software/build/B4/B4c/include/CalorHit.hh \
+  /Users/xiongzheng/software/B4/B4c/src/CalorimeterSD.cc \
+  /Users/xiongzheng/software/B4/B4c/include/CalorimeterSD.hh \
+  /Users/xiongzheng/software/B4/B4c/include/CalorHit.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Allocator.hh \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/cstddef \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__assert \

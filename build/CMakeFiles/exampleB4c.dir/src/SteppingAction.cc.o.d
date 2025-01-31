@@ -1,8 +1,8 @@
 CMakeFiles/exampleB4c.dir/src/SteppingAction.cc.o: \
-  /Users/xiongzheng/software/build/B4/B4c/src/SteppingAction.cc \
-  /Users/xiongzheng/software/build/B4/B4c/include/SteppingAction.hh \
+  /Users/xiongzheng/software/B4/B4c/src/SteppingAction.cc \
+  /Users/xiongzheng/software/B4/B4c/include/SteppingAction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4UserSteppingAction.hh \
-  /Users/xiongzheng/software/build/B4/B4c/include/DetectorConstruction.hh \
+  /Users/xiongzheng/software/B4/B4c/include/DetectorConstruction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VUserDetectorConstruction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/globals.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ios.hh \
@@ -1010,9 +1010,9 @@ CMakeFiles/exampleB4c.dir/src/SteppingAction.cc.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__stop_token/stop_source.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__thread/thread.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__thread/this_thread.h \
-  /Users/xiongzheng/software/build/B4/B4c/include/EventAction.hh \
+  /Users/xiongzheng/software/B4/B4c/include/EventAction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4UserEventAction.hh \
-  /Users/xiongzheng/software/build/B4/B4c/include/CalorHit.hh \
+  /Users/xiongzheng/software/B4/B4c/include/CalorHit.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Allocator.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4AllocatorPool.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4THitsCollection.hh \
