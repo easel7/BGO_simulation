@@ -92,12 +92,12 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
   }
 
   // Set gun position
-  fParticleGun->SetParticlePosition(G4ThreeVector(0., 0., -worldZHalfLength));
+  G4double x = G4UniformRand() * 10.0 * cm;  // Ramdom X Coordinate
+  G4double y = G4UniformRand() * 10.0 * cm;  // Ramdom Y Coordinate
+  fParticleGun->SetParticlePosition(G4ThreeVector(x, y, -worldZHalfLength));
   // Randomize the energy between 100 MeV and 500 MeV
-  // G4long seed = time(NULL);  // Use current time as seed
-  // G4Random::setTheSeed(seed);
-  G4double energy =  G4UniformRand() * (100 * GeV - 10 * GeV) + 10 * GeV;
-  // G4double energy =  20 * GeV;
+  // G4double energy =  G4UniformRand() * (100 * GeV - 10 * GeV) + 10 * GeV;
+  G4double energy =  20 * GeV;
 
   fParticleGun->SetParticleEnergy(energy);
   // G4cout<< "Watch out !!! energy" << energy << G4endl;

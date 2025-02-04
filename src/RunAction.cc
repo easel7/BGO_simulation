@@ -89,12 +89,10 @@ RunAction::RunAction()
   analysisManager->CreateNtupleDColumn("L12_L");
   analysisManager->CreateNtupleDColumn("L13_L");
   analysisManager->CreateNtupleDColumn("Total_L");
-  analysisManager->CreateNtupleDColumn("Interaction_D"); // Depth
-  analysisManager->CreateNtupleIColumn("Interaction_L"); // length
-
-  // analysisManager->CreateNtupleDColumn("Egap");
-  // analysisManager->CreateNtupleDColumn("Lgap");
-  // analysisManager->CreateNtupleIColumn("LNgap");
+  analysisManager->CreateNtupleDColumn("First_Depth"); // Depth ()
+  analysisManager->CreateNtupleIColumn("First_Layer"); // Layer (0,1,2...)
+  analysisManager->CreateNtupleIColumn("First_Type"); // Type (0-EM, 1-HD, 2-Others)
+  analysisManager->CreateNtupleIColumn("First_Second"); // Number of Secondaries
 
   analysisManager->FinishNtuple();
 }

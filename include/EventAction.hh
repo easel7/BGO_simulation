@@ -56,6 +56,21 @@ class EventAction : public G4UserEventAction
     void BeginOfEventAction(const G4Event* event) override;
     void EndOfEventAction(const G4Event* event) override;
 
+    void SetFirstInteraction(G4ThreeVector pos) { fFirstInteraction = pos; }
+    G4ThreeVector GetFirstInteraction() const { return fFirstInteraction; }
+
+    void SetInteractionType(G4int Type) { fInteractionType = Type; }
+    G4int GetInteractionType() const { return fInteractionType; }
+
+    void SetSecondaries(G4int Secondaries) { fSecondaries = Secondaries;}
+    G4int GetSecondaries() const { return fSecondaries; }
+
+    void SetInteractionLayer(G4int Layer) { fInteractionLayer = Layer; }
+    G4int GetInteractionLayer() const { return fInteractionLayer; }
+
+    void SetInteractionDepth(G4double InteractionDepth) { fInteractionDepth = InteractionDepth; }
+    G4double GetInteractionDepth() const { return fInteractionDepth; }
+
   private:
     // methods
     CalorHitsCollection* GetHitsCollection(G4int hcID, const G4Event* event) const;
@@ -65,6 +80,14 @@ class EventAction : public G4UserEventAction
     // data members
     G4int fAbsHCID = -1;
     G4int fGapHCID = -1;
+
+    G4ThreeVector fFirstInteraction = G4ThreeVector(-1e9, -1e9, -1e9);  // 记录第一个电磁相互作用点
+    G4int fInteractionType = -1;
+    G4int fSecondaries = -1;
+    G4int fInteractionLayer = -1;
+    G4double fInteractionDepth = -1;
+
+
 };
 
 }  // namespace B4c

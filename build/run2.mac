@@ -18,5 +18,7 @@
 # electron 300 MeV in direction (0.,0.,1.)
 # 10000 events
 #
+
+/process/verbose 2
 /run/printProgress 1000
 /run/beamOn 100

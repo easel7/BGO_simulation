@@ -121,7 +121,7 @@ int main(int argc, char** argv)
   auto physicsList = new FTFP_BERT;
   runManager->SetUserInitialization(physicsList);
 
-  auto actionInitialization = new B4c::ActionInitialization();
+  auto actionInitialization = new B4c::ActionInitialization(detConstruction);
   runManager->SetUserInitialization(actionInitialization);
 
   // Initialize visualization

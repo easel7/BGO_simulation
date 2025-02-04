@@ -1114,10 +1114,6 @@ CMakeFiles/exampleB4c.dir/src/EventAction.cc.o: \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4TrajectoryContainer.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VTrajectory.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VUserEventInformation.hh \
-  /Users/xiongzheng/software/B4/B4c/include/DetectorConstruction.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VUserDetectorConstruction.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4SystemOfUnits.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Units/SystemOfUnits.h \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4SDManager.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4HCtable.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4SDStructure.hh \
@@ -1137,6 +1133,7 @@ CMakeFiles/exampleB4c.dir/src/EventAction.cc.o: \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Vector/RotationX.h \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Vector/RotationX.icc \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Units/PhysicalConstants.h \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Units/SystemOfUnits.h \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Vector/RotationY.h \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Vector/RotationY.icc \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Vector/RotationZ.h \
@@ -1220,7 +1217,6 @@ CMakeFiles/exampleB4c.dir/src/EventAction.cc.o: \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VSDFilter.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4UnitsTable.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4UnitsTable.icc \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VTrajectoryPoint.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4RunManager.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4EventManager.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4StackManager.hh \

@@ -24,39 +24,41 @@
 // ********************************************************************
 //
 //
-/// \file B4/include/SteppingAction.hh
-/// \brief Definition of the B4::SteppingAction class
+/// \file B4/B4a/include/SteppingAction.hh
+/// \brief Definition of the B4a::SteppingAction class
 
-#ifndef B1SteppingAction_h
-#define B1SteppingAction_h 1
+#ifndef B4aSteppingAction_h
+#define B4aSteppingAction_h 1
 
 #include "G4UserSteppingAction.hh"
 
-class G4LogicalVolume;
 class G4Step;
 
 namespace B4c
 {
-
+class DetectorConstruction;
 class EventAction;
 
-/// Stepping action class
+/// Stepping action class.
+///
+/// In UserSteppingAction() there are collected the energy deposit and track
+/// lengths of charged particles in Absober and Gap layers and
+/// updated in EventAction.
 
 class SteppingAction : public G4UserSteppingAction
 {
   public:
-    SteppingAction(EventAction* eventAction);
+    SteppingAction(const DetectorConstruction* detConstruction, EventAction* eventAction);
     ~SteppingAction() override = default;
 
-    // method from the base class
-    void UserSteppingAction(const G4Step*) override;
+    void UserSteppingAction(const G4Step* step) override;
 
   private:
+    const DetectorConstruction* fDetConstruction = nullptr;
     EventAction* fEventAction = nullptr;
-    G4LogicalVolume* fScoringVolume = nullptr;
 };
 
-}  // namespace B1
+}  // namespace B4c
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 

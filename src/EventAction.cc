@@ -36,11 +36,9 @@
 #include "G4AnalysisManager.hh"
 #include "G4Event.hh"
 #include "G4HCofThisEvent.hh"
-#include "DetectorConstruction.hh"
 #include "G4SDManager.hh"
 #include "G4UnitsTable.hh"
-#include "G4VTrajectory.hh"
-#include "G4VTrajectoryPoint.hh"
+
 #include "G4RunManager.hh"
 #include <iomanip>
 
@@ -104,7 +102,7 @@ void EventAction::EndOfEventAction(const G4Event* event)
   else {particleID = -1;  } 
 
   G4double energy = primary->GetKineticEnergy();
-  G4cout << "!! particleName: " << particleName << " ,Kinetic Energy = " << energy << "MeV" << G4endl;
+  // G4cout << "!! particleName: " << particleName << " ,Kinetic Energy = " << energy << "MeV" << G4endl;
 
   // Print per event (modulo n)
   auto eventID = event->GetEventID();
@@ -124,57 +122,6 @@ void EventAction::EndOfEventAction(const G4Event* event)
   auto analysisManager = G4AnalysisManager::Instance();
   analysisManager->FillNtupleIColumn(0, particleID);
   analysisManager->FillNtupleDColumn(1, energy / CLHEP::MeV);
-  static bool firstInteractionRecorded = false;  // 静态变量确保只记录一次
-  G4double firstDepth = 0;
-  int firstLayer = -1;
-
-  G4double calorThickness = 0;
-  G4double layerThickness = 0;
-  const G4VUserDetectorConstruction* baseDetCons = rm->GetUserDetectorConstruction();
-  const DetectorConstruction* detector = dynamic_cast<const DetectorConstruction*>(baseDetCons);
-  if (detector) {
-      calorThickness = detector->GetCalorThickness();
-      layerThickness = detector->GetLayerThickness();
-      // G4cout << "Calorimeter Thickness: " << calorThickness << " mm" << G4endl;
-      // G4cout << "Layer Thickness: " << layerThickness << " mm" << G4endl;
-  }
-
-  G4TrajectoryContainer* trajectoryContainer = event->GetTrajectoryContainer();
-  if (trajectoryContainer) {
-    G4cout << "trajectoryContainer work" << G4endl;
-      for (size_t i = 0; i < trajectoryContainer->size(); i++) {
-          G4VTrajectory* traj = (G4VTrajectory*)(*trajectoryContainer)[i];
-          // G4cout << "Search Trajectory" << G4endl;
-
-          if (traj->GetTrackID() == 1 && !firstInteractionRecorded) 
-          {  // Primary particle
-              G4cout << "Find Primary! and traj entries is " <<  traj->GetPointEntries() << G4endl;
-              for (size_t j = 0; j < traj->GetPointEntries(); j++) 
-              {
-                  G4VTrajectoryPoint* point = traj->GetPoint(j);
-                  G4ThreeVector position = point->GetPosition();
-                  G4cout << "Position X: " << position.x() << G4endl;
-                  G4cout << "Position Y: " << position.y() << G4endl;
-                  G4cout << "Position Z: " << position.z() << G4endl;
-
-                  if (position.z() > - calorThickness / 2 && position.z() < calorThickness / 2) {  // Interaction happens inside calorimeter
-                      firstDepth = position.z() + calorThickness / 2;  // 记录第一次相互作用的深度
-                      firstLayer = firstDepth / layerThickness;  // 计算所在的层
-                      G4cout << "First Interaction Position: " << position << G4endl;
-                      G4cout << "First Interaction Layer: " << firstLayer << G4endl;
-                      firstInteractionRecorded = true;  // 设置标记，避免重复记录
-                      break;
-                  }
-              }
-          }
-      }
-  }
-
-  // 可以在这里输出第一次相互作用的深度和层号，或者做进一步的处理
-  if (firstInteractionRecorded) {
-      G4cout << "First Interaction Depth: " << firstDepth << " mm" << G4endl;
-      G4cout << "First Interaction Layer: " << firstLayer << G4endl;
-  }
 
   for (std::size_t i = 0; i < absoHC->entries(); ++i) 
   {
@@ -192,10 +139,15 @@ void EventAction::EndOfEventAction(const G4Event* event)
       analysisManager->FillNtupleDColumn(i+17, trackLength);       // Layer number
     }
   }
+
   analysisManager->FillNtupleDColumn(16, Total_Energy_Deposit);
   analysisManager->FillNtupleDColumn(31, Total_Track_Length);
-  analysisManager->FillNtupleDColumn(32, firstDepth);
-  analysisManager->FillNtupleIColumn(33, firstLayer);
+  analysisManager->FillNtupleDColumn(32, fInteractionDepth); // Interaction Depth
+  analysisManager->FillNtupleIColumn(33, fInteractionLayer); // Interaction Layer
+  analysisManager->FillNtupleIColumn(34, fInteractionType); // Interaction Type
+  analysisManager->FillNtupleIColumn(35, fSecondaries); // No Secondaries
+
+
 
   analysisManager->AddNtupleRow();
 }

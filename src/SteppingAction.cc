@@ -24,32 +24,85 @@
 // ********************************************************************
 //
 //
-/// \file B1/src/SteppingAction.cc
-/// \brief Implementation of the B1::SteppingAction class
+/// \file B4/B4a/src/SteppingAction.cc
+/// \brief Implementation of the B4a::SteppingAction class
 
 #include "SteppingAction.hh"
+
 #include "DetectorConstruction.hh"
 #include "EventAction.hh"
-
-#include "G4Event.hh"
-#include "G4LogicalVolume.hh"
-#include "G4RunManager.hh"
+#include "G4VTrajectory.hh"
+#include "G4VTrajectoryPoint.hh"
+#include "G4VProcess.hh"
 #include "G4Step.hh"
+#include "globals.hh"
 
 namespace B4c
 {
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-SteppingAction::SteppingAction(EventAction* eventAction) : fEventAction(eventAction) {}
+SteppingAction::SteppingAction(const DetectorConstruction* detConstruction, EventAction* eventAction)
+  : fDetConstruction(detConstruction), fEventAction(eventAction)
+{}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void SteppingAction::UserSteppingAction(const G4Step* step)
 {
+  // Collect energy and track length step by step
+  // G4cout<< "SteppingAction::UserSteppingAction" << G4endl;  
+  if (fDetConstruction) {
+      fDetConstruction->GetCalorThickness();
+      fDetConstruction->GetLayerThickness();
+      // G4cout << "Calorimeter Thickness: " << fDetConstruction->GetCalorThickness() << " mm" << G4endl;
+      // G4cout << "Layer Thickness: " << fDetConstruction->GetLayerThickness() << " mm" << G4endl;
+  }
 
+  G4Track* track = step->GetTrack();
+  G4int parentID = track->GetParentID(); // 0 表示Primary
+  // Only Primary
+  if (parentID == 0) 
+  {
+    // Record the first interaction type if the GetInteractionType is initial value
+    if (fEventAction->GetInteractionType() == -1) 
+    {
+        // Check the process will produced the secondaries
+        if (step->GetSecondaryInCurrentStep()->size() == 0) return;
+        fEventAction->SetSecondaries(step->GetSecondaryInCurrentStep()->size());
+        // Get the Process to check the interaction type
+        const G4VProcess* process = step->GetPostStepPoint()->GetProcessDefinedStep();
+        if (!process) return;
+
+        G4ProcessType processType = process->GetProcessType();
+        G4ThreeVector position = step->GetPostStepPoint()->GetPosition();
+        G4cout << "Position X: " << position.x() << G4endl;
+        G4cout << "Position Y: " << position.y() << G4endl;
+        G4cout << "Position Z: " << position.z() << G4endl;
+
+        if (position.z() > -  fDetConstruction->GetCalorThickness() / 2 && position.z() < fDetConstruction->GetCalorThickness() / 2) {  // Interaction happens inside calorimeter
+          fEventAction->SetInteractionDepth(position.z() + fDetConstruction->GetCalorThickness() / 2);  // Depth in detector
+          fEventAction->SetInteractionLayer(fEventAction->GetInteractionDepth() / fDetConstruction->GetLayerThickness()) ;  // Layer number
+          G4cout << "First Interaction Position: " << fEventAction->GetInteractionDepth() << G4endl;
+          G4cout << "First Interaction Layer: " << fEventAction->GetInteractionLayer() << G4endl;
+        }
+
+        if (process->GetProcessType() == fElectromagnetic) {
+            fEventAction->SetInteractionType(0);  // EM interaction
+        } 
+        else if (process->GetProcessType() == fHadronic) {
+            fEventAction->SetInteractionType(1); // HD interaction
+        }
+        else {
+            fEventAction->SetInteractionType(2); // Other interaction
+        }
+
+        // Print the first interaction position / Type / No. Secondaries
+        G4cout << "First interaction at: " << position/mm  << " mm, Type: " << fEventAction->GetInteractionType() << " #Secondaries = " << fEventAction->GetSecondaries() << G4endl;
+    }
+  }
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-}  // namespace B1
+}  // namespace B4a

@@ -28,15 +28,22 @@
 /// \brief Implementation of the B4c::ActionInitialization class
 
 #include "ActionInitialization.hh"
-
+#include "DetectorConstruction.hh"
 #include "EventAction.hh"
 #include "PrimaryGeneratorAction.hh"
 #include "RunAction.hh"
+#include "SteppingAction.hh"
 
 using namespace B4;
 
 namespace B4c
 {
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+ActionInitialization::ActionInitialization(DetectorConstruction* detConstruction)
+  : fDetConstruction(detConstruction)
+{}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -51,7 +58,9 @@ void ActionInitialization::Build() const
 {
   SetUserAction(new PrimaryGeneratorAction);
   SetUserAction(new RunAction);
-  SetUserAction(new EventAction);
+  auto eventAction = new EventAction;
+  SetUserAction(eventAction);
+  SetUserAction(new SteppingAction(fDetConstruction, eventAction));
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

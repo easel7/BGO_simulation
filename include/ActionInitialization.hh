@@ -37,14 +37,19 @@ namespace B4c
 
 /// Action initialization class.
 
+class DetectorConstruction;
+
 class ActionInitialization : public G4VUserActionInitialization
 {
   public:
-    ActionInitialization() = default;
+    ActionInitialization(DetectorConstruction*);
     ~ActionInitialization() override = default;
 
     void BuildForMaster() const override;
     void Build() const override;
+
+    private:
+    DetectorConstruction* fDetConstruction = nullptr;
 };
 
 }  // namespace B4c
