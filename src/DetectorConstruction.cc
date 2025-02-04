@@ -190,7 +190,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes()
                                         absorberMaterial,  // its material
                                         "AbsoLV");  // its name
 
-  new G4PVPlacement(nullptr,  // no rotation
+  fAbsorberPV = new G4PVPlacement(nullptr,  // no rotation
                     G4ThreeVector(0., 0., -gapThickness / 2),  // its position
                     absorberLV,  // its logical volume
                     "Abso",  // its name
@@ -209,7 +209,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes()
                                    gapMaterial,  // its material
                                    "GapLV");  // its name
 
-  new G4PVPlacement(nullptr,  // no rotation
+  fGapPV = new G4PVPlacement(nullptr,  // no rotation
                     G4ThreeVector(0., 0., absoThickness / 2),  // its position
                     gapLV,  // its logical volume
                     "Gap",  // its name

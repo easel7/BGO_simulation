@@ -97,12 +97,14 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
   fParticleGun->SetParticlePosition(G4ThreeVector(x, y, -worldZHalfLength));
   // Randomize the energy between 100 MeV and 500 MeV
   // G4double energy =  G4UniformRand() * (100 * GeV - 10 * GeV) + 10 * GeV;
-  G4double energy =  20 * GeV;
+  G4double energy =  200 * GeV;
 
   fParticleGun->SetParticleEnergy(energy);
   // G4cout<< "Watch out !!! energy" << energy << G4endl;
   fParticleGun->GeneratePrimaryVertex(event);
 }
+
+
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 

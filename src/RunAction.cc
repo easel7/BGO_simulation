@@ -49,7 +49,6 @@ RunAction::RunAction()
   // The choice of the output format is done via the specified
   // file extension.
   auto analysisManager = G4AnalysisManager::Instance();
-
   // Create directories
   // analysisManager->SetHistoDirectoryName("histograms");
   // analysisManager->SetNtupleDirectoryName("ntuple");

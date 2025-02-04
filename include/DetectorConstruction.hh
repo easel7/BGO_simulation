@@ -66,6 +66,9 @@ class DetectorConstruction : public G4VUserDetectorConstruction
   public:
     G4VPhysicalVolume* Construct() override;
     void ConstructSDandField() override;
+
+    const G4VPhysicalVolume* GetAbsorberPV() const;
+    const G4VPhysicalVolume* GetGapPV() const;
     
     G4double GetCalorThickness() const { return calorThickness; }
     G4double GetLayerThickness() const { return layerThickness; }
@@ -79,6 +82,9 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     void DefineMaterials();
     G4VPhysicalVolume* DefineVolumes();
 
+    G4VPhysicalVolume* fAbsorberPV = nullptr;  // the absorber physical volume
+    G4VPhysicalVolume* fGapPV = nullptr;  // the gap physical volume
+
     // data members
     //
     static G4ThreadLocal G4GlobalMagFieldMessenger* fMagFieldMessenger;
@@ -89,6 +95,18 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4double calorThickness = -1 * mm;  // 总厚度
     G4double layerThickness = -1 * mm;    // 每层厚度
 };
+
+// inline functions
+
+inline const G4VPhysicalVolume* DetectorConstruction::GetAbsorberPV() const
+{
+  return fAbsorberPV;
+}
+
+inline const G4VPhysicalVolume* DetectorConstruction::GetGapPV() const
+{
+  return fGapPV;
+}
 
 }  // namespace B4c
 

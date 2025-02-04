@@ -75,7 +75,14 @@ void EventAction::PrintEventStatistics(G4double absoEdep, G4double absoTrackLeng
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void EventAction::BeginOfEventAction(const G4Event* /*event*/) {}
+void EventAction::BeginOfEventAction(const G4Event* /*event*/) 
+{
+    fFirstInteraction = G4ThreeVector(-1e9, -1e9, -1e9);  // 记录第一个电磁相互作用点
+    fInteractionType = -1;
+    fSecondaries = -1;
+    fInteractionLayer = -1;
+    fInteractionDepth = -1;
+}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -107,7 +114,7 @@ void EventAction::EndOfEventAction(const G4Event* event)
   // Print per event (modulo n)
   auto eventID = event->GetEventID();
 
-  G4RunManager* rm = G4RunManager::GetRunManager();
+  G4RunManager* rm = G4RunManager::GetRunManager(); 
   auto printModulo = rm->GetPrintProgress();
   
   if ((printModulo > 0) && (eventID % printModulo == 0)) {
@@ -142,6 +149,7 @@ void EventAction::EndOfEventAction(const G4Event* event)
 
   analysisManager->FillNtupleDColumn(16, Total_Energy_Deposit);
   analysisManager->FillNtupleDColumn(31, Total_Track_Length);
+  // G4cout << "fInteractionDepth = " << fInteractionDepth << G4endl;
   analysisManager->FillNtupleDColumn(32, fInteractionDepth); // Interaction Depth
   analysisManager->FillNtupleIColumn(33, fInteractionLayer); // Interaction Layer
   analysisManager->FillNtupleIColumn(34, fInteractionType); // Interaction Type
