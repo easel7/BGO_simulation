@@ -28,7 +28,7 @@
 /// \brief Implementation of the B4::RunAction class
 
 #include "RunAction.hh"
-
+#include "EventAction.hh"
 #include "G4AnalysisManager.hh"
 #include "G4RunManager.hh"
 #include "G4SystemOfUnits.hh"
@@ -41,7 +41,7 @@ namespace B4
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 RunAction::RunAction()
-{
+{ // Default filename
   // set printing event number per each event
   G4RunManager::GetRunManager()->SetPrintProgress(1);
 
@@ -49,11 +49,13 @@ RunAction::RunAction()
   // The choice of the output format is done via the specified
   // file extension.
   auto analysisManager = G4AnalysisManager::Instance();
+  analysisManager->SetDefaultFileType("root");
   // Create directories
   // analysisManager->SetHistoDirectoryName("histograms");
   // analysisManager->SetNtupleDirectoryName("ntuple");
   analysisManager->SetVerboseLevel(1);
   analysisManager->SetNtupleMerging(true);
+  analysisManager->SetFileName("B4");
   // Note: merging ntuples is available only with Root output
   analysisManager->CreateNtuple("B4", "Edep and TrackL");
   analysisManager->CreateNtupleIColumn("Particle");
@@ -92,7 +94,6 @@ RunAction::RunAction()
   analysisManager->CreateNtupleIColumn("First_Layer"); // Layer (0,1,2...)
   analysisManager->CreateNtupleIColumn("First_Type"); // Type (0-EM, 1-HD, 2-Others)
   analysisManager->CreateNtupleIColumn("First_Second"); // Number of Secondaries
-
   analysisManager->FinishNtuple();
 }
 
@@ -102,19 +103,11 @@ void RunAction::BeginOfRunAction(const G4Run* /*run*/)
 {
   // inform the runManager to save random number seed
   // G4RunManager::GetRunManager()->SetRandomNumberStore(true);
-
-  // Get analysis manager
   auto analysisManager = G4AnalysisManager::Instance();
-
+  // Reset histograms from previous run
+  // analysisManager->Reset();
   // Open an output file
-  //
-  G4String fileName = "B4_proton_10GeV_100GeV.root";
-  // Other supported output types:
-  // G4String fileName = "B4.csv";
-  // G4String fileName = "B4.hdf5";
-  // G4String fileName = "B4.xml";
-  analysisManager->OpenFile(fileName);
-  G4cout << "Using " << analysisManager->GetType() << G4endl;
+  analysisManager->OpenFile();
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -122,10 +115,8 @@ void RunAction::BeginOfRunAction(const G4Run* /*run*/)
 void RunAction::EndOfRunAction(const G4Run* /*run*/)
 {
   // print histogram statistics
-  //
   auto analysisManager = G4AnalysisManager::Instance();
   // save histograms & ntuple
-  //
   analysisManager->Write();
   analysisManager->CloseFile();
 }

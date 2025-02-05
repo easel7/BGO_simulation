@@ -962,12 +962,13 @@ CMakeFiles/exampleB4c.dir/src/RunAction.cc.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/print \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/unistd.h \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/tls.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4AnalysisManager.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4GenericAnalysisManager.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ToolsAnalysisManager.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VAnalysisManager.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4AnalysisManagerState.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4AnalysisVerbose.hh \
+  /Users/xiongzheng/software/B4/B4c/include/EventAction.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4UserEventAction.hh \
+  /Users/xiongzheng/software/B4/B4c/include/CalorHit.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Allocator.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4AllocatorPool.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4THitsCollection.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VHitsCollection.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/globals.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ios.hh \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/iostream \
@@ -1012,6 +1013,17 @@ CMakeFiles/exampleB4c.dir/src/RunAction.cc.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__stop_token/stop_source.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__thread/thread.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__thread/this_thread.h \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ThreeVector.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Vector/ThreeVector.h \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Utility/defs.h \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Vector/ThreeVector.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VHit.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4AnalysisManager.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4GenericAnalysisManager.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ToolsAnalysisManager.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VAnalysisManager.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4AnalysisManagerState.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4AnalysisVerbose.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4AnalysisUtilities.hh \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/fstream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/filesystem \
@@ -1060,10 +1072,6 @@ CMakeFiles/exampleB4c.dir/src/RunAction.cc.o: \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4UIdirectory.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4UIcommand.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ApplicationState.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ThreeVector.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Vector/ThreeVector.h \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Utility/defs.h \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Vector/ThreeVector.icc \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4UIparameter.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4THnToolsManager.icc \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4THnMessenger.icc \
@@ -1098,13 +1106,10 @@ CMakeFiles/exampleB4c.dir/src/RunAction.cc.o: \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4RunManager.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Event.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/evtdefs.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Allocator.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4AllocatorPool.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4PrimaryVertex.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4PrimaryParticle.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/pwdefs.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4HCofThisEvent.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VHitsCollection.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4DCofThisEvent.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VDigiCollection.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4TrajectoryContainer.hh \

@@ -12,11 +12,14 @@
 #/process/em/verbose 0
 #/process/had/verbose 0
 #
+/analysis/setFileName gearsmake
 /run/initialize
 #
 # Default kinemtics:  
 # electron 300 MeV in direction (0.,0.,1.)
 # 10000 events
 #
+
 /run/printProgress 1000
 /run/beamOn 100
+

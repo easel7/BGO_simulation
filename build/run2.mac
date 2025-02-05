@@ -12,6 +12,7 @@
 #/process/em/verbose 0
 #/process/had/verbose 0
 #
+/analysis/setFileName gearsmake
 /run/initialize
 #
 # Default kinemtics:  
@@ -19,6 +20,6 @@
 # 10000 events
 #
 
-/process/verbose 2
-/run/printProgress 100
+/run/printProgress 1000
 /run/beamOn 100
+
