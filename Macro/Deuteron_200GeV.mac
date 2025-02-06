@@ -1,0 +1,6 @@
+/run/initialize
+/analysis/setFileName ../Root/Deuteron_200GeV
+/gun/particle deuteron
+/gun/energy 200 GeV
+/run/printProgress 10000
+/run/beamOn 10000

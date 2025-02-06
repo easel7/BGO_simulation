@@ -51,7 +51,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
   auto particleDefinition = G4ParticleTable::GetParticleTable()->FindParticle("proton");
   fParticleGun->SetParticleDefinition(particleDefinition);
   fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0., 0., 1.));
-
+  fParticleGun->SetParticleEnergy(20 * GeV);// default particle kinematic
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -97,9 +97,8 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
   fParticleGun->SetParticlePosition(G4ThreeVector(x, y, -worldZHalfLength));
   // Randomize the energy between 100 MeV and 500 MeV
   // G4double energy =  G4UniformRand() * (100 * GeV - 10 * GeV) + 10 * GeV;
-  G4double energy =  200 * GeV;
-
-  fParticleGun->SetParticleEnergy(energy);
+  // G4double energy =  200 * GeV;
+  // fParticleGun->SetParticleEnergy(energy);
   // G4cout<< "Watch out !!! energy" << energy << G4endl;
   fParticleGun->GeneratePrimaryVertex(event);
 }

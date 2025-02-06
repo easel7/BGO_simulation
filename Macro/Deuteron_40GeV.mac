@@ -1,0 +1,6 @@
+/run/initialize
+/analysis/setFileName ../Root/Deuteron_40GeV
+/gun/particle deuteron
+/gun/energy 40 GeV
+/run/printProgress 10000
+/run/beamOn 10000

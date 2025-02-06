@@ -1,0 +1,6 @@
+/run/initialize
+/analysis/setFileName ../Root/Proton_500GeV
+/gun/particle proton
+/gun/energy 500 GeV
+/run/printProgress 10000
+/run/beamOn 10000
