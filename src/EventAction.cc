@@ -77,7 +77,7 @@ void EventAction::PrintEventStatistics(G4double absoEdep, G4double absoTrackLeng
 
 void EventAction::BeginOfEventAction(const G4Event* /*event*/) 
 {
-    fFirstInteraction = G4ThreeVector(-1e9, -1e9, -1e9);  // 记录第一个电磁相互作用点
+    fFirstInteraction = G4ThreeVector(-1e9, -1e9, -1e9);  
     fInteractionType = -1;
     fSecondaries = -1;
     fInteractionLayer = -1;
@@ -105,7 +105,9 @@ void EventAction::EndOfEventAction(const G4Event* event)
   G4int particleID = 0;
   if (particleName == "proton") {particleID = 1; }
   else if (particleName == "deuteron") {particleID = 2; } 
-  else if (particleName == "alpha") { particleID = 3; } 
+  else if (particleName == "He3") { particleID = 3; } 
+  else if (particleName == "alpha") { particleID = 4; } 
+  else if (particleName == "e-") { particleID = 0; } 
   else {particleID = -1;  } 
 
   G4double energy = primary->GetKineticEnergy();

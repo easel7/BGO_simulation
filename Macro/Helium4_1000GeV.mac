@@ -1,0 +1,6 @@
+/run/initialize
+/analysis/setFileName ../Root/Helium4_1000GeV
+/gun/particle alpha
+/gun/energy 1000 GeV
+/run/printProgress 10000
+/run/beamOn 10000

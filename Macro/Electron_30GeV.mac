@@ -1,0 +1,6 @@
+/run/initialize
+/analysis/setFileName ../Root/Electron_30GeV
+/gun/particle e-
+/gun/energy 30 GeV
+/run/printProgress 10000
+/run/beamOn 10000

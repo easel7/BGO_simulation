@@ -68,9 +68,9 @@ class CalorHit : public G4VHit
     void Add(G4double de, G4double dl, G4int dlayer);
 
     // get methods
-    G4double GetEdep() const;
-    G4double GetTrackLength() const;
-    G4int GetLayerNumber() const;
+    G4double GetEdep()        const {  return fEdep        ;};
+    G4double GetTrackLength() const {  return fTrackLength ;};
+    G4int GetLayerNumber()    const {  return fLayerNumber ;};
 
   private:
     G4double fEdep = 0.;  ///< Energy deposit in the sensitive volume
@@ -109,22 +109,6 @@ inline void CalorHit::Add(G4double de, G4double dl, G4int dlayer) // for per lay
   fEdep = de;
   fTrackLength = dl;
   fLayerNumber = dlayer;
-}
-
-
-inline G4double CalorHit::GetEdep() const
-{
-  return fEdep;
-}
-
-inline G4double CalorHit::GetTrackLength() const
-{
-  return fTrackLength;
-}
-
-inline G4int CalorHit::GetLayerNumber() const
-{
-  return fLayerNumber;
 }
 
 }  // namespace B4c
