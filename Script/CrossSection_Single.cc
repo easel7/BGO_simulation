@@ -9,7 +9,7 @@ void CrossSection_Single()
     h0->SetTitle("100 GeV Electron - Depth Distribution;Depth(mm);Counts");
     gPad->SetLogy();
     gStyle->SetOptFit(1111);
-    TF1 *fitFunc = new TF1("fitFunc", "[0]*exp(-x/[1])", 0, 150);
+    TF1 *fitFunc = new TF1("fitFunc", "[0]*exp(-x/[1])", 0, 80);
     fitFunc->SetParameters(100, 10); // 初始参数：振幅=100, λ=10 cm
     h0->Fit(fitFunc, "R"); // 进行拟合
     double constant   = fitFunc->GetParameter(0);
@@ -19,8 +19,8 @@ void CrossSection_Single()
     cout << "Constant: " << constant  << ", N * Sigma: " << nsigma << " err = " << nsigma_err << endl;
 
     double n_BGO = TMath::Na()*7.13/1245.8344; // cm-3
-    double section = 1 / nsigma / n_BGO * 1e24; // barn
-    double section_err = 1 / nsigma / n_BGO * 1e24 * nsigma_err/nsigma; // barn
+    double section = 1 / nsigma / n_BGO * 1e25; // barn, mm = 1e-1 cm, 1e24 barn = 1 cm^2
+    double section_err = section * nsigma_err/nsigma; // barn
 
     TLatex latex;
     latex.SetTextSize(0.04);
@@ -30,5 +30,5 @@ void CrossSection_Single()
     latex.DrawLatex(40,100,"Fitting Function: P=[0]*exp(-x/[1])");
     
     cout << "Section : " << section << " ± " << section_err << " barn" << endl;
-    c1->SaveAs("CrossSection_Single_Electron.pdf");
+    c1->SaveAs("CrossSection_Electron.pdf");
 }
