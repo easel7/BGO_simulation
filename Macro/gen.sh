@@ -1,6 +1,6 @@
 #!/bin/bash
-Tag=Helium3
-particle=He3
+Tag=Electron
+particle=e-
 # Loop through energy values from 10 to 100 GeV with a step of 10
 for energy in $(seq 10 10 100)
 do

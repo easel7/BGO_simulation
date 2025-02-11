@@ -17,7 +17,9 @@
 # Default kinemtics:  
 # electron 300 MeV in direction (0.,0.,1.)
 # 10000 events
-/gun/particle e-
+#
+/gun/particle proton
 /gun/energy 100 GeV
+
 /run/printProgress 1000
-/run/beamOn 1
+/run/beamOn 1000

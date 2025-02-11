@@ -64,14 +64,12 @@ class CalorHit : public G4VHit
     void Draw() override {}
     void Print() override;
 
-    // methods to handle data
-    void Add(G4double de, G4double dl, G4int dlayer);
+    void Add(G4double de, G4double dl);
 
     // get methods
-    G4double GetEdep()        const {  return fEdep        ;};
-    G4double GetTrackLength() const {  return fTrackLength ;};
-    G4int GetLayerNumber()    const {  return fLayerNumber ;};
-
+    G4double GetEdep() const;
+    G4double GetTrackLength() const;
+    
   private:
     G4double fEdep = 0.;  ///< Energy deposit in the sensitive volume
     G4double fTrackLength = 0.;  ///< Track length in the  sensitive volume
@@ -104,11 +102,20 @@ inline void CalorHit::operator delete(void* hit)
   CalorHitAllocator->FreeSingle((CalorHit*)hit);
 }
 
-inline void CalorHit::Add(G4double de, G4double dl, G4int dlayer) // for per layer hit
+inline void CalorHit::Add(G4double de, G4double dl)
 {
-  fEdep = de;
-  fTrackLength = dl;
-  fLayerNumber = dlayer;
+  fEdep += de;
+  fTrackLength += dl;
+}
+
+inline G4double CalorHit::GetEdep() const
+{
+  return fEdep;
+}
+
+inline G4double CalorHit::GetTrackLength() const
+{
+  return fTrackLength;
 }
 
 }  // namespace B4c

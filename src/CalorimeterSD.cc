@@ -81,7 +81,6 @@ G4bool CalorimeterSD::ProcessHits(G4Step* step, G4TouchableHistory*)
 
   // Get calorimeter cell id
   auto layerNumber = touchable->GetReplicaNumber(1);
-  // G4cout << "watch out the layer Number !! " <<layerNumber << G4endl;
 
   // Get hit accounting data for this cell
   auto hit = (*fHitsCollection)[layerNumber];
@@ -92,8 +91,12 @@ G4bool CalorimeterSD::ProcessHits(G4Step* step, G4TouchableHistory*)
   }
 
   // Get hit for total accounting
+  auto hitTotal = (*fHitsCollection)[fHitsCollection->entries() - 1];
+
   // Add values
-  hit->Add(edep, stepLength, layerNumber);
+  hit->Add(edep, stepLength);
+  hitTotal->Add(edep, stepLength);
+
   return true;
 }
 

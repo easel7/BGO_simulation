@@ -97,7 +97,10 @@ void EventAction::EndOfEventAction(const G4Event* event)
   // Get hits collections
   auto absoHC = GetHitsCollection(fAbsHCID, event);
   auto gapHC  = GetHitsCollection(fGapHCID, event);
-  G4cout << "Number of Hit: " << absoHC->entries() - 1 << G4endl;
+
+  // Get hit with total values
+  auto absoTotalHit = (*absoHC)[absoHC->entries() - 1];
+  auto gapTotalHit = (*gapHC)[gapHC->entries() - 1];
 
   // Get primary particle information
   const G4PrimaryParticle* primary = event->GetPrimaryVertex(0)->GetPrimary();  
@@ -123,34 +126,25 @@ void EventAction::EndOfEventAction(const G4Event* event)
     G4cout << "--> End of event: " << eventID << "\n" << G4endl;
   }
 
-  G4double Total_Energy_Deposit = 0;
-  G4double Total_Track_Length = 0;
-
   // Fill histograms, ntuple
   // get analysis manager
   auto analysisManager = G4AnalysisManager::Instance();
   analysisManager->FillNtupleIColumn(0, particleID);
-  analysisManager->FillNtupleDColumn(1, energy / CLHEP::MeV);
+  analysisManager->FillNtupleDColumn(1, energy / CLHEP::GeV);
 
-  for (int i = 0; i < absoHC->entries(); ++i) 
+  for (int i = 0; i < absoHC->entries()-1; ++i) 
   {
     auto absoperHit = (*absoHC)[i];
     if (absoperHit) {
       // Get energy deposition and layer number for this hit
-      G4double energyDeposit = absoperHit->GetEdep() / CLHEP::MeV;
-      G4double trackLength = absoperHit->GetTrackLength() / CLHEP::mm;
-
-      Total_Energy_Deposit += energyDeposit ;
-      Total_Track_Length += trackLength ; 
-
       // Fill ntuple for each layer's energy deposit
-      analysisManager->FillNtupleDColumn(i+2, energyDeposit);     // Energy deposit in this layer
-      analysisManager->FillNtupleDColumn(i+17, trackLength);       // Layer number
+      analysisManager->FillNtupleDColumn(i+2, absoperHit->GetEdep() / CLHEP::GeV);     // Energy deposit in this layer
+      analysisManager->FillNtupleDColumn(i+17, absoperHit->GetTrackLength() / CLHEP::mm);       // Layer number
     }
   }
 
-  analysisManager->FillNtupleDColumn(16, Total_Energy_Deposit);
-  analysisManager->FillNtupleDColumn(31, Total_Track_Length);
+  analysisManager->FillNtupleDColumn(16, absoTotalHit->GetEdep() / CLHEP::GeV);
+  analysisManager->FillNtupleDColumn(31, absoTotalHit->GetTrackLength() / CLHEP::mm);
   // G4cout << "fInteractionDepth = " << fInteractionDepth << G4endl;
   analysisManager->FillNtupleDColumn(32, fInteractionDepth); // Interaction Depth
   analysisManager->FillNtupleIColumn(33, fInteractionLayer); // Interaction Layer
