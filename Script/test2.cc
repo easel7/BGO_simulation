@@ -1,6 +1,6 @@
 double smartCeil(double value);
 
-void Edep_Ratio()
+void test2()
 {
     double Proton_Edep[18]={0};
     double Proton_Edep_Err[18]={0};
@@ -14,7 +14,7 @@ void Edep_Ratio()
     TH1D *h1_p[18];  TF1  *fitFunc_p[18];
     TH1D *h1_d[18];  TF1  *fitFunc_d[18];
     TH1D *h1_h[18];  TF1  *fitFunc_h[18];
-    for (int i = 0; i < 1; i++)
+    for (int i = 14; i < 15; i++)
     {
         if(i<9)  {Energy[i] =  (i+1)*10;}
         else   {Energy[i] =  i*100-800;}
@@ -52,9 +52,9 @@ void Edep_Ratio()
         
         h1_e[i]->SetTitle(Form("%d GeV - Deposit Energy/Incident Energy;Energy Deposit Ratio;Counts",int(Energy[i])));
 
-        fitFunc_p[i] = new TF1(Form("fitFunc_p_%d", i), "gaus", h1_p[i]->GetMean()-3*h1_p[i]->GetRMS(), h1_p[i]->GetMean()+3*h1_p[i]->GetRMS());
-        fitFunc_d[i] = new TF1(Form("fitFunc_d_%d", i), "gaus", h1_d[i]->GetMean()-3*h1_d[i]->GetRMS(), h1_d[i]->GetMean()+3*h1_d[i]->GetRMS());
-        fitFunc_e[i] = new TF1(Form("fitFunc_e_%d", i), "gaus", h1_e[i]->GetMean()-3*h1_e[i]->GetRMS(), h1_e[i]->GetMean()+3*h1_e[i]->GetRMS());
+        fitFunc_p[i] = new TF1(Form("fitFunc_p_%d", i), "[0]*exp(-x/[1])", h1_p[i]->GetMean()-3*h1_p[i]->GetRMS(), h1_p[i]->GetMean()+3*h1_p[i]->GetRMS()); fitFunc_p[i]->SetParameter(100,2);
+        fitFunc_d[i] = new TF1(Form("fitFunc_d_%d", i), "[0]*exp(-x/[1])", h1_d[i]->GetMean()-3*h1_d[i]->GetRMS(), h1_d[i]->GetMean()+3*h1_d[i]->GetRMS());
+        fitFunc_e[i] = new TF1(Form("fitFunc_e_%d", i), "[0]*exp(-x/[1])", h1_e[i]->GetMean()-3*h1_e[i]->GetRMS(), h1_e[i]->GetMean()+3*h1_e[i]->GetRMS());
         fitFunc_h[i] = new TF1(Form("fitFunc_h_%d", i), "gaus", h1_h[i]->GetMean()-3*h1_h[i]->GetRMS(), h1_h[i]->GetMean()+3*h1_h[i]->GetRMS());
 
 
@@ -68,44 +68,44 @@ void Edep_Ratio()
         h1_h[i]->Draw("same");
 
         auto legend1 = new TLegend(0.72, 0.68, 0.88, 0.88);
-        legend1->AddEntry(h1_p[0], "Proton", "l");
-        legend1->AddEntry(h1_d[0], "Deuteron", "l");
-        legend1->AddEntry(h1_e[0], "Electron", "l");
-        legend1->AddEntry(h1_h[0], "Helium4", "l");         
+        legend1->AddEntry(h1_p[i], "Proton", "l");
+        legend1->AddEntry(h1_d[i], "Deuteron", "l");
+        legend1->AddEntry(h1_e[i], "Electron", "l");
+        legend1->AddEntry(h1_h[i], "Helium4", "l");         
         legend1->Draw();       
 
-        h1_e[i]->SetTitle(Form("%d GeV Electron Energy Deposit Ratio;Energy Deposit / Incident Kinetic Energy;No. Events",int(Energy[i])));
-        h1_e[i]->Fit(fitFunc_e[i],"RQ");
+        // h1_e[i]->SetTitle(Form("%d GeV Electron Energy Deposit Ratio;Energy Deposit / Incident Kinetic Energy;No. Events",int(Energy[i])));
+        // h1_p[i]->Fit(fitFunc_p[i],"RQ");
         // fitFunc_e[i]->Draw("same");
-        Electron_Edep[i]     = fitFunc_e[i]->GetParameter(1);
-        Electron_Edep_Err[i] = fitFunc_e[i]->GetParameter(2);
-        c1->SaveAs( Form("/Users/xiongzheng/software/B4/B4c/Script/EnergyDep/EnergyDeposit_%dGeV.pdf",int(Energy[i])) );
+        // Electron_Edep[i]     = fitFunc_e[i]->GetParameter(1);
+        // Electron_Edep_Err[i] = fitFunc_e[i]->GetParameter(2);
+        // c1->SaveAs( Form("/Users/xiongzheng/software/B4/B4c/Script/EnergyDep/EnergyDeposit_%dGeV.pdf",int(Energy[i])) );
 
     }
-    auto c0 = new TCanvas("c0","c0",900,600);
-    auto gre_e = new TGraphErrors(18, Energy, Electron_Edep, Energy_Err, Electron_Edep_Err);
-    gre_e->SetMarkerStyle(22);
-    gre_e->SetMarkerColor(kOrange-3);
-    gre_e->SetLineColor(kOrange-3);
-    gre_e->SetTitle("Energy Deposit Ratio vs Energy; Kinetic Energy (GeV); Energy Deposit Ratio");
-    c0->Clear();
-    c0->cd();
-    gPad->SetLogy();
-    gPad->SetLogx();
+    // auto c0 = new TCanvas("c0","c0",900,600);
+    // auto gre_e = new TGraphErrors(18, Energy, Electron_Edep, Energy_Err, Electron_Edep_Err);
+    // gre_e->SetMarkerStyle(22);
+    // gre_e->SetMarkerColor(kOrange-3);
+    // gre_e->SetLineColor(kOrange-3);
+    // gre_e->SetTitle("Energy Deposit Ratio vs Energy; Kinetic Energy (GeV); Energy Deposit Ratio");
+    // c0->Clear();
+    // c0->cd();
+    // gPad->SetLogy();
+    // gPad->SetLogx();
 
-    gre_e->Draw("AP");
-    gre_e->GetYaxis()->SetRangeUser(1e-6 , 1e-3);
-    gre_e->GetYaxis()->SetNdivisions(505);
-    gre_e->GetYaxis()->SetLabelSize(0.05);
-    gre_e->GetYaxis()->SetTitleSize(0.05);
-    gre_e->GetYaxis()->SetTitleOffset(0.9);
+    // gre_e->Draw("AP");
+    // gre_e->GetYaxis()->SetRangeUser(1e-6 , 1e-3);
+    // gre_e->GetYaxis()->SetNdivisions(505);
+    // gre_e->GetYaxis()->SetLabelSize(0.05);
+    // gre_e->GetYaxis()->SetTitleSize(0.05);
+    // gre_e->GetYaxis()->SetTitleOffset(0.9);
 
-    auto legend1 = new TLegend(0.7, 0.78, 0.88, 0.88);
-    legend1->SetNColumns(2);
-    legend1->AddEntry(gre_e, "Electron", "ep");
-    legend1->Draw();
+    // auto legend1 = new TLegend(0.7, 0.78, 0.88, 0.88);
+    // legend1->SetNColumns(2);
+    // legend1->AddEntry(gre_e, "Electron", "ep");
+    // legend1->Draw();
 
-    c0->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/EnergyDep/EnergyDeposit.pdf");
+    // c0->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/EnergyDep/EnergyDeposit.pdf");
    
 }
 

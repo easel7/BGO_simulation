@@ -1,6 +1,6 @@
 void Edep_TrackLength()
 {
-    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_100GeV.root");
+    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_1000GeV.root");
     auto proton_tree = (TTree*)proton_file->Get("B4");
     auto c1 = new TCanvas("c1","c1",1200,1200);
 
@@ -11,10 +11,10 @@ void Edep_TrackLength()
 
     TCut UBT = "L0_E+L1_E>8";
 
-    proton_tree->Draw("L0_E:L0_L  >>L0",UBT,"colz");
-    proton_tree->Draw("L4_E:L4_L  >>L1",UBT,"colz");
-    proton_tree->Draw("L8_E:L8_L  >>L2",UBT,"colz");
-    proton_tree->Draw("L12_E:L12_L>>L3",UBT,"colz");
+    proton_tree->Draw("L0_E:L0_L  >>L0","","colz");
+    proton_tree->Draw("L4_E:L4_L  >>L1","","colz");
+    proton_tree->Draw("L8_E:L8_L  >>L2","","colz");
+    proton_tree->Draw("L12_E:L12_L>>L3","","colz");
 
     c1->Clear();
     gStyle->SetOptStat(0);

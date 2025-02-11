@@ -119,7 +119,7 @@ void CrossSection()
         Helium4_Section_Err[i] = Helium4_Section[i] * helium4_nsigma_err / helium4_nsigma;
         cout << "Helium4 " << Energy[i] << " GeV: Sigma = " << Helium4_Section[i] << " ± " << Helium4_Section_Err[i] << " barn" << endl;
 
-        c1->SaveAs( Form("/Users/xiongzheng/software/B4/B4c/Script/CrossSection_%dGeV.pdf",int(Energy[i])) );
+        c1->SaveAs( Form("/Users/xiongzheng/software/B4/B4c/Script/CrossS/CrossSection_%dGeV.pdf",int(Energy[i])) );
     }
     
     auto c0 = new TCanvas("c0","c0",1200,1200);
@@ -201,7 +201,7 @@ void CrossSection()
     legend2->Draw();
 
 
-    c0->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/CrossSection.pdf");
+    c0->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/CrossS/CrossSection.pdf");
 
 
 }

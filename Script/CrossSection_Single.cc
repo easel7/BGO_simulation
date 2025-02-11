@@ -1,12 +1,12 @@
 void CrossSection_Single()
 {
-    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Electron_100GeV.root");
+    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_100GeV.root");
     auto proton_tree = (TTree*)proton_file->Get("B4");
     auto c1 = new TCanvas("c1","c1",900,600);
     auto *h0 = new TH1D("h0","h0",150,0,150);
     c1->cd();
     proton_tree->Draw("First_Depth>>h0","","");
-    h0->SetTitle("100 GeV Electron - Depth Distribution;Depth(mm);Counts");
+    h0->SetTitle("100 GeV Proton - Depth Distribution;Depth(mm);Counts");
     gPad->SetLogy();
     gStyle->SetOptFit(1111);
     TF1 *fitFunc = new TF1("fitFunc", "[0]*exp(-x/[1])", 0, 80);
@@ -30,5 +30,5 @@ void CrossSection_Single()
     latex.DrawLatex(40,100,"Fitting Function: P=[0]*exp(-x/[1])");
     
     cout << "Section : " << section << " ± " << section_err << " barn" << endl;
-    c1->SaveAs("CrossSection_Electron.pdf");
+    c1->SaveAs("CrossSection_Proton.pdf");
 }

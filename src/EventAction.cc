@@ -97,7 +97,7 @@ void EventAction::EndOfEventAction(const G4Event* event)
   // Get hits collections
   auto absoHC = GetHitsCollection(fAbsHCID, event);
   auto gapHC  = GetHitsCollection(fGapHCID, event);
-  // G4cout << "Number of Hit: " << absoHC->entries() - 1 << "\n" << G4endl;
+  G4cout << "Number of Hit: " << absoHC->entries() - 1 << G4endl;
 
   // Get primary particle information
   const G4PrimaryParticle* primary = event->GetPrimaryVertex(0)->GetPrimary();  
@@ -132,7 +132,7 @@ void EventAction::EndOfEventAction(const G4Event* event)
   analysisManager->FillNtupleIColumn(0, particleID);
   analysisManager->FillNtupleDColumn(1, energy / CLHEP::MeV);
 
-  for (std::size_t i = 0; i < absoHC->entries(); ++i) 
+  for (int i = 0; i < absoHC->entries(); ++i) 
   {
     auto absoperHit = (*absoHC)[i];
     if (absoperHit) {

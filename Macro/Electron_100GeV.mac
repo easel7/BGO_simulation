@@ -1,5 +1,5 @@
 /run/initialize
-/analysis/setFileName ../Root/Electron_100GeV
+/analysis/setFileName ../Root/Electron_100GeV_FTFP_BERT_EMZ
 /gun/particle e-
 /gun/energy 100 GeV
 /run/printProgress 10000

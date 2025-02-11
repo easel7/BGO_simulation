@@ -1220,6 +1220,7 @@ CMakeFiles/exampleB4c.dir/exampleB4c.cc.o: /Users/xiongzheng/software/B4/B4c/exa
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleTable.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleTable.icc \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleTableIterator.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4PhysListFactory.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4PhysicalVolumeModel.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4PhysicsFreeVector.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4PhysicsListHelper.hh \
@@ -13701,6 +13702,8 @@ CMakeFiles/exampleB4c.dir/src/SteppingAction.cc.o: /Users/xiongzheng/software/B4
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__algorithm/min.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__algorithm/make_heap.h:
+
+/Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4PhysListFactory.hh:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_wchar_t.h:
 

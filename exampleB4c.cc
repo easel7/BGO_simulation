@@ -30,7 +30,7 @@
 #include "ActionInitialization.hh"
 #include "DetectorConstruction.hh"
 #include "FTFP_BERT.hh"
-
+#include "G4PhysListFactory.hh"
 #include "G4RunManagerFactory.hh"
 #include "G4SteppingVerbose.hh"
 #include "G4UIExecutive.hh"
@@ -120,6 +120,10 @@ int main(int argc, char** argv)
 
   auto physicsList = new FTFP_BERT;
   runManager->SetUserInitialization(physicsList);
+
+  // G4PhysListFactory factory;
+  // auto* physList = factory.GetReferencePhysList("FTFP_BERT_EMZ");
+  // runManager->SetUserInitialization(physList);
 
   auto actionInitialization = new B4c::ActionInitialization(detConstruction);
   runManager->SetUserInitialization(actionInitialization);

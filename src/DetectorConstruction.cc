@@ -82,14 +82,7 @@ void DetectorConstruction::DefineMaterials()
   new G4Material("Galactic", z = 1., a = 1.01 * g / mole, density = universe_mean_density,
                  kStateGas, 2.73 * kelvin, 3.e-18 * pascal);
 
-  G4Element* elBi = new G4Element("Bismuth", "Bi", 83., 208.9804 * g / mole);
-  G4Element* elGe = new G4Element("Germanium", "Ge", 32., 72.64 * g / mole);
-  G4Element* elO = new G4Element("Oxygen", "O", 8., 16.00 * g / mole);
-
-  G4Material* BGO = new G4Material("BGO", 7.13 * g / cm3, 3);
-  BGO->AddElement(elBi, 4);
-  BGO->AddElement(elGe, 3);
-  BGO->AddElement(elO, 12);
+  G4Material* BGO = G4NistManager::Instance()->FindOrBuildMaterial("G4_BGO");
 
   G4cout << "Defined BGO material: " << *BGO << G4endl;
 
@@ -115,9 +108,9 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes()
   auto worldSizeZ = 1.2 * calorThickness;
 
   // Get materials
-  auto defaultMaterial = G4Material::GetMaterial("Galactic");
-  auto absorberMaterial = G4Material::GetMaterial("BGO");
-  auto gapMaterial = G4Material::GetMaterial("Galactic");
+  auto defaultMaterial = G4NistManager::Instance()->FindOrBuildMaterial("G4_Galactic");
+  auto absorberMaterial = G4NistManager::Instance()->FindOrBuildMaterial("G4_BGO");
+  auto gapMaterial = G4NistManager::Instance()->FindOrBuildMaterial("G4_Galactic");
 
   if (!defaultMaterial || !absorberMaterial || !gapMaterial) {
     G4ExceptionDescription msg;
