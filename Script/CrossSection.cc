@@ -20,7 +20,6 @@ void CrossSection()
     TH1D *h1_e[18];    TF1  *fitFunc_e[18];
     TH1D *h1_h[18];    TF1  *fitFunc_h[18];
 
-
     for (int i = 0; i < 18; i++)
     {
         if(i<9)  {Energy[i] =  (i+1)*10;}

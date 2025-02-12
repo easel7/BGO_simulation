@@ -98,10 +98,6 @@ void EventAction::EndOfEventAction(const G4Event* event)
   auto absoHC = GetHitsCollection(fAbsHCID, event);
   auto gapHC  = GetHitsCollection(fGapHCID, event);
 
-  // Get hit with total values
-  auto absoTotalHit = (*absoHC)[absoHC->entries() - 1];
-  auto gapTotalHit = (*gapHC)[gapHC->entries() - 1];
-
   // Get primary particle information
   const G4PrimaryParticle* primary = event->GetPrimaryVertex(0)->GetPrimary();  
   G4String particleName = primary->GetParticleDefinition()->GetParticleName();
@@ -132,19 +128,16 @@ void EventAction::EndOfEventAction(const G4Event* event)
   analysisManager->FillNtupleIColumn(0, particleID);
   analysisManager->FillNtupleDColumn(1, energy / CLHEP::GeV);
 
-  for (int i = 0; i < absoHC->entries()-1; ++i) 
+  for (int i = 0; i < absoHC->entries(); ++i) 
   {
     auto absoperHit = (*absoHC)[i];
     if (absoperHit) {
-      // Get energy deposition and layer number for this hit
-      // Fill ntuple for each layer's energy deposit
+      // Get energy deposition and layer number for this hit  Fill ntuple for each layer's energy deposit
       analysisManager->FillNtupleDColumn(i+2, absoperHit->GetEdep() / CLHEP::GeV);     // Energy deposit in this layer
-      analysisManager->FillNtupleDColumn(i+17, absoperHit->GetTrackLength() / CLHEP::mm);       // Layer number
+      analysisManager->FillNtupleDColumn(i+17, absoperHit->GetTrackLength() / CLHEP::m);       // Layer number
+      // index == absoHC->entries()-1 return the total value
     }
   }
-
-  analysisManager->FillNtupleDColumn(16, absoTotalHit->GetEdep() / CLHEP::GeV);
-  analysisManager->FillNtupleDColumn(31, absoTotalHit->GetTrackLength() / CLHEP::mm);
   // G4cout << "fInteractionDepth = " << fInteractionDepth << G4endl;
   analysisManager->FillNtupleDColumn(32, fInteractionDepth); // Interaction Depth
   analysisManager->FillNtupleIColumn(33, fInteractionLayer); // Interaction Layer

@@ -23,11 +23,11 @@ void Edep_Ratio()
 
         auto proton_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Proton_%dGeV.root",int(Energy[i])));
         auto proton_tree = (TTree*)proton_file->Get("B4");
-        auto deuteron_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Deuteron_%dGeV.root",int(Energy[i])));
+        auto deuteron_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Proton_%dGeV.root",int(Energy[i])));
         auto deuteron_tree = (TTree*)deuteron_file->Get("B4");
-        auto electron_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Electron_%dGeV.root",int(Energy[i])));
+        auto electron_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Proton_%dGeV.root",int(Energy[i])));
         auto electron_tree = (TTree*)electron_file->Get("B4");
-        auto helium4_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Helium4_%dGeV.root",int(Energy[i])));
+        auto helium4_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Proton_%dGeV.root",int(Energy[i])));
         auto helium4_tree = (TTree*)helium4_file->Get("B4");
 
         double max_e_TotalE = electron_tree->GetMaximum("Total_E");
