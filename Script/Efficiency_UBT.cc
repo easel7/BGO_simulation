@@ -73,7 +73,7 @@ void Efficiency_UBT()
         Helium4_Eff[i]     = h2_h[i]->GetSum()/h1_h[i]->GetSum();
         Helium4_Eff_UBT[i] = h3_h[i]->GetSum()/h1_h[i]->GetSum();
 
-        cout << "Energy = " << int(Energy[i]) << " GeV !" << " He4 eff : " << h2_h[i]->GetSum() <<endl;
+        cout << "Energy = " << int(Energy[i]) << " GeV !" << " He4 HET eff : " << h2_h[i]->GetSum() <<" He4 UBT eff : " << h3_h[i]->GetSum() <<endl;
 
     }
     
@@ -162,7 +162,7 @@ void Efficiency_UBT()
     // gre_p->GetXaxis()->SetLabelSize(0.06);
     // gre_p->GetXaxis()->SetTitleSize(0.07);
 
-    auto legend2 = new TLegend(0.60, 0.12, 0.88, 0.32);
+    auto legend2 = new TLegend(0.12, 0.32, 0.32, 0.52);
     legend2->SetNColumns(2);
     legend2->AddEntry(gre_p, "HET Proton", "ep");
     legend2->AddEntry(gre_d, "HET Deuteron", "ep");
