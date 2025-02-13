@@ -47,3 +47,75 @@
 /gui/addButton viewer "Flush viewer (= refresh + update)" "/vis/viewer/flush"
 /gui/addButton viewer "Update scene" "/vis/scene/notifyHandlers"
 /run/printProgress 100
+/gps/particle proton
+/gps/ene/type Mono
+/gps/ene/mono 500 GeV
+/gps/pos/type Plane
+/gps/pos/shape Square
+/gps/pos/halfx 5 cm
+/gps/pos/halfy 5 cm
+/gps/pos/centre 0. 0. -21.4 cm
+/gps/direction 0 0 1
+/run/beamOn
+/vis/scene/notifyHandlers scene-0
+/analysis/h1/getVector
+/analysis/h2/getVector
+/run/beamOn
+/analysis/h1/getVector
+/analysis/h2/getVector
+/run/beamOn
+/analysis/h1/getVector
+/analysis/h2/getVector
+/run/beamOn
+/analysis/h1/getVector
+/analysis/h2/getVector
+/run/beamOn
+/analysis/h1/getVector
+/analysis/h2/getVector
+/run/beamOn
+/analysis/h1/getVector
+/analysis/h2/getVector
+/run/beamOn
+/analysis/h1/getVector
+/analysis/h2/getVector
+/run/beamOn
+/analysis/h1/getVector
+/analysis/h2/getVector
+/run/beamOn
+/analysis/h1/getVector
+/analysis/h2/getVector
+/run/beamOn
+/analysis/h1/getVector
+/analysis/h2/getVector
+/run/beamOn
+/analysis/h1/getVector
+/analysis/h2/getVector
+/run/beamOn
+/analysis/h1/getVector
+/analysis/h2/getVector
+/run/beamOn
+/analysis/h1/getVector
+/analysis/h2/getVector
+/run/beamOn
+/analysis/h1/getVector
+/analysis/h2/getVector
+/run/beamOn
+/analysis/h1/getVector
+/analysis/h2/getVector
+/run/beamOn
+/analysis/h1/getVector
+/analysis/h2/getVector
+/run/beamOn
+/analysis/h1/getVector
+/analysis/h2/getVector
+/gps/particle proton
+/gps/ene/type Mono
+/gps/ene/mono 500 GeV
+/gps/pos/type Plane
+/gps/pos/shape Square
+/gps/pos/halfx 10 cm
+/gps/pos/halfy 10 cm
+/gps/pos/centre 0. 0. -214.2 mm
+/gps/direction 0 0 1
+/run/printProgress 1000
+/run/beamOn 100

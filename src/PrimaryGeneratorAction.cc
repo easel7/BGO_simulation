@@ -32,6 +32,12 @@
 #include "G4Box.hh"
 #include "G4LogicalVolume.hh"
 #include "G4LogicalVolumeStore.hh"
+
+#include "G4ios.hh"
+#include "G4Event.hh"
+#include "G4GeneralParticleSource.hh"
+#include "G4ParticleDefinition.hh"
+
 #include "G4ParticleGun.hh"
 #include "G4ParticleTable.hh"
 #include "G4SystemOfUnits.hh"
@@ -46,19 +52,19 @@ namespace B4
 PrimaryGeneratorAction::PrimaryGeneratorAction()
 {
   G4int nofParticles = 1;
-  fParticleGun = new G4ParticleGun(nofParticles);
+  fparticleSource = new G4GeneralParticleSource();
   // default particle kinematic
   auto particleDefinition = G4ParticleTable::GetParticleTable()->FindParticle("proton");
-  fParticleGun->SetParticleDefinition(particleDefinition);
-  fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0., 0., 1.));
-  fParticleGun->SetParticleEnergy(20 * GeV);// default particle kinematic
+  fparticleSource->SetParticleDefinition(particleDefinition);
+  // fparticleSource->SetEneDepositionType(G4ThreeVector(0., 0., 1.));  // 设置方向
+  // fparticleSource->SetMonoEnergy(20 * GeV);  // 设定单一能量
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 PrimaryGeneratorAction::~PrimaryGeneratorAction()
 {
-  delete fParticleGun;
+  delete fparticleSource;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -92,15 +98,15 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
   }
 
   // Set gun position
-  G4double x = G4UniformRand() * 10.0 * cm;  // Ramdom X Coordinate
-  G4double y = G4UniformRand() * 10.0 * cm;  // Ramdom Y Coordinate
-  fParticleGun->SetParticlePosition(G4ThreeVector(x, y, -worldZHalfLength));
+  // G4double x = G4UniformRand() * 10.0 * cm;  // Ramdom X Coordinate
+  // G4double y = G4UniformRand() * 10.0 * cm;  // Ramdom Y Coordinate
+  // fparticleSource->SetParticlePosition(G4ThreeVector(x, y, -worldZHalfLength));
   // Randomize the energy between 100 MeV and 500 MeV
   // G4double energy =  G4UniformRand() * (100 * GeV - 10 * GeV) + 10 * GeV;
   // G4double energy =  200 * GeV;
-  // fParticleGun->SetParticleEnergy(energy);
+  // fparticleSource->SetParticleEnergy(energy);
   // G4cout<< "Watch out !!! energy" << energy << G4endl;
-  fParticleGun->GeneratePrimaryVertex(event);
+  fparticleSource->GeneratePrimaryVertex(event);
 }
 
 

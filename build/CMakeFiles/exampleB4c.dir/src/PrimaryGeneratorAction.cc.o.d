@@ -2,11 +2,8 @@ CMakeFiles/exampleB4c.dir/src/PrimaryGeneratorAction.cc.o: \
   /Users/xiongzheng/software/B4/B4c/src/PrimaryGeneratorAction.cc \
   /Users/xiongzheng/software/B4/B4c/include/PrimaryGeneratorAction.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VUserPrimaryGeneratorAction.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Box.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4GeomTypes.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4GeomConfig.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4CSGSolid.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VSolid.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/globals.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ios.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Types.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4GlobalConfig.hh \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/complex \
@@ -967,12 +964,9 @@ CMakeFiles/exampleB4c.dir/src/PrimaryGeneratorAction.cc.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/print \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/unistd.h \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/tls.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4String.hh \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/iostream \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4String.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4String.icc \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/geomdefs.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/globals.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ios.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/templates.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Exception.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ExceptionSeverity.hh \
@@ -980,6 +974,12 @@ CMakeFiles/exampleB4c.dir/src/PrimaryGeneratorAction.cc.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/map \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__tree \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Box.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4GeomTypes.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4GeomConfig.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4CSGSolid.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VSolid.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/geomdefs.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ThreeVector.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Vector/ThreeVector.h \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Utility/defs.h \
@@ -1063,25 +1063,75 @@ CMakeFiles/exampleB4c.dir/src/PrimaryGeneratorAction.cc.o: \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4LogicalVolumeStore.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VStoreNotifier.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VNotifier.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleGun.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VPrimaryGenerator.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleDefinition.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4PDefManager.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/pwdefs.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleDefinition.icc \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4PrimaryVertex.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Event.hh \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/set \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/evtdefs.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Allocator.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4AllocatorPool.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4PrimaryVertex.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4PrimaryParticle.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/pwdefs.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4HCofThisEvent.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VHitsCollection.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4DCofThisEvent.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VDigiCollection.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4TrajectoryContainer.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VTrajectory.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VUserEventInformation.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4GeneralParticleSource.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4SingleParticleSource.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VPrimaryGenerator.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleMomentum.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleTable.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleTableIterator.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleTable.icc \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4SystemOfUnits.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/Randomize.hh \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Random/Randomize.h \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Random/DualRand.h \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Random/RandomEngine.h \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleDefinition.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4PDefManager.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleDefinition.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4SPSPosDistribution.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Navigator.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4AffineTransform.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4AffineTransform.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4TouchableHandle.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VTouchable.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4TouchableHistory.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4NavigationHistory.hh \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/assert.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/_assert.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/_static_assert.h \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4NavigationLevel.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4NavigationLevelRep.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4NavigationLevelRep.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4NavigationLevel.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4NavigationHistoryPool.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4NavigationHistory.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4TouchableHistory.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ReferenceCountedHandle.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4NormalNavigation.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VNavigation.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4AuxiliaryNavServices.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4AuxiliaryNavServices.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4NormalNavigation.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VoxelNavigation.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4NavigationLogger.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4BlockingList.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4BlockingList.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4SmartVoxelProxy.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4SmartVoxelProxy.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4SmartVoxelNode.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4SmartVoxelNode.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4SmartVoxelHeader.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4SmartVoxelHeader.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VoxelNavigation.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParameterisedNavigation.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VPVParameterisation.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VVolumeMaterialScanner.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParameterisedNavigation.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ReplicaNavigation.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ReplicaNavigation.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4RegularNavigation.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4VExternalNavigation.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Navigator.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4SPSRandomGenerator.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4PhysicsFreeVector.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4PhysicsVector.hh \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/fstream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/filesystem \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
@@ -1100,6 +1150,30 @@ CMakeFiles/exampleB4c.dir/src/PrimaryGeneratorAction.cc.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__filesystem/u8path.h \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Log.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4PhysicsVectorType.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4PhysicsVector.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4DataInterpolation.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Cache.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4CacheDetails.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4SPSAngDistribution.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4SPSEneDistribution.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4GeneralParticleSourceMessenger.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4UImessenger.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4UIdirectory.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4UIcommand.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ApplicationState.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4UIparameter.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4GeneralParticleSourceData.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleGun.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleTable.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleTableIterator.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleTable.icc \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4SystemOfUnits.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/Randomize.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Random/Randomize.h \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Random/DualRand.h \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Random/RandomEngine.h \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Random/RandomEngine.icc \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Random/JamesRandom.h \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/CLHEP/Random/MixMaxRng.h \

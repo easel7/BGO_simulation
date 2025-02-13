@@ -1,6 +1,6 @@
 #!/bin/bash
-Tag=Electron
-particle=e-
+Tag=Deuteron
+particle=deuteron
 # Loop through energy values from 10 to 100 GeV with a step of 10
 for energy in $(seq 10 10 100)
 do
@@ -8,9 +8,19 @@ do
   cat <<EOL > "${Tag}_${energy}GeV.mac"
 /run/initialize
 /analysis/setFileName ../Root/${Tag}_${energy}GeV
-/gun/particle ${particle}
-/gun/energy ${energy} GeV
-/run/printProgress 10000
+/gps/particle ${particle}
+/gps/ene/type Mono
+/gps/ene/mono ${energy} GeV
+
+/gps/pos/type Plane
+/gps/pos/shape Square
+/gps/pos/halfx 10 cm
+/gps/pos/halfy 10 cm
+/gps/pos/centre 0. 0. -214.2 mm
+
+/gps/direction 0 0 1
+
+/run/printProgress 1000
 /run/beamOn 10000
 EOL
 done
@@ -21,9 +31,19 @@ do
   cat <<EOL > "${Tag}_${energy}GeV.mac"
 /run/initialize
 /analysis/setFileName ../Root/${Tag}_${energy}GeV
-/gun/particle ${particle}
-/gun/energy ${energy} GeV
-/run/printProgress 10000
+/gps/particle ${particle}
+/gps/ene/type Mono
+/gps/ene/mono ${energy} GeV
+
+/gps/pos/type Plane
+/gps/pos/shape Square
+/gps/pos/halfx 10 cm
+/gps/pos/halfy 10 cm
+/gps/pos/centre 0. 0. -214.2 mm
+
+/gps/direction 0 0 1
+
+/run/printProgress 1000
 /run/beamOn 10000
 EOL
 done
