@@ -9,23 +9,26 @@ void EnergyLong()
     auto helium4_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Helium4_PowerLaw.root");
     auto helium4_tree = (TTree*)helium4_file->Get("B4");
     
-    double Energy[19]={0};
-    double Energy_LL[19]={0};
-    double Energy_UL[19]={0};
+    double Energy[13]={0};
+    double Energy_LL[13]={0};
+    double Energy_UL[13]={0};
 
-    for (int i = 0; i < 1; i++) // Deposit Energy Bin
+    for (int i = 5; i < 6; i++) // Deposit Energy Bin
     {
-        Energy[i]    =  1.2*i+0.1;
-        Energy_LL[i] =  1.2*i;
-        Energy_UL[i] =  1.2*i+0.2;
+        Energy[i]    =  0.2*i+1.1;
+        Energy_LL[i] =  0.2*i+1.0;
+        Energy_UL[i] =  0.2*i+1.2;
 
         TH1D *h1_p[14];  TF1  *fitFunc_p[14]; auto h2_p = new TH1D("h2_p","h2_p",14,0,14);  
         TH1D *h1_d[14];  TF1  *fitFunc_d[14]; auto h2_d = new TH1D("h2_d","h2_d",14,0,14);  
         TH1D *h1_e[14];  TF1  *fitFunc_e[14]; auto h2_e = new TH1D("h2_e","h2_e",14,0,14);  
         TH1D *h1_h[14];  TF1  *fitFunc_h[14]; auto h2_h = new TH1D("h2_h","h2_h",14,0,14);  
 
+
+
         TCut HET = Form("(L0_E+L1_E+L2_E>0.23) && (L3_E>0.046) && log10(Total_E)>%.2f && log10(Total_E)<=%.2f",Energy_LL[i],Energy_UL[i]);
-        
+        cout << "Energy Range = [ " << Energy_LL[i] << " , " << Energy_UL[i] << " ]"<< endl;
+
         auto c1 = new TCanvas("c1","c1",2500,1500);
         c1->Clear();
         c1->Divide(5,3);
@@ -47,37 +50,47 @@ void EnergyLong()
                 h1_h[j] = new TH1D(Form("h1_h[%d]",j), Form("h1_h[%d]",j),50,-5,0);  
 
                 proton_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_p[%d]",j,j),HET,"");   h1_p[j]->Scale(1.0/h1_p[j]->Integral());h1_p[j]->SetLineColor(kRed);     h1_p[j]->SetMarkerColor(kRed);     h1_p[j]->SetLineWidth(2);h1_p[j]->GetYaxis()->SetRangeUser(0,0.25);h1_p[j]->SetTitle(Form("EdepRatio Distrubution in L%d;log_{10}(Energy Deposit Ratio);Normalized Count",j));
-                deuteron_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_d[%d]",j,j),HET,""); h1_d[j]->Scale(1.0/h1_d[j]->Integral());h1_d[j]->SetLineColor(kBlue);    h1_d[j]->SetMarkerColor(kBlue);    h1_d[j]->SetLineWidth(2);
-                electron_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_e[%d]",j,j),HET,""); h1_e[j]->Scale(1.0/h1_e[j]->Integral());h1_e[j]->SetLineColor(kOrange-3);h1_e[j]->SetMarkerColor(kOrange-3);h1_e[j]->SetLineWidth(2);
-                helium4_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_h[%d]",j,j),HET,"");  h1_h[j]->Scale(1.0/h1_h[j]->Integral());h1_h[j]->SetLineColor(kGreen-3); h1_h[j]->SetMarkerColor(kGreen-3); h1_h[j]->SetLineWidth(2);
+                // deuteron_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_d[%d]",j,j),HET,""); h1_d[j]->Scale(1.0/h1_d[j]->Integral());h1_d[j]->SetLineColor(kBlue);    h1_d[j]->SetMarkerColor(kBlue);    h1_d[j]->SetLineWidth(2);
+                // electron_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_e[%d]",j,j),HET,""); h1_e[j]->Scale(1.0/h1_e[j]->Integral());h1_e[j]->SetLineColor(kOrange-3);h1_e[j]->SetMarkerColor(kOrange-3);h1_e[j]->SetLineWidth(2);
+                // helium4_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_h[%d]",j,j),HET,"");  h1_h[j]->Scale(1.0/h1_h[j]->Integral());h1_h[j]->SetLineColor(kGreen-3); h1_h[j]->SetMarkerColor(kGreen-3); h1_h[j]->SetLineWidth(2);
                 
                 c1->cd(j + 1);
                 h1_p[j]->Draw();
-                h1_d[j]->Draw("same");
-                h1_e[j]->Draw("same");
-                h1_h[j]->Draw("same");
+                // h1_d[j]->Draw("same");
+                // h1_e[j]->Draw("same");
+                // h1_h[j]->Draw("same");                
+                // fitFunc_p[j] = new TF1(Form("fitFunc_p[%d]",j),"[0]/(-x*[2]*TMath::Sqrt(2*TMath::Pi()))*TMath::Exp(-0.5*TMath::Power(TMath::Log10(-x)-[1],2)/TMath::Power([2],2))", -h1_p[j]->GetBinCenter(h1_p[j]->GetMaximumBin())-1*h1_p[j]->GetRMS(),-h1_p[j]->GetBinCenter(h1_p[j]->GetMaximumBin())+1*h1_p[j]->GetRMS()); fitFunc_p[j]->SetParameters(0.1, -h1_p[j]->GetBinCenter(h1_p[j]->GetMaximumBin()), 0.5); fitFunc_p[j]->SetLineColor(kRed);     
+                // fitFunc_d[j] = new TF1(Form("fitFunc_d[%d]",j),"[0]/(-x*[2]*TMath::Sqrt(2*TMath::Pi()))*TMath::Exp(-0.5*TMath::Power(TMath::Log10(-x)-[1],2)/TMath::Power([2],2))", h1_d[j]->GetMean()-3*h1_d[j]->GetRMS(),0); fitFunc_d[j]->SetParameters(0.1, -h1_d[j]->GetBinCenter(h1_d[j]->GetMaximumBin()), 0.5); fitFunc_d[j]->SetLineColor(kBlue);    
+                // fitFunc_e[j] = new TF1(Form("fitFunc_e[%d]",j),"[0]/(-x*[2]*TMath::Sqrt(2*TMath::Pi()))*TMath::Exp(-0.5*TMath::Power(TMath::Log10(-x)-[1],2)/TMath::Power([2],2))", h1_e[j]->GetMean()-3*h1_e[j]->GetRMS(),0); fitFunc_e[j]->SetParameters(0.1, -h1_e[j]->GetBinCenter(h1_e[j]->GetMaximumBin()), 0.5); fitFunc_e[j]->SetLineColor(kOrange-3);
+                // fitFunc_h[j] = new TF1(Form("fitFunc_h[%d]",j),"[0]/(-x*[2]*TMath::Sqrt(2*TMath::Pi()))*TMath::Exp(-0.5*TMath::Power(TMath::Log10(-x)-[1],2)/TMath::Power([2],2))", h1_h[j]->GetMean()-3*h1_h[j]->GetRMS(),0); fitFunc_h[j]->SetParameters(0.1, -h1_h[j]->GetBinCenter(h1_h[j]->GetMaximumBin()), 0.5); fitFunc_h[j]->SetLineColor(kGreen-3); 
+                cout << " Most populated bin = " << h1_p[j]->GetBinCenter(h1_p[j]->GetMaximumBin()) << " , Mean = " << h1_p[j]->GetMean() << " , Std Dev = " << h1_p[j]->GetRMS() << endl;
 
-                h2_p->SetBinContent(j+1,h1_p[j]->GetMean() );
-                h2_p->SetBinError  (j+1,h1_p[j]->GetRMS() );
-                h2_d->SetBinContent(j+1,h1_d[j]->GetMean() );
-                h2_d->SetBinError  (j+1,h1_d[j]->GetRMS() );
-                h2_e->SetBinContent(j+1,h1_e[j]->GetMean() );
-                h2_e->SetBinError  (j+1,h1_e[j]->GetRMS() );
-                h2_h->SetBinContent(j+1,h1_h[j]->GetMean() );
-                h2_h->SetBinError  (j+1,h1_h[j]->GetRMS() );
+                // h1_p[j]->Fit(fitFunc_p[j],"R");
+                // fitFunc_p[j]->Draw("same");
+
+                // h2_p->SetBinContent(j+1, );
+                // h2_p->SetBinError  (j+1,);
+                // h2_d->SetBinContent(j+1, );
+                // h2_d->SetBinError  (j+1,);
+                // h2_e->SetBinContent(j+1, );
+                // h2_e->SetBinError  (j+1,);
+                // h2_h->SetBinContent(j+1, );
+                // h2_h->SetBinError  (j+1,);
             }
             else // (j==14)    
             {
                 c1->cd(j + 1);
-                TLatex *tex = new TLatex(0.1,0.9,Form("IncidentParicle %dGeV",int(Energy[i])));tex->SetNDC();tex->Draw(); 
+                TLatex *tex = new TLatex(0.1,0.9,Form("IncidentParicle [%.2fGeV, %.2fGeV]",pow(10,Energy_LL[i]),pow(10,Energy_UL[i])));tex->SetNDC();tex->Draw(); 
                 auto legend1 = new TLegend(0.12, 0.12, 0.88, 0.88);
                 legend1->AddEntry(h1_p[i], "Proton", "l");
-                legend1->AddEntry(h1_d[i], "Deuteron", "l");
-                legend1->AddEntry(h1_e[i], "Electron", "l");
-                legend1->AddEntry(h1_h[i], "Helium4", "l");         
+                // legend1->AddEntry(h1_d[i], "Deuteron", "l");
+                // legend1->AddEntry(h1_e[i], "Electron", "l");
+                // legend1->AddEntry(h1_h[i], "Helium4", "l");         
                 legend1->Draw();       
             }
         }
+
+        
         c2->cd();
         h2_p->SetTitle(Form("E_{dep}/GeV in [%.2f,%.2f];No. BGO Layer;Energy Ratio",Energy_LL[i],Energy_UL[i]));
         h2_p->SetLineColor(kRed);     h2_p->SetMarkerColor(kRed);     h2_p->SetLineWidth(2);
@@ -94,7 +107,9 @@ void EnergyLong()
         legend2->AddEntry(h2_d, "Deuteron", "l");
         legend2->AddEntry(h2_e, "Electron", "l");
         legend2->AddEntry(h2_h, "Helium4", "l");         
-        legend2->Draw();       
+        legend2->Draw();
 
+        c1->SaveAs(Form("/Users/xiongzheng/software/B4/B4c/Script/EnergyLong/EnergyLong_%.2f_%.2f.pdf",Energy_LL[i],Energy_UL[i]));
+        c2->SaveAs(Form("/Users/xiongzheng/software/B4/B4c/Script/EnergyLong/LayerDistribution_%.2f_%.2f.pdf",Energy_LL[i],Energy_UL[i]));
     }
 }
