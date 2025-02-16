@@ -7,11 +7,11 @@ for i in "${!Tag[@]}"; do
   cat <<EOL > "${Tag[$i]}_PowerLaw.mac"
 /run/initialize
 /analysis/setFileName ../Root/${Tag[$i]}_PowerLaw
-/gps/particle ${particle}
+/gps/particle ${particle[$i]}
 /gps/ene/type Pow
 /gps/ene/min 10 GeV
-/gps/ene/max 4000 GeV
-/gps/ene/alpha -2.7
+/gps/ene/max 10000 GeV
+/gps/ene/alpha -1
 
 /gps/pos/type Plane
 /gps/pos/shape Square
@@ -22,7 +22,7 @@ for i in "${!Tag[@]}"; do
 /gps/direction 0 0 1
 
 /run/printProgress 1000
-/run/beamOn 4000000
+/run/beamOn 1000000
 
 EOL
 done

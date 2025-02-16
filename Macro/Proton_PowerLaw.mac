@@ -3,8 +3,8 @@
 /gps/particle proton
 /gps/ene/type Pow
 /gps/ene/min 10 GeV
-/gps/ene/max 5000 GeV
-/gps/ene/alpha -2.7
+/gps/ene/max 10000 GeV
+/gps/ene/alpha -1
 
 /gps/pos/type Plane
 /gps/pos/shape Square
@@ -15,5 +15,5 @@
 /gps/direction 0 0 1
 
 /run/printProgress 1000
-/run/beamOn 4000000
+/run/beamOn 1000000
 

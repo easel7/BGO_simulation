@@ -79,10 +79,6 @@ void Edep_Ratio_perLayer()
         }
         c1->SaveAs( Form("/Users/xiongzheng/software/B4/B4c/Script/EnergyDep/Edep_Ratio_perLayer_%dGeV.pdf",int(Energy[i])));
         auto c2 = new TCanvas("c2","c2",1000,1000);
-        // auto gre_p = new TGraphErrors(14, Layer, Proton_Ratio, Layer_Err, Proton_Ratio_Err);
-        // auto gre_d = new TGraphErrors(14, Layer, Deuteron_Ratio, Layer_Err, Deuteron_Ratio_Err);
-        // auto gre_e = new TGraphErrors(14, Layer, Electron_Ratio, Layer_Err, Electron_Ratio_Err);
-        // auto gre_h = new TGraphErrors(14, Layer, Helium4_Ratio, Layer_Err, Helium4_Ratio_Err);
 
 
 
