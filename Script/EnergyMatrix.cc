@@ -9,7 +9,7 @@ void EnergyMatrix()
     auto helium4_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Helium4_PowerLaw.root");
     auto helium4_tree = (TTree*)helium4_file->Get("B4");
     
-    TCut UBT = "(L0_E+L1_E+L2_E>0.23) && (L3_E>0.046)";
+    TCut HET = "(L0_E+L1_E+L2_E>0.23) && (L3_E>0.046)";
 
 
     auto *h2_p = new TH2D("h2_p","h2_p",26,1,3.6,26,1,3.6); auto *h1_p = new TH2D("h1_p","h1_p",26,1,3.6,26,1,3.6);
@@ -17,10 +17,10 @@ void EnergyMatrix()
     auto *h2_e = new TH2D("h2_e","h2_e",26,1,3.6,26,1,3.6); auto *h1_e = new TH2D("h1_e","h1_e",26,1,3.6,26,1,3.6);
     auto *h2_h = new TH2D("h2_h","h2_h",26,1,3.6,26,1,3.6); auto *h1_h = new TH2D("h1_h","h1_h",26,1,3.6,26,1,3.6);
 
-    proton_tree->Draw("log10(Total_E):log10(Energy)>>h2_p",UBT,"");   
-    deuteron_tree->Draw("log10(Total_E):log10(Energy)>>h2_d",UBT,""); 
-    electron_tree->Draw("log10(Total_E):log10(Energy)>>h2_e",UBT,""); 
-    helium4_tree->Draw("log10(Total_E):log10(Energy)>>h2_h",UBT,"");  
+    proton_tree->Draw("log10(Total_E):log10(Energy)>>h2_p",HET,"");   
+    deuteron_tree->Draw("log10(Total_E):log10(Energy)>>h2_d",HET,""); 
+    electron_tree->Draw("log10(Total_E):log10(Energy)>>h2_e",HET,""); 
+    helium4_tree->Draw("log10(Total_E):log10(Energy)>>h2_h",HET,"");  
     auto tex = new TLatex(3.4,3.7,"log_{10} Entries");
     tex->SetTextSize(0.03);
     for (int ii=0;ii<26;ii++)
