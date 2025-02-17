@@ -10,7 +10,7 @@ for i in "${!Tag[@]}"; do
 /gps/particle ${particle[$i]}
 /gps/ene/type Pow
 /gps/ene/min 10 GeV
-/gps/ene/max 10000 GeV
+/gps/ene/max 4000 GeV
 /gps/ene/alpha -1
 
 /gps/pos/type Plane
