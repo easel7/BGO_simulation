@@ -2,11 +2,11 @@ void EnergyMatrix()
 {
     auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_PowerLaw.root");
     auto proton_tree = (TTree*)proton_file->Get("B4");
-    auto deuteron_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Deuteron_PowerLaw.root");
+    auto deuteron_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_PowerLaw.root");
     auto deuteron_tree = (TTree*)deuteron_file->Get("B4");
-    auto electron_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Electron_PowerLaw.root");
+    auto electron_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_PowerLaw.root");
     auto electron_tree = (TTree*)electron_file->Get("B4");
-    auto helium4_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Helium4_PowerLaw.root");
+    auto helium4_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_ PowerLaw.root");
     auto helium4_tree = (TTree*)helium4_file->Get("B4");
     
     TCut HET = "(L0_E+L1_E+L2_E>0.23) && (L3_E>0.046)";
