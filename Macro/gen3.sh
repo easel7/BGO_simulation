@@ -33,6 +33,7 @@ do
 /run/initialize
 /analysis/setFileName ../Root/${Tag}_${energy}GeV
 /gps/particle ${particle}
+/gps/ion 6 12 6
 /gps/ene/type Mono
 /gps/ene/mono ${energy} GeV
 

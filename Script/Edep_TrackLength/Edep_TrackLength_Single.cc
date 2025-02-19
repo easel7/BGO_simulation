@@ -1,6 +1,6 @@
 void Edep_TrackLength_Single()
 {
-    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Deuteron_100GeV.root");
+    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Electron_100GeV.root");
     auto proton_tree = (TTree*)proton_file->Get("B4");
     auto c1 = new TCanvas("c1","c1",2000,1200);
 
@@ -21,22 +21,24 @@ void Edep_TrackLength_Single()
     auto L14 = new TH2D("L14","L14",50,0,100,50,0,100);
 
     TCut UBT = "";
+    TCut HET = "(L0_E+L1_E+L2_E>0.23) && (L3_E>0.046)";
 
-    proton_tree->Draw("L0_E :L0_L  >>L0",UBT,"colz");
-    proton_tree->Draw("L1_E :L1_L  >>L1",UBT,"colz");
-    proton_tree->Draw("L2_E :L2_L  >>L2",UBT,"colz");
-    proton_tree->Draw("L3_E :L3_L  >>L3",UBT,"colz");
-    proton_tree->Draw("L4_E :L4_L  >>L4",UBT,"colz");
-    proton_tree->Draw("L5_E :L5_L  >>L5",UBT,"colz");
-    proton_tree->Draw("L6_E :L6_L  >>L6",UBT,"colz");
-    proton_tree->Draw("L7_E :L7_L  >>L7",UBT,"colz");
-    proton_tree->Draw("L8_E :L8_L  >>L8",UBT,"colz");
-    proton_tree->Draw("L9_E :L9_L  >>L9",UBT,"colz");
-    proton_tree->Draw("L10_E:L10_L >>L10",UBT,"colz");
-    proton_tree->Draw("L11_E:L11_L >>L11",UBT,"colz");
-    proton_tree->Draw("L12_E:L12_L >>L12",UBT,"colz");
-    proton_tree->Draw("L13_E:L13_L >>L13",UBT,"colz");
-    proton_tree->Draw("Total_E:Total_L >>L14",UBT,"colz");
+
+    proton_tree->Draw("L0_E :L0_L  >>L0",HET,"colz");
+    proton_tree->Draw("L1_E :L1_L  >>L1",HET,"colz");
+    proton_tree->Draw("L2_E :L2_L  >>L2",HET,"colz");
+    proton_tree->Draw("L3_E :L3_L  >>L3",HET,"colz");
+    proton_tree->Draw("L4_E :L4_L  >>L4",HET,"colz");
+    proton_tree->Draw("L5_E :L5_L  >>L5",HET,"colz");
+    proton_tree->Draw("L6_E :L6_L  >>L6",HET,"colz");
+    proton_tree->Draw("L7_E :L7_L  >>L7",HET,"colz");
+    proton_tree->Draw("L8_E :L8_L  >>L8",HET,"colz");
+    proton_tree->Draw("L9_E :L9_L  >>L9",HET,"colz");
+    proton_tree->Draw("L10_E:L10_L >>L10",HET,"colz");
+    proton_tree->Draw("L11_E:L11_L >>L11",HET,"colz");
+    proton_tree->Draw("L12_E:L12_L >>L12",HET,"colz");
+    proton_tree->Draw("L13_E:L13_L >>L13",HET,"colz");
+    proton_tree->Draw("Total_E:Total_L >>L14",HET,"colz");
 
 
     c1->Clear();

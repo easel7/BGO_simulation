@@ -1,6 +1,7 @@
 /run/initialize
 /analysis/setFileName ../Root/Carbon_700GeV
 /gps/particle ion
+/gps/ion 6 12 6
 /gps/ene/type Mono
 /gps/ene/mono 700 GeV
 
