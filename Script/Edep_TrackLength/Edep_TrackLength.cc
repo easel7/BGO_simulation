@@ -1,6 +1,6 @@
 void Edep_TrackLength()
 {
-    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_100GeV.root");
+    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Helium4_100GeV.root");
     auto proton_tree = (TTree*)proton_file->Get("B4");
     auto c1 = new TCanvas("c1","c1",1200,1200);
 
@@ -9,13 +9,13 @@ void Edep_TrackLength()
     auto L2 = new TH2D("L2","L2",50,0,25,50,0,25);
     auto L3 = new TH2D("L3","L3",50,0,25,50,0,25);
 
-    // TCut UBT = "";
-    TCut UBT = "(L0_E+L1_E+L2_E>0.23) && (L3_E>0.046)";
+    TCut HET = "";
+    // TCut HET = "(L0_E+L1_E+L2_E>0.23) && (L3_E>0.046)";
 
-    proton_tree->Draw("L0_E:L0_L  >>L0",UBT,"colz");
-    proton_tree->Draw("L4_E:L4_L  >>L1",UBT,"colz");
-    proton_tree->Draw("L8_E:L8_L  >>L2",UBT,"colz");
-    proton_tree->Draw("L12_E:L12_L>>L3",UBT,"colz");
+    proton_tree->Draw("L0_E:L0_L  >>L0",HET,"colz");
+    proton_tree->Draw("L4_E:L4_L  >>L1",HET,"colz");
+    proton_tree->Draw("L8_E:L8_L  >>L2",HET,"colz");
+    proton_tree->Draw("L12_E:L12_L>>L3",HET,"colz");
 
     c1->Clear();
     // gStyle->SetOptStat(0);

@@ -106,6 +106,7 @@ void EventAction::EndOfEventAction(const G4Event* event)
   else if (particleName == "deuteron") {particleID = 2; } 
   else if (particleName == "He3") { particleID = 3; } 
   else if (particleName == "alpha") { particleID = 4; } 
+  else if (particleName == "C12") { particleID = 6; } 
   else if (particleName == "e-") { particleID = 0; } 
   else {particleID = -1;  } 
 

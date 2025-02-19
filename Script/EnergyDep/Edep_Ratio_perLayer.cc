@@ -13,17 +13,12 @@ void Edep_Ratio_perLayer()
         TH1D *h1_e[14];  TF1  *fitFunc_e[14];
         TH1D *h1_h[14];  TF1  *fitFunc_h[14];
 
-        double Proton_Ratio[14]={0};
-        double Proton_Ratio_Err[14]={0};    
-        double Deuteron_Ratio[14]={0};
-        double Deuteron_Ratio_Err[14]={0};
-        double Electron_Ratio[14]={0};
-        double Electron_Ratio_Err[14]={0};
-        double Helium4_Ratio[14]={0};
-        double Helium4_Ratio_Err[14]={0};
+        double Proton_Ratio[14]={0};     double Deuteron_Ratio[14]={0};    double Electron_Ratio[14]={0};    double Helium4_Ratio[14]={0};   
+        double Proton_Ratio_LL[14]={0};  double Deuteron_Ratio_LL[14]={0}; double Electron_Ratio_LL[14]={0}; double Helium4_Ratio_LL[14]={0};   
+        double Proton_Ratio_UL[14]={0};  double Deuteron_Ratio_UL[14]={0}; double Electron_Ratio_UL[14]={0}; double Helium4_Ratio_UL[14]={0};   
+
         double Layer[14]={0};
         double Layer_Err[14]={0};
-
 
         auto proton_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Proton_%dGeV.root",int(Energy[i])));
         auto proton_tree = (TTree*)proton_file->Get("B4");
@@ -60,10 +55,31 @@ void Edep_Ratio_perLayer()
                 h1_d[j]->Draw("same");
                 h1_e[j]->Draw("same");
                 h1_h[j]->Draw("same");
-                // h1_e[j]->Fit(fitFunc_p[j],"R");
+                
+                
+                double quantiles[3] = {0.16, 0.50, 0.84};  // Percentiles
+                double p_values[3];  // Will store the x-values corresponding to the percentiles
+                double d_values[3];  // Will store the x-values corresponding to the percentiles
+                double e_values[3];  // Will store the x-values corresponding to the percentiles
+                double h_values[3];  // Will store the x-values corresponding to the percentiles
+
+                h1_p[j]->GetQuantiles(3, p_values, quantiles);
+                h1_d[j]->GetQuantiles(3, d_values, quantiles);
+                h1_e[j]->GetQuantiles(3, e_values, quantiles);
+                h1_h[j]->GetQuantiles(3, h_values, quantiles);
+                // cout << p_values[0] << " , " << p_values[1] << " , " << p_values[2]<< endl;
+
+                Proton_Ratio[j] = p_values[1];     Proton_Ratio_LL[j]  = p_values[1] - p_values[0];   Proton_Ratio_UL[j]= p_values[2] - p_values[1];
+                Deuteron_Ratio[j] = d_values[1];   Deuteron_Ratio_LL[j]= d_values[1] - d_values[0];   Deuteron_Ratio_UL[j]= d_values[2] - d_values[1];
+                Electron_Ratio[j] = e_values[1];   Electron_Ratio_LL[j]= e_values[1] - e_values[0];   Electron_Ratio_UL[j]= e_values[2] - e_values[1];
+                Helium4_Ratio[j] = h_values[1];    Helium4_Ratio_LL[j] = h_values[1] - h_values[0];   Helium4_Ratio_UL[j]= h_values[2] - h_values[1];
 
                 Layer[j] = 0.5 + j;
                 Layer_Err[j] = 0.5;
+
+                cout << Proton_Ratio[j]  << " , " << Proton_Ratio_LL[j]<< " , " << Proton_Ratio_UL[j] << endl; 
+                cout << Layer[j]  << " , " << Layer_Err[j] << " , " << Layer_Err[j] << endl; 
+
             }
 
             else // (j==14)    
@@ -76,11 +92,49 @@ void Edep_Ratio_perLayer()
                 legend1->AddEntry(h1_h[0], "Helium4", "l");         
                 legend1->Draw();       
             }
+
         }
         c1->SaveAs( Form("/Users/xiongzheng/software/B4/B4c/Script/EnergyDep/Edep_Ratio_perLayer_%dGeV.pdf",int(Energy[i])));
+        
         auto c2 = new TCanvas("c2","c2",1000,1000);
+        // c2->cd();
+        auto gre_p = new TGraphAsymmErrors(14,Layer,Proton_Ratio  ,Layer_Err,Layer_Err,Proton_Ratio_LL  ,Proton_Ratio_UL);
+        auto gre_d = new TGraphAsymmErrors(14,Layer,Deuteron_Ratio,Layer_Err,Layer_Err,Deuteron_Ratio_LL,Deuteron_Ratio_UL);
+        auto gre_e = new TGraphAsymmErrors(14,Layer,Electron_Ratio,Layer_Err,Layer_Err,Electron_Ratio_LL,Electron_Ratio_UL);
+        auto gre_h = new TGraphAsymmErrors(14,Layer,Helium4_Ratio ,Layer_Err,Layer_Err,Helium4_Ratio_LL ,Helium4_Ratio_UL);
+        gre_p->SetTitle(Form("Incident Energy %d GeV ; BGO Layer; log10(Deposit Energy Ratio)",int(Energy[i])));
+        gre_p->SetMarkerStyle(22);
+        
+        gre_e->SetMarkerColor(kOrange-3);
+        gre_e->SetLineColor(kOrange-3);
+        gre_p->SetMarkerStyle(20);
+        gre_p->SetMarkerColor(kRed);
+        gre_p->SetLineColor(kRed);
+        gre_d->SetMarkerStyle(21);
+        gre_d->SetMarkerColor(kBlue);
+        gre_d->SetLineColor(kBlue);
+        gre_h->SetMarkerStyle(23);
+        gre_h->SetMarkerColor(kGreen-3);
+        gre_h->SetLineColor(kGreen-3);
 
+        gre_p->SetLineWidth(2);
+        gre_d->SetLineWidth(2);
+        gre_e->SetLineWidth(2);
+        gre_h->SetLineWidth(2);
+    
+        gre_p->Draw("AP");
+        gre_d->Draw("PSAME");
+        gre_e->Draw("PSAME");
+        gre_h->Draw("PSAME");
+        auto legend2 = new TLegend(0.42, 0.12, 0.58, 0.32);
+        legend2->SetNColumns(2);
+        legend2->AddEntry(gre_p, "HET Proton", "ep");
+        legend2->AddEntry(gre_d, "HET Deuteron", "ep");
+        legend2->AddEntry(gre_e, "HET Electron", "ep");
+        legend2->AddEntry(gre_h, "HET Helium4", "ep");
+        legend2->Draw();
 
+        c2->SaveAs( Form("/Users/xiongzheng/software/B4/B4c/Script/EnergyDep/Edep_Ratio_BGOLayer_%dGeV.pdf",int(Energy[i])));
 
     }
 }

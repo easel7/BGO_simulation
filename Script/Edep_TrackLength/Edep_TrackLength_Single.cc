@@ -20,9 +20,6 @@ void Edep_TrackLength_Single()
     auto L13 = new TH2D("L13","L13",50,0,25,50,0,25);
     auto L14 = new TH2D("L14","L14",50,0,100,50,0,100);
 
-
-
-
     TCut UBT = "";
 
     proton_tree->Draw("L0_E :L0_L  >>L0",UBT,"colz");

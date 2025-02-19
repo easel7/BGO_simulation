@@ -12,6 +12,12 @@ void CrossSection()
     double Helium4_Section[18]={0};
     double Helium4_Section_Err[18]={0};
 
+    double Helium3_Section[18]={0};
+    double Helium3_Section_Err[18]={0};
+
+    double Carbon_Section[18]={0};
+    double Carbon_Section_Err[18]={0};
+
     double Energy[18]={0};
     double Energy_Err[18]={0};
     double n_BGO = TMath::Na()*7.13/1245.8344; // cm-3
@@ -19,6 +25,10 @@ void CrossSection()
     TH1D *h1_d[18];    TF1  *fitFunc_d[18];
     TH1D *h1_e[18];    TF1  *fitFunc_e[18];
     TH1D *h1_h[18];    TF1  *fitFunc_h[18];
+    TH1D *h1_H[18];    TF1  *fitFunc_H[18];
+    TH1D *h1_c[18];    TF1  *fitFunc_c[18];
+
+    TCut HET = "(L0_E+L1_E+L2_E>0.23) && (L3_E>0.046)";
 
     for (int i = 0; i < 18; i++)
     {
@@ -31,14 +41,14 @@ void CrossSection()
         h1_p[i] = new TH1D(Form("h1_p[%d]",i),Form("h1_p[%d]",i),150,0,150);
         fitFunc_p[i] = new TF1(Form("fitFunc_p[%d]",i), "[0]*exp(-x/[1])", 0, 80);
         fitFunc_p[i]->SetParameters(600, 15); 
-        proton_tree->Draw(Form("First_Depth>>h1_p[%d]",i),"","");
+        proton_tree->Draw(Form("First_Depth>>h1_p[%d]",i),HET,"");
 
         auto deuteron_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Deuteron_%dGeV.root",int(Energy[i])));
         auto deuteron_tree = (TTree*)deuteron_file->Get("B4");
         h1_d[i] = new TH1D(Form("h1_d[%d]",i),Form("h1_d[%d]",i),150,0,150);
         fitFunc_d[i] = new TF1(Form("fitFunc_d[%d]",i), "[0]*exp(-x/[1])", 0, 80);
         fitFunc_d[i]->SetParameters(100, 15); 
-        deuteron_tree->Draw(Form("First_Depth>>h1_d[%d]",i), "", "");
+        deuteron_tree->Draw(Form("First_Depth>>h1_d[%d]",i), HET, "");
 
         auto electron_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Electron_%dGeV.root",int(Energy[i])));
         auto electron_tree = (TTree*)electron_file->Get("B4");
@@ -52,11 +62,18 @@ void CrossSection()
         h1_h[i] = new TH1D(Form("h1_h[%d]",i),Form("h1_h[%d]",i),150,0,150);
         fitFunc_h[i] = new TF1(Form("fitFunc_h[%d]",i), "[0]*exp(-x/[1])", 0, 80);
         fitFunc_h[i]->SetParameters(100, 15); 
-        helium4_tree->Draw(Form("First_Depth>>h1_h[%d]",i), "", "");
+        helium4_tree->Draw(Form("First_Depth>>h1_h[%d]",i), HET, "");
 
-        auto c1 = new TCanvas("c1","c1",1500,1500);
+        auto helium3_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Helium4_%dGeV.root",int(Energy[i])));
+        auto helium3_tree = (TTree*)helium3_file->Get("B4");
+        h1_H[i] = new TH1D(Form("h1_H[%d]",i),Form("h1_H[%d]",i),150,0,150);
+        fitFunc_H[i] = new TF1(Form("fitFunc_H[%d]",i), "[0]*exp(-x/[1])", 0, 80);
+        fitFunc_H[i]->SetParameters(100, 15); 
+        helium4_tree->Draw(Form("First_Depth>>h1_H[%d]",i), HET, "");
+
+        auto c1 = new TCanvas("c1","c1",2000,1500);
         c1->Clear();
-        c1->Divide(2,2);
+        c1->Divide(3,2);
         gStyle->SetOptFit(1111);
         c1->cd(1);
         proton_file->cd();
@@ -118,6 +135,22 @@ void CrossSection()
         Helium4_Section_Err[i] = Helium4_Section[i] * helium4_nsigma_err / helium4_nsigma;
         cout << "Helium4 " << Energy[i] << " GeV: Sigma = " << Helium4_Section[i] << " ± " << Helium4_Section_Err[i] << " barn" << endl;
 
+        c1->cd(5);
+        helium3_file->cd();
+        gPad->SetLogy();
+        h1_H[i]->Draw("hist");
+        h1_H[i]->SetTitle(Form("%d GeV Helium3 Depth Distribution; Depth (mm); Counts", int(Energy[i])));
+        h1_H[i]->Fit(fitFunc_H[i], "R");
+        fitFunc_H[i]->Draw("same");
+        double helium3_constant   = fitFunc_H[i]->GetParameter(0);
+        double helium3_nsigma     = fitFunc_H[i]->GetParameter(1);
+        double helium3_nsigma_err = fitFunc_H[i]->GetParError(1);
+
+        Helium3_Section[i] = 1 / (helium3_nsigma * n_BGO) * 1e25;
+        Helium3_Section_Err[i] = Helium3_Section[i] * helium3_nsigma_err / helium3_nsigma;
+        cout << "Helium4 " << Energy[i] << " GeV: Sigma = " << Helium3_Section[i] << " ± " << Helium3_Section_Err[i] << " barn" << endl;
+
+
         c1->SaveAs( Form("/Users/xiongzheng/software/B4/B4c/Script/CrossS/CrossSection_%dGeV.pdf",int(Energy[i])) );
     }
     
@@ -144,6 +177,11 @@ void CrossSection()
     gre_h->SetMarkerColor(kGreen-3);
     gre_h->SetLineColor(kGreen-3);
 
+    auto gre_H = new TGraphErrors(18, Energy, Helium3_Section, Energy_Err, Helium3_Section_Err);
+    gre_H->SetMarkerStyle(32);
+    gre_H->SetMarkerColor(kGreen-3);
+    gre_H->SetLineColor(kGreen-3);
+
     c0->Clear();
     c0->cd();
     TPad *pad1 = new TPad("pad1", "pad1", 0, 0.5, 1, 1.0);
@@ -163,6 +201,7 @@ void CrossSection()
     gre_d->Draw("PSAME");
     gre_e->Draw("PSAME");
     gre_h->Draw("PSAME");
+    gre_H->Draw("PSAME");
 
     auto legend1 = new TLegend(0.60, 0.68, 0.88, 0.88);
     legend1->SetNColumns(2);
@@ -170,6 +209,8 @@ void CrossSection()
     legend1->AddEntry(gre_d, "Deuteron", "ep");
     legend1->AddEntry(gre_e, "Electron", "ep");
     legend1->AddEntry(gre_h, "Helium4", "ep");
+    legend1->AddEntry(gre_H, "Helium3", "ep");
+
     legend1->Draw();
 
     c0->cd();

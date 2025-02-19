@@ -1,4 +1,4 @@
-void Edep_Layer()
+void Edep_Ratio_SingleLayer()
 {
     auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_100GeV.root");
     auto proton_tree = (TTree*)proton_file->Get("B4");
@@ -34,6 +34,49 @@ void Edep_Layer()
     TF1  *fitFunc_e = new TF1("fitFunc_e","[0]/(-x*[2]*TMath::Sqrt(2*TMath::Pi()))*TMath::Exp(-0.5*TMath::Power(TMath::Log10(-x)-[1],2)/TMath::Power([2],2))", h1_e->GetMean()-3*h1_e->GetRMS(),0); fitFunc_e->SetParameters(0.1, -h1_e->GetBinCenter(h1_e->GetMaximumBin()), 0.5); fitFunc_e->SetLineColor(kOrange-3);
     TF1  *fitFunc_h = new TF1("fitFunc_h","[0]/(-x*[2]*TMath::Sqrt(2*TMath::Pi()))*TMath::Exp(-0.5*TMath::Power(TMath::Log10(-x)-[1],2)/TMath::Power([2],2))", h1_h->GetMean()-3*h1_h->GetRMS(),0); fitFunc_h->SetParameters(0.1, -h1_h->GetBinCenter(h1_h->GetMaximumBin()), 0.5); fitFunc_h->SetLineColor(kGreen-3); 
 
+    auto c1 = new TCanvas("c1","c1",900,600);
+    c1->cd();
+    c1->Clear();
+    h1_p->Draw();
+    h1_d->Draw("same");
+    h1_e->Draw("same");
+    h1_h->Draw("same");
+
+    double quantiles[3] = {0.16, 0.50, 0.84};  // Percentiles
+    double p_values[3];  // Will store the x-values corresponding to the percentiles
+    double d_values[3];  // Will store the x-values corresponding to the percentiles
+    double e_values[3];  // Will store the x-values corresponding to the percentiles
+    double h_values[3];  // Will store the x-values corresponding to the percentiles
+
+    h1_p->GetQuantiles(3, p_values, quantiles);
+    h1_d->GetQuantiles(3, d_values, quantiles);
+    h1_e->GetQuantiles(3, e_values, quantiles);
+    h1_h->GetQuantiles(3, h_values, quantiles);
+
+    TLine *l_p[3];
+    TLine *l_d[3];
+    TLine *l_e[3];
+    TLine *l_h[3];
+
+    for (int ii = 0 ;ii< 3 ; ii++)
+    {
+        l_p[ii] = new TLine(p_values[ii],0,p_values[ii],h1_p->GetBinContent(h1_p->FindBin(p_values[ii])));l_p[ii]->SetLineColor(kRed);     l_p[ii]->SetLineWidth(2);l_p[ii]->Draw();
+        l_d[ii] = new TLine(d_values[ii],0,d_values[ii],h1_d->GetBinContent(h1_d->FindBin(d_values[ii])));l_d[ii]->SetLineColor(kBlue);    l_d[ii]->SetLineWidth(2);l_d[ii]->Draw();
+        l_e[ii] = new TLine(e_values[ii],0,e_values[ii],h1_e->GetBinContent(h1_e->FindBin(e_values[ii])));l_e[ii]->SetLineColor(kOrange-3);l_e[ii]->SetLineWidth(2);l_e[ii]->Draw();
+        l_h[ii] = new TLine(h_values[ii],0,h_values[ii],h1_h->GetBinContent(h1_h->FindBin(h_values[ii])));l_h[ii]->SetLineColor(kGreen-3); l_h[ii]->SetLineWidth(2);l_h[ii]->Draw();
+    }
+
+    auto legend1 = new TLegend(0.12, 0.68, 0.28, 0.88);
+    legend1->AddEntry(h1_p, "Proton", "el");
+    legend1->AddEntry(h1_d, "Deuteron", "el");
+    legend1->AddEntry(h1_e, "Electron", "el");
+    legend1->AddEntry(h1_h, "Helium4", "el");         
+    legend1->Draw();       
+
+    auto c2 = new TCanvas("c2","c2",900,600);
+    c2->cd();
+    c2->Clear();
+
     h1_p->Draw();
     h1_d->Draw("same");
     h1_e->Draw("same");
@@ -44,16 +87,9 @@ void Edep_Layer()
     h1_e->Fit(fitFunc_e,"RQ");
     h1_h->Fit(fitFunc_h,"RQ");
 
-    h1_p->Draw("same");
-    h1_d->Draw("same");
-    h1_e->Draw("same");
-    h1_h->Draw("same");
-
-    auto legend1 = new TLegend(0.12, 0.68, 0.28, 0.88);
-    legend1->AddEntry(h1_p, "Proton", "l");
-    legend1->AddEntry(h1_d, "Deuteron", "l");
-    legend1->AddEntry(h1_e, "Electron", "l");
-    legend1->AddEntry(h1_h, "Helium4", "l");         
     legend1->Draw();       
+
+    c1->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/EnergyDep/Edep_Ratio_SingleLayer_logNormal.pdf");
+    c1->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/EnergyDep/Edep_Ratio_SingleLayer_16_50_84.pdf");
 
 }

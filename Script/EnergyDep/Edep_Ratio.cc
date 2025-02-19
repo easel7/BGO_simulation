@@ -135,6 +135,6 @@ void Edep_Ratio()
     legend1->AddEntry(gre_h, "HET Helium4", "ep");
     legend1->Draw();
 
-    // c0->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/EnergyDep/EnergyDeposit.pdf");
+    c0->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/EnergyDep/EnergyDeposit.pdf");
    
 }
