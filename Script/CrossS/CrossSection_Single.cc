@@ -1,6 +1,6 @@
 void CrossSection_Single()
 {
-    auto file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Carbon_1000GeV.root");
+    auto file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Carbon_40GeV.root");
     auto tree = (TTree*)file->Get("B4");
     auto c1 = new TCanvas("c1","c1",900,600);
     auto *h0 = new TH1D("h0","h0",150,0,150);

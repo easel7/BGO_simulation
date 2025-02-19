@@ -69,7 +69,7 @@ void CrossSection()
 
         auto carbon_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Carbon_%dGeV.root",int(Energy[i])));
         auto carbon_tree = (TTree*)carbon_file->Get("B4");
-        h1_c[i] = new TH1D(Form("h1_c[%d]",i),Form("h1_c[%d]",i),100,0,100);
+        h1_c[i] = new TH1D(Form("h1_c[%d]",i),Form("h1_c[%d]",i),100,0,50);
         fitFunc_c[i] = new TF1(Form("fitFunc_c[%d]",i), "[0]*exp(-x/[1])", 0, 10);
         fitFunc_c[i]->SetParameters(100, 15); 
         carbon_tree->Draw(Form("First_Depth>>h1_c[%d]",i), HET, "");
@@ -215,7 +215,7 @@ void CrossSection()
     pad1->Draw();             // Draw the upper pad: pad1
     pad1->cd();               // pad1 becomes the current pad
     gre_p->Draw("AP");
-    gre_p->GetYaxis()->SetRangeUser(100, 3250);
+    gre_p->GetYaxis()->SetRangeUser(-100, 6500);
     gre_p->GetYaxis()->SetNdivisions(505);
     gre_p->GetYaxis()->SetLabelSize(0.05);
     gre_p->GetYaxis()->SetTitleSize(0.07);
@@ -227,7 +227,7 @@ void CrossSection()
     gre_H->Draw("PSAME");
     gre_c->Draw("PSAME");
 
-    auto legend1 = new TLegend(0.60, 0.68, 0.88, 0.88);
+    auto legend1 = new TLegend(0.60, 0.58, 0.88, 0.78);
     legend1->SetNColumns(2);
     legend1->AddEntry(gre_p, "Proton", "ep");
     legend1->AddEntry(gre_d, "Deuteron", "ep");
