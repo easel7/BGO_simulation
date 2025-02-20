@@ -1,13 +1,13 @@
 void CrossSection_Single()
 {
-    auto file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Carbon_40GeV.root");
+    auto file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Electron_40GeV.root");
     auto tree = (TTree*)file->Get("B4");
     auto c1 = new TCanvas("c1","c1",900,600);
-    auto *h0 = new TH1D("h0","h0",150,0,150);
+    auto *h0 = new TH1D("h0","h0",40,0,20);
     c1->cd();
     TCut HET = "(L0_E+L1_E+L2_E>0.23) && (L3_E>0.046)";
     tree->Draw("First_Depth>>h0","","");
-    h0->SetTitle("100 GeV Carbon - Depth Distribution;Depth(mm);Counts");
+    h0->SetTitle("100 GeV Electron - Depth Distribution;Depth(mm);Counts");
     gPad->SetLogy();
     gStyle->SetOptFit(1111);
     TF1 *fitFunc = new TF1("fitFunc", "[0]*exp(-x/[1])", 0, 40);
@@ -28,8 +28,8 @@ void CrossSection_Single()
     latex.SetTextFont(72);
 
     latex.SetTextAlign(13);  //align at top
-    latex.DrawLatex(40,100,"Fitting Function: P=[0]*exp(-x/[1])");
+    latex.DrawLatex(5,100,"Fitting Function: P=[0]*exp(-x/[1])");
     
     cout << "Section : " << section << " ± " << section_err << " barn" << endl;
-    c1->SaveAs("./CrossSection_Carbon.pdf");
+    c1->SaveAs("./CrossSection_Electron.pdf");
 }

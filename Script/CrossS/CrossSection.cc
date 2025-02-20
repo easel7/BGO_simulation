@@ -34,42 +34,42 @@ void CrossSection()
 
         auto proton_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Proton_%dGeV.root",int(Energy[i])));
         auto proton_tree = (TTree*)proton_file->Get("B4");
-        h1_p[i] = new TH1D(Form("h1_p[%d]",i),Form("h1_p[%d]",i),150,0,150);
+        h1_p[i] = new TH1D(Form("h1_p[%d]",i),Form("h1_p[%d]",i),200,0,100);
         fitFunc_p[i] = new TF1(Form("fitFunc_p[%d]",i), "[0]*exp(-x/[1])", 0, 60);
         fitFunc_p[i]->SetParameters(600, 15); 
         proton_tree->Draw(Form("First_Depth>>h1_p[%d]",i),HET,"");
 
         auto deuteron_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Deuteron_%dGeV.root",int(Energy[i])));
         auto deuteron_tree = (TTree*)deuteron_file->Get("B4");
-        h1_d[i] = new TH1D(Form("h1_d[%d]",i),Form("h1_d[%d]",i),150,0,150);
+        h1_d[i] = new TH1D(Form("h1_d[%d]",i),Form("h1_d[%d]",i),200,0,100);
         fitFunc_d[i] = new TF1(Form("fitFunc_d[%d]",i), "[0]*exp(-x/[1])", 0, 60);
         fitFunc_d[i]->SetParameters(100, 15); 
         deuteron_tree->Draw(Form("First_Depth>>h1_d[%d]",i), HET, "");
 
         auto electron_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Electron_%dGeV.root",int(Energy[i])));
         auto electron_tree = (TTree*)electron_file->Get("B4");
-        h1_e[i] = new TH1D(Form("h1_e[%d]",i),Form("h1_e[%d]",i),150,0,150);
+        h1_e[i] = new TH1D(Form("h1_e[%d]",i),Form("h1_e[%d]",i),40,0,20);
         fitFunc_e[i] = new TF1(Form("fitFunc_e[%d]",i), "[0]*exp(-x/[1])", 0, 60);
         fitFunc_e[i]->SetParameters(100, 15); 
         electron_tree->Draw(Form("First_Depth>>h1_e[%d]",i), "", "");
 
         auto helium4_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Helium4_%dGeV.root",int(Energy[i])));
         auto helium4_tree = (TTree*)helium4_file->Get("B4");
-        h1_h[i] = new TH1D(Form("h1_h[%d]",i),Form("h1_h[%d]",i),150,0,150);
+        h1_h[i] = new TH1D(Form("h1_h[%d]",i),Form("h1_h[%d]",i),80,0,40);
         fitFunc_h[i] = new TF1(Form("fitFunc_h[%d]",i), "[0]*exp(-x/[1])", 0, 60);
         fitFunc_h[i]->SetParameters(100, 15); 
         helium4_tree->Draw(Form("First_Depth>>h1_h[%d]",i), HET, "");
 
         auto helium3_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Helium3_%dGeV.root",int(Energy[i])));
         auto helium3_tree = (TTree*)helium3_file->Get("B4");
-        h1_H[i] = new TH1D(Form("h1_H[%d]",i),Form("h1_H[%d]",i),150,0,150);
+        h1_H[i] = new TH1D(Form("h1_H[%d]",i),Form("h1_H[%d]",i),80,0,40);
         fitFunc_H[i] = new TF1(Form("fitFunc_H[%d]",i), "[0]*exp(-x/[1])", 0, 60);
         fitFunc_H[i]->SetParameters(100, 15); 
-        helium4_tree->Draw(Form("First_Depth>>h1_H[%d]",i), HET, "");
+        helium3_tree->Draw(Form("First_Depth>>h1_H[%d]",i), HET, "");
 
         auto carbon_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Carbon_%dGeV.root",int(Energy[i])));
         auto carbon_tree = (TTree*)carbon_file->Get("B4");
-        h1_c[i] = new TH1D(Form("h1_c[%d]",i),Form("h1_c[%d]",i),100,0,50);
+        h1_c[i] = new TH1D(Form("h1_c[%d]",i),Form("h1_c[%d]",i),20,0,10);
         fitFunc_c[i] = new TF1(Form("fitFunc_c[%d]",i), "[0]*exp(-x/[1])", 0, 10);
         fitFunc_c[i]->SetParameters(100, 15); 
         carbon_tree->Draw(Form("First_Depth>>h1_c[%d]",i), HET, "");
@@ -215,7 +215,7 @@ void CrossSection()
     pad1->Draw();             // Draw the upper pad: pad1
     pad1->cd();               // pad1 becomes the current pad
     gre_p->Draw("AP");
-    gre_p->GetYaxis()->SetRangeUser(-100, 6500);
+    gre_p->GetYaxis()->SetRangeUser(-200, 6500);
     gre_p->GetYaxis()->SetNdivisions(505);
     gre_p->GetYaxis()->SetLabelSize(0.05);
     gre_p->GetYaxis()->SetTitleSize(0.07);
