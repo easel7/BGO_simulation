@@ -6,8 +6,9 @@ void Edep_TrackLength_Fit()
 
     auto L0 = new TH2D("L0","L0",50,0,25,50,0,25);
     auto L1 = new TProfile("L1","L1",50,0,25,0,25,"s");
-
-    TCut UBT = "(L0_E+L1_E+L2_E>0.23) && (L3_E>0.046)";
+    
+    TCut UBT = "(L0_E>0.0092 && L1_E>0.0092)";
+    TCut HET = "(L0_E>0.23 && L1_E >0.23 &&   L2_E>0.23 && L3_E>0.046)";
 
     proton_tree->Draw("L6_E:L6_L  >>L0",UBT,"colz");
     proton_tree->Draw("L6_E:L6_L   >>L1",UBT,"profs");

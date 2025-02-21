@@ -29,8 +29,8 @@ void Efficiency_UBT()
     TH1D *h1_H[19]; TH1D *h2_H[19]; TH1D *h3_H[19];
     TH1D *h1_c[19]; TH1D *h2_c[19]; TH1D *h3_c[19];
 
-    TCut UBT = "L0_E+L1_E>0.0092";
-    TCut HET = "(L0_E+L1_E+L2_E>0.23) && (L3_E>0.046)";
+    TCut UBT = "(L0_E>0.0092 && L1_E>0.0092)";
+    TCut HET = "(L0_E>0.23 && L1_E >0.23 &&   L2_E>0.23 && L3_E>0.046)";
 
     for (int i = 0; i < 19; i++)
     {
@@ -172,7 +172,7 @@ void Efficiency_UBT()
     c0->cd();
     gPad->SetLogx();
     gre_p_UBT->Draw("AP");
-    gre_p_UBT->GetYaxis()->SetRangeUser(0.999, 1.001);
+    gre_p_UBT->GetYaxis()->SetRangeUser(0.998, 1.001);
     gre_p_UBT->GetYaxis()->SetNdivisions(505);
     gre_p_UBT->GetYaxis()->SetTitleOffset(1.45);
     gre_d_UBT->Draw("PSAME");
@@ -201,10 +201,10 @@ void Efficiency_UBT()
     gre_h_HET->Draw("PSAME");
     gre_c_HET->Draw("PSAME");
 
-    gre_p_HET->GetYaxis()->SetRangeUser(0.3, 1.05);
+    gre_p_HET->GetYaxis()->SetRangeUser(0., 1.05);
     gre_p_HET->GetYaxis()->SetNdivisions(505);
 
-    auto legend2 = new TLegend(0.12, 0.38, 0.38, 0.58);
+    auto legend2 = new TLegend(0.62, 0.58, 0.88, 0.78);
     legend2->SetNColumns(2);
     legend2->AddEntry(gre_p_HET, "HET Proton", "ep");
     legend2->AddEntry(gre_d_HET, "HET Deuteron", "ep");

@@ -20,8 +20,8 @@ void Edep_TrackLength_Single()
     auto L13 = new TH2D("L13","L13",50,0,25,50,0,25);
     auto L14 = new TH2D("L14","L14",50,0,100,50,0,100);
 
-    TCut UBT = "";
-    TCut HET = "(L0_E+L1_E+L2_E>0.23) && (L3_E>0.046)";
+    TCut UBT = "(L0_E>0.0092 && L1_E>0.0092)";
+    TCut HET = "(L0_E>0.23 && L1_E >0.23 &&   L2_E>0.23 && L3_E>0.046)";
 
 
     proton_tree->Draw("L0_E :L0_L  >>L0",HET,"colz");

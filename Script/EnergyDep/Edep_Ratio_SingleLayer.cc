@@ -13,8 +13,8 @@ void Edep_Ratio_SingleLayer()
     auto carbon_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Carbon_100GeV.root");
     auto carbon_tree = (TTree*)carbon_file->Get("B4");
 
-    TCut UBT = "L0_E+L1_E>0.0092";
-    TCut HET = "(L0_E+L1_E+L2_E>0.23) && (L3_E>0.046)";
+    TCut UBT = "(L0_E>0.0092 && L1_E>0.0092)";
+    TCut HET = "(L0_E>0.23 && L1_E >0.23 &&   L2_E>0.23 && L3_E>0.046)";
 
     auto h1_p = new TH1D("h1_p","h1_p",50,-5,0);  
     auto h1_d = new TH1D("h1_d","h1_d",50,-5,0);  
@@ -38,8 +38,8 @@ void Edep_Ratio_SingleLayer()
     h1_H->Scale(1.0/h1_H->Integral());h1_H->SetLineColor(kGreen-3); h1_H->SetMarkerColor(kGreen-3); h1_H->SetLineWidth(2);
     h1_c->Scale(1.0/h1_c->Integral());h1_c->SetLineColor(kMagenta); h1_c->SetMarkerColor(kGreen-3); h1_c->SetLineWidth(2);
 
-    TF1  *fitFunc_p = new TF1("fitFunc_p","[0]/(-x*[2]*TMath::Sqrt(2*TMath::Pi()))*TMath::Exp(-0.5*TMath::Power(TMath::Log10(-x)-[1],2)/TMath::Power([2],2))", h1_p->GetMean()-3*h1_p->GetRMS(),0); fitFunc_p->SetParameters(0.1, 2.9, 0.3); fitFunc_p->SetLineColor(kRed);     
-    TF1  *fitFunc_d = new TF1("fitFunc_d","[0]/(-x*[2]*TMath::Sqrt(2*TMath::Pi()))*TMath::Exp(-0.5*TMath::Power(TMath::Log10(-x)-[1],2)/TMath::Power([2],2))", h1_d->GetMean()-3*h1_d->GetRMS(),0); fitFunc_d->SetParameters(0.1, 2.9, 0.3); fitFunc_d->SetLineColor(kBlue);    
+    TF1  *fitFunc_p = new TF1("fitFunc_p","[0]/(-x*[2]*TMath::Sqrt(2*TMath::Pi()))*TMath::Exp(-0.5*TMath::Power(TMath::Log10(-x)-[1],2)/TMath::Power([2],2))", h1_p->GetMean()-3*h1_p->GetRMS(),0); fitFunc_p->SetParameters(0.1, 2.3, 0.5); fitFunc_p->SetLineColor(kRed);     
+    TF1  *fitFunc_d = new TF1("fitFunc_d","[0]/(-x*[2]*TMath::Sqrt(2*TMath::Pi()))*TMath::Exp(-0.5*TMath::Power(TMath::Log10(-x)-[1],2)/TMath::Power([2],2))", h1_d->GetMean()-3*h1_d->GetRMS(),0); fitFunc_d->SetParameters(0.1, 2.3, 0.5); fitFunc_d->SetLineColor(kBlue);    
     TF1  *fitFunc_e = new TF1("fitFunc_e","[0]/(-x*[2]*TMath::Sqrt(2*TMath::Pi()))*TMath::Exp(-0.5*TMath::Power(TMath::Log10(-x)-[1],2)/TMath::Power([2],2))", h1_e->GetMean()-3*h1_e->GetRMS(),0); fitFunc_e->SetParameters(0.1, 2.1, 0.5); fitFunc_e->SetLineColor(kOrange-3);
     TF1  *fitFunc_h = new TF1("fitFunc_h","[0]/(-x*[2]*TMath::Sqrt(2*TMath::Pi()))*TMath::Exp(-0.5*TMath::Power(TMath::Log10(-x)-[1],2)/TMath::Power([2],2))", h1_h->GetMean()-3*h1_h->GetRMS(),0); fitFunc_h->SetParameters(0.1, 2.3, 0.5); fitFunc_h->SetLineColor(kGreen-3); 
     TF1  *fitFunc_H = new TF1("fitFunc_H","[0]/(-x*[2]*TMath::Sqrt(2*TMath::Pi()))*TMath::Exp(-0.5*TMath::Power(TMath::Log10(-x)-[1],2)/TMath::Power([2],2))", h1_H->GetMean()-3*h1_H->GetRMS(),0); fitFunc_H->SetParameters(0.1, 2.3, 0.5); fitFunc_H->SetLineColor(kGreen-3); fitFunc_H->SetLineStyle(2); 

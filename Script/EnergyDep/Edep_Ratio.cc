@@ -27,8 +27,10 @@ void Edep_Ratio()
     TH1D *h1_H[19];  TF1  *fitFunc_H[19];
     TH1D *h1_c[19];  TF1  *fitFunc_c[19];
 
-    TCut UBT = "L0_E+L1_E>0.0092";
-    TCut HET = "(L0_E+L1_E+L2_E>0.23) && (L3_E>0.046)";
+    TCut UBT = "(L0_E>0.0092 && L1_E>0.0092)";
+    TCut HET = "(L0_E>0.23 && L1_E >0.23 && L2_E>0.23 && L3_E>0.046)";
+    // TCut HET = "";
+
 
     for (int i = 0; i < 19; i++)
     {
@@ -49,12 +51,12 @@ void Edep_Ratio()
         auto carbon_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Carbon_%dGeV.root",int(Energy[i])));
         auto carbon_tree = (TTree*)carbon_file->Get("B4");
 
-        h1_p[i] = new TH1D(Form("h1_p[%d]",i),Form("h1_p[%d]",i),100,0,1); 
-        h1_d[i] = new TH1D(Form("h1_d[%d]",i),Form("h1_d[%d]",i),100,0,1); 
-        h1_e[i] = new TH1D(Form("h1_e[%d]",i),Form("h1_e[%d]",i),100,0,1); 
-        h1_h[i] = new TH1D(Form("h1_h[%d]",i),Form("h1_h[%d]",i),100,0,1); 
-        h1_H[i] = new TH1D(Form("h1_H[%d]",i), Form("h1_H[%d]",i),100,0,1); 
-        h1_c[i] = new TH1D(Form("h1_c[%d]",i), Form("h1_c[%d]",i),100,0,1); 
+        h1_p[i] = new TH1D(Form("h1_p[%d]",i),Form("h1_p[%d]",i),50,0,1); 
+        h1_d[i] = new TH1D(Form("h1_d[%d]",i),Form("h1_d[%d]",i),50,0,1); 
+        h1_e[i] = new TH1D(Form("h1_e[%d]",i),Form("h1_e[%d]",i),50,0,1); 
+        h1_h[i] = new TH1D(Form("h1_h[%d]",i),Form("h1_h[%d]",i),50,0,1); 
+        h1_H[i] = new TH1D(Form("h1_H[%d]",i), Form("h1_H[%d]",i),50,0,1); 
+        h1_c[i] = new TH1D(Form("h1_c[%d]",i), Form("h1_c[%d]",i),50,0,1); 
 
         proton_tree->Draw(Form("Total_E/Energy>>h1_p[%d]",i), HET, "");   h1_p[i]->SetLineColor(kRed);      h1_p[i]->SetMarkerColor(kRed);     h1_p[i]->SetLineWidth(2);
         deuteron_tree->Draw(Form("Total_E/Energy>>h1_d[%d]",i), HET, ""); h1_d[i]->SetLineColor(kBlue);     h1_d[i]->SetMarkerColor(kBlue);    h1_d[i]->SetLineWidth(2);
@@ -66,8 +68,8 @@ void Edep_Ratio()
         
         h1_e[i]->SetTitle(Form("%d GeV - Deposit Energy/Incident Energy;Energy Deposit Ratio;Counts",int(Energy[i])));
 
-        fitFunc_p[i] = new TF1(Form("fitFunc_p[%d]", i), "gaus", h1_p[i]->GetMean()-2*h1_p[i]->GetRMS(), h1_p[i]->GetMean()+2*h1_p[i]->GetRMS()); fitFunc_p[i]->SetLineColor(kRed);
-        fitFunc_d[i] = new TF1(Form("fitFunc_d[%d]", i), "gaus", h1_d[i]->GetMean()-2*h1_d[i]->GetRMS(), h1_d[i]->GetMean()+2*h1_d[i]->GetRMS()); fitFunc_d[i]->SetLineColor(kBlue);
+        fitFunc_p[i] = new TF1(Form("fitFunc_p[%d]", i), "gaus", h1_p[i]->GetMean()-1.5*h1_p[i]->GetRMS(), h1_p[i]->GetMean()+1.5*h1_p[i]->GetRMS()); fitFunc_p[i]->SetLineColor(kRed);
+        fitFunc_d[i] = new TF1(Form("fitFunc_d[%d]", i), "gaus", h1_d[i]->GetMean()-1.5*h1_d[i]->GetRMS(), h1_d[i]->GetMean()+1.5*h1_d[i]->GetRMS()); fitFunc_d[i]->SetLineColor(kBlue);
         fitFunc_h[i] = new TF1(Form("fitFunc_h[%d]", i), "gaus", h1_h[i]->GetMean()-1.5*h1_h[i]->GetRMS(), h1_h[i]->GetMean()+1.5*h1_h[i]->GetRMS()); fitFunc_h[i]->SetLineColor(kGreen-3);
         fitFunc_H[i] = new TF1(Form("fitFunc_H[%d]", i), "gaus", h1_H[i]->GetMean()-1.5*h1_H[i]->GetRMS(), h1_H[i]->GetMean()+1.5*h1_H[i]->GetRMS()); fitFunc_H[i]->SetLineColor(kGreen-3);fitFunc_H[i]->SetLineStyle(2);
         fitFunc_c[i] = new TF1(Form("fitFunc_c[%d]", i), "gaus", h1_c[i]->GetMean()-1.5*h1_c[i]->GetRMS(), h1_c[i]->GetMean()+1.5*h1_c[i]->GetRMS()); fitFunc_c[i]->SetLineColor(kMagenta);
@@ -76,7 +78,7 @@ void Edep_Ratio()
         c1->cd();
         gPad->SetLogy();
         gStyle->SetOptStat(0);
-        h1_e[i]->SetTitle(Form("%d GeV Electron Energy Deposit Ratio;Energy Deposit / Incident Kinetic Energy;No. Events",int(Energy[i])));
+        h1_e[i]->SetTitle(Form("%d GeV Energy Deposit Ratio;Energy Deposit / Incident Kinetic Energy;No. Events",int(Energy[i])));
         h1_e[i]->Draw("hist");
         h1_p[i]->Draw("SAME");
         h1_d[i]->Draw("SAME");

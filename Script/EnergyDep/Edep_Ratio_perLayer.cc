@@ -6,8 +6,8 @@ void Edep_Ratio_perLayer()
         if(i<9)  {Energy[i] =  (i+1)*10;}
         else   {Energy[i] =  i*100-800;}
 
-        TCut UBT = "L0_E+L1_E>0.0092";
-        TCut HET = "(L0_E+L1_E+L2_E>0.23) && (L3_E>0.046)";
+        TCut UBT = "(L0_E>0.0092 && L1_E>0.0092)";
+        TCut HET = "(L0_E>0.23 && L1_E >0.23 &&   L2_E>0.23 && L3_E>0.046)";
         TH1D *h1_p[14];  TF1  *fitFunc_p[14];
         TH1D *h1_d[14];  TF1  *fitFunc_d[14];
         TH1D *h1_e[14];  TF1  *fitFunc_e[14];

@@ -22,10 +22,6 @@ void CrossSection()
     TH1D *h1_H[19];    TF1  *fitFunc_H[19];
     TH1D *h1_c[19];    TF1  *fitFunc_c[19];
 
-    // TCut HET = "(L0_E+L1_E+L2_E>0.23) && (L3_E>0.046)";
-    TCut HET = "";
-
-
     for (int i = 0; i < 19; i++)
     {
         if(i<9)  {Energy[i] =  (i+1)*10;}
