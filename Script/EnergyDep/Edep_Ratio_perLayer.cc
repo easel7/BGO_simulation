@@ -55,36 +55,30 @@ void Edep_Ratio_perLayer()
                 fitFunc_p[i] = new TF1(Form("fitFunc_p[%d]",i),"[0]/(-x*[2]*TMath::Sqrt(2*TMath::Pi()))*TMath::Exp(-0.5*TMath::Power(TMath::Log10(-x)-[1],2)/TMath::Power([2],2))", -4, 0); 
                 fitFunc_p[i]->SetParameters(1, 0, 0.25); // Example values for the parameters
                 
-                proton_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_p[%d]",j,j),HET,"");   h1_p[j]->Scale(1.0/h1_p[j]->Integral());h1_p[j]->SetLineColor(kRed);     h1_p[j]->SetMarkerColor(kRed);     h1_p[j]->SetLineWidth(2);h1_p[j]->GetYaxis()->SetRangeUser(0,0.25);h1_p[j]->SetTitle(Form("EdepRatio Distrubution in L%d;log_{10}(Energy Deposit Ratio);Normalized Count",j));
+                proton_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_p[%d]",j,j),HET,"");   h1_p[j]->Scale(1.0/h1_p[j]->Integral());h1_p[j]->SetLineColor(kRed);     h1_p[j]->SetMarkerColor(kRed);     h1_p[j]->SetLineWidth(2);
                 deuteron_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_d[%d]",j,j),HET,""); h1_d[j]->Scale(1.0/h1_d[j]->Integral());h1_d[j]->SetLineColor(kBlue);    h1_d[j]->SetMarkerColor(kBlue);    h1_d[j]->SetLineWidth(2);
                 electron_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_e[%d]",j,j),HET,""); h1_e[j]->Scale(1.0/h1_e[j]->Integral());h1_e[j]->SetLineColor(kOrange-3);h1_e[j]->SetMarkerColor(kOrange-3);h1_e[j]->SetLineWidth(2);
                 helium4_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_h[%d]",j,j),HET,"");  h1_h[j]->Scale(1.0/h1_h[j]->Integral());h1_h[j]->SetLineColor(kGreen-3); h1_h[j]->SetMarkerColor(kGreen-3); h1_h[j]->SetLineWidth(2);
                 helium3_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_H[%d]",j,j),HET,"");  h1_H[j]->Scale(1.0/h1_H[j]->Integral());h1_H[j]->SetLineColor(kGreen-3); h1_H[j]->SetMarkerColor(kGreen-3); h1_H[j]->SetLineWidth(2);
                 carbon_tree ->Draw(Form("log10(L%d_E/Total_E)>>h1_c[%d]",j,j),HET,"");  h1_c[j]->Scale(1.0/h1_c[j]->Integral());h1_c[j]->SetLineColor(kMagenta); h1_c[j]->SetMarkerColor(kMagenta); h1_c[j]->SetLineWidth(2);
 
-                
-                h1_p[j]->Draw();
-                h1_d[j]->Draw("same");
-                h1_e[j]->Draw("same");
-                h1_h[j]->Draw("same");
+                h1_e[j]->GetYaxis()->SetRangeUser(0,0.25);h1_e[j]->SetTitle(Form("EdepRatio Distrubution in L%d;log_{10}(Energy Deposit Ratio);Normalized Count",j));
+                h1_e[j]->Draw();
                 h1_H[j]->Draw("same");
                 h1_c[j]->Draw("same");
-                
-            
-                double quantiles[3] = {0.16, 0.50, 0.84};  // Percentiles
-                double p_values[3];  // Will store the x-values corresponding to the percentiles
-                double d_values[3];  // Will store the x-values corresponding to the percentiles
-                double e_values[3];  // Will store the x-values corresponding to the percentiles
-                double h_values[3];  // Will store the x-values corresponding to the percentiles
-                double H_values[3];  // Will store the x-values corresponding to the percentiles
-                double c_values[3];  // Will store the x-values corresponding to the percentiles
+                h1_h[j]->Draw("same");
+                h1_p[j]->Draw("same");
+                h1_d[j]->Draw("same");
 
-                h1_p[j]->GetQuantiles(3, p_values, quantiles);
-                h1_d[j]->GetQuantiles(3, d_values, quantiles);
-                h1_e[j]->GetQuantiles(3, e_values, quantiles);
-                h1_h[j]->GetQuantiles(3, h_values, quantiles);
-                h1_H[j]->GetQuantiles(3, H_values, quantiles);
-                h1_c[j]->GetQuantiles(3, c_values, quantiles);
+
+                
+                double quantiles[3] = {0.16, 0.50, 0.84};  // Percentiles
+                double p_values[3];  h1_p[j]->GetQuantiles(3, p_values, quantiles);
+                double d_values[3];  h1_d[j]->GetQuantiles(3, d_values, quantiles);
+                double e_values[3];  h1_e[j]->GetQuantiles(3, e_values, quantiles);
+                double h_values[3];  h1_h[j]->GetQuantiles(3, h_values, quantiles);
+                double H_values[3];  h1_H[j]->GetQuantiles(3, H_values, quantiles);
+                double c_values[3];  h1_c[j]->GetQuantiles(3, c_values, quantiles);
 
                 Proton_Ratio[j] = p_values[1];     Proton_Ratio_LL[j]  = p_values[1] - p_values[0];   Proton_Ratio_UL[j]= p_values[2] - p_values[1];
                 Deuteron_Ratio[j] = d_values[1];   Deuteron_Ratio_LL[j]= d_values[1] - d_values[0];   Deuteron_Ratio_UL[j]= d_values[2] - d_values[1];
@@ -128,8 +122,8 @@ void Edep_Ratio_perLayer()
         auto gre_H = new TGraphAsymmErrors(14,Layer,Helium3_Ratio ,Layer_Err,Layer_Err,Helium3_Ratio_LL ,Helium3_Ratio_UL);
         auto gre_c = new TGraphAsymmErrors(14,Layer,Carbon_Ratio ,Layer_Err,Layer_Err,Carbon_Ratio_LL ,Carbon_Ratio_UL);
 
-        gre_p->SetTitle(Form("Incident Energy %d GeV ; BGO Layer; log10(Deposit Energy Ratio)",int(Energy[i])));
-        gre_p->SetMarkerStyle(22);
+        gre_e->SetTitle(Form("Incident Energy %d GeV ; BGO Layer; log10(Deposit Energy Ratio)",int(Energy[i])));
+        gre_e->SetMarkerStyle(22);
         
         gre_e->SetMarkerColor(kOrange-3);
         gre_e->SetLineColor(kOrange-3);
@@ -153,13 +147,14 @@ void Edep_Ratio_perLayer()
         gre_h->SetLineWidth(2);
         gre_H->SetLineWidth(2);gre_H->SetLineStyle(2);
         gre_c->SetLineWidth(2);
+        
+        gre_e->Draw("AP");
     
-        gre_p->Draw("AP");
-        gre_d->Draw("PSAME");
-        gre_e->Draw("PSAME");
         gre_h->Draw("PSAME");
         gre_H->Draw("PSAME");
         gre_c->Draw("PSAME");
+        gre_d->Draw("PSAME");
+        gre_p->Draw("PSAME");
 
         auto legend2 = new TLegend(0.42, 0.12, 0.58, 0.32);
         legend2->SetNColumns(2);
