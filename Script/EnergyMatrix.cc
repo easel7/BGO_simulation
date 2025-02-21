@@ -1,21 +1,22 @@
 void EnergyMatrix()
 {
-    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_PowerLaw.root");
+    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Weight/Proton_PowerLaw.root");
     auto proton_tree = (TTree*)proton_file->Get("B4");
-    auto deuteron_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_PowerLaw.root");
+    auto deuteron_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Weight/Deuteron_PowerLaw.root");
     auto deuteron_tree = (TTree*)deuteron_file->Get("B4");
-    auto electron_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_PowerLaw.root");
+    auto electron_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Weight/Electron_PowerLaw.root");
     auto electron_tree = (TTree*)electron_file->Get("B4");
-    auto helium4_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_ PowerLaw.root");
+    auto helium4_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Weight/Helium4_PowerLaw.root");
     auto helium4_tree = (TTree*)helium4_file->Get("B4");
     
-    TCut HET = "(L0_E+L1_E+L2_E>0.23) && (L3_E>0.046)";
+    // TCut UBT = "weight*(L0_E>0.0092 && L1_E>0.0092)";
+    TCut HET = "weight*(L0_E>0.23 && L1_E >0.23 && L2_E>0.23 && L3_E>0.046)";
+    // TCut HET = "weight";
 
-
-    auto *h2_p = new TH2D("h2_p","h2_p",26,1,3.6,26,1,3.6); auto *h1_p = new TH2D("h1_p","h1_p",26,1,3.6,26,1,3.6);
-    auto *h2_d = new TH2D("h2_d","h2_d",26,1,3.6,26,1,3.6); auto *h1_d = new TH2D("h1_d","h1_d",26,1,3.6,26,1,3.6);
-    auto *h2_e = new TH2D("h2_e","h2_e",26,1,3.6,26,1,3.6); auto *h1_e = new TH2D("h1_e","h1_e",26,1,3.6,26,1,3.6);
-    auto *h2_h = new TH2D("h2_h","h2_h",26,1,3.6,26,1,3.6); auto *h1_h = new TH2D("h1_h","h1_h",26,1,3.6,26,1,3.6);
+    auto *h2_p = new TH2D("h2_p","h2_p",36,0,3.6,36,0,3.6); auto *h1_p = new TH2D("h1_p","h1_p",36,0,3.6,36,0,3.6);
+    auto *h2_d = new TH2D("h2_d","h2_d",36,0,3.6,36,0,3.6); auto *h1_d = new TH2D("h1_d","h1_d",36,0,3.6,36,0,3.6);
+    auto *h2_e = new TH2D("h2_e","h2_e",36,0,3.6,36,0,3.6); auto *h1_e = new TH2D("h1_e","h1_e",36,0,3.6,36,0,3.6);
+    auto *h2_h = new TH2D("h2_h","h2_h",36,0,3.6,36,0,3.6); auto *h1_h = new TH2D("h1_h","h1_h",36,0,3.6,36,0,3.6);
 
     proton_tree->Draw("log10(Total_E):log10(Energy)>>h2_p",HET,"");   
     deuteron_tree->Draw("log10(Total_E):log10(Energy)>>h2_d",HET,""); 
@@ -23,14 +24,14 @@ void EnergyMatrix()
     helium4_tree->Draw("log10(Total_E):log10(Energy)>>h2_h",HET,"");  
     auto tex = new TLatex(3.4,3.7,"log_{10} Entries");
     tex->SetTextSize(0.03);
-    for (int ii=0;ii<26;ii++)
+    for (int ii=0;ii<36;ii++)
     {
-        for(int jj=0;jj<26;jj++)
-        {
-            h1_p->SetBinContent(ii,jj,log10(h2_p->GetBinContent(ii,jj)));
-            h1_d->SetBinContent(ii,jj,log10(h2_d->GetBinContent(ii,jj)));
-            h1_e->SetBinContent(ii,jj,log10(h2_e->GetBinContent(ii,jj)));
-            h1_h->SetBinContent(ii,jj,log10(h2_h->GetBinContent(ii,jj)));
+        for(int jj=0;jj<36;jj++)
+        {   
+            h1_p->SetBinContent(ii+1,jj+1,log10(h2_p->GetBinContent(ii+1,jj+1)));
+            h1_d->SetBinContent(ii+1,jj+1,log10(h2_d->GetBinContent(ii+1,jj+1)));
+            h1_e->SetBinContent(ii+1,jj+1,log10(h2_e->GetBinContent(ii+1,jj+1)));
+            h1_h->SetBinContent(ii+1,jj+1,log10(h2_h->GetBinContent(ii+1,jj+1)));
         }
     }
 

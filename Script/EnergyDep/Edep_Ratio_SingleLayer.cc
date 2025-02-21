@@ -14,7 +14,7 @@ void Edep_Ratio_SingleLayer()
     auto carbon_tree = (TTree*)carbon_file->Get("B4");
 
     TCut UBT = "(L0_E>0.0092 && L1_E>0.0092)";
-    TCut HET = "(L0_E>0.23 && L1_E >0.23 &&   L2_E>0.23 && L3_E>0.046)";
+    TCut HET = "(L0_E>0.23 && L1_E >0.23 && L2_E>0.23 && L3_E>0.046)";
 
     auto h1_p = new TH1D("h1_p","h1_p",50,-5,0);  
     auto h1_d = new TH1D("h1_d","h1_d",50,-5,0);  
