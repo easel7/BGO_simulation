@@ -58,12 +58,12 @@ void Edep_Ratio()
         h1_H[i] = new TH1D(Form("h1_H[%d]",i), Form("h1_H[%d]",i),50,0,1); 
         h1_c[i] = new TH1D(Form("h1_c[%d]",i), Form("h1_c[%d]",i),50,0,1); 
 
-        proton_tree->Draw(Form("Total_E/Energy>>h1_p[%d]",i), HET, "");   h1_p[i]->SetLineColor(kRed);      h1_p[i]->SetMarkerColor(kRed);     h1_p[i]->SetLineWidth(2);
-        deuteron_tree->Draw(Form("Total_E/Energy>>h1_d[%d]",i), HET, ""); h1_d[i]->SetLineColor(kBlue);     h1_d[i]->SetMarkerColor(kBlue);    h1_d[i]->SetLineWidth(2);
-        electron_tree->Draw(Form("Total_E/Energy>>h1_e[%d]",i), HET, ""); h1_e[i]->SetLineColor(kOrange-3); h1_e[i]->SetMarkerColor(kOrange-3);h1_e[i]->SetLineWidth(2);
-        helium4_tree->Draw(Form("Total_E/Energy>>h1_h[%d]",i), HET, "");  h1_h[i]->SetLineColor(kGreen-3);  h1_h[i]->SetMarkerColor(kGreen-3); h1_h[i]->SetLineWidth(2);
-        helium3_tree->Draw(Form("Total_E/Energy>>h1_H[%d]",i), HET, "");  h1_H[i]->SetLineColor(kGreen-3);  h1_H[i]->SetMarkerColor(kGreen-3); h1_H[i]->SetLineWidth(2);
-        carbon_tree ->Draw(Form("Total_E/Energy>>h1_c[%d]",i), HET, "");  h1_c[i]->SetLineColor(kMagenta);  h1_c[i]->SetMarkerColor(kMagenta); h1_c[i]->SetLineWidth(2);
+        proton_tree->Draw(Form("Total_E/Energy>>h1_p[%d]",i), HET, "");   h1_p[i]->Sumw2(); h1_p[i]->SetLineColor(kRed);      h1_p[i]->SetMarkerColor(kRed);     h1_p[i]->SetLineWidth(2);
+        deuteron_tree->Draw(Form("Total_E/Energy>>h1_d[%d]",i), HET, ""); h1_d[i]->Sumw2(); h1_d[i]->SetLineColor(kBlue);     h1_d[i]->SetMarkerColor(kBlue);    h1_d[i]->SetLineWidth(2);
+        electron_tree->Draw(Form("Total_E/Energy>>h1_e[%d]",i), HET, ""); h1_e[i]->Sumw2(); h1_e[i]->SetLineColor(kOrange-3); h1_e[i]->SetMarkerColor(kOrange-3);h1_e[i]->SetLineWidth(2);
+        helium4_tree->Draw(Form("Total_E/Energy>>h1_h[%d]",i), HET, "");  h1_h[i]->Sumw2(); h1_h[i]->SetLineColor(kGreen-3);  h1_h[i]->SetMarkerColor(kGreen-3); h1_h[i]->SetLineWidth(2);
+        helium3_tree->Draw(Form("Total_E/Energy>>h1_H[%d]",i), HET, "");  h1_H[i]->Sumw2(); h1_H[i]->SetLineColor(kGreen-3);  h1_H[i]->SetMarkerColor(kGreen-3); h1_H[i]->SetLineWidth(2);
+        carbon_tree ->Draw(Form("Total_E/Energy>>h1_c[%d]",i), HET, "");  h1_c[i]->Sumw2(); h1_c[i]->SetLineColor(kMagenta);  h1_c[i]->SetMarkerColor(kMagenta); h1_c[i]->SetLineWidth(2);
 
         
         h1_e[i]->SetTitle(Form("%d GeV - Deposit Energy/Incident Energy;Energy Deposit Ratio;Counts",int(Energy[i])));

@@ -55,12 +55,12 @@ void Edep_Ratio_perLayer()
                 fitFunc_p[i] = new TF1(Form("fitFunc_p[%d]",i),"[0]/(-x*[2]*TMath::Sqrt(2*TMath::Pi()))*TMath::Exp(-0.5*TMath::Power(TMath::Log10(-x)-[1],2)/TMath::Power([2],2))", -4, 0); 
                 fitFunc_p[i]->SetParameters(1, 0, 0.25); // Example values for the parameters
                 
-                proton_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_p[%d]",j,j),HET,"");   h1_p[j]->Scale(1.0/h1_p[j]->Integral());h1_p[j]->SetLineColor(kRed);     h1_p[j]->SetMarkerColor(kRed);     h1_p[j]->SetLineWidth(2);
-                deuteron_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_d[%d]",j,j),HET,""); h1_d[j]->Scale(1.0/h1_d[j]->Integral());h1_d[j]->SetLineColor(kBlue);    h1_d[j]->SetMarkerColor(kBlue);    h1_d[j]->SetLineWidth(2);
-                electron_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_e[%d]",j,j),HET,""); h1_e[j]->Scale(1.0/h1_e[j]->Integral());h1_e[j]->SetLineColor(kOrange-3);h1_e[j]->SetMarkerColor(kOrange-3);h1_e[j]->SetLineWidth(2);
-                helium4_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_h[%d]",j,j),HET,"");  h1_h[j]->Scale(1.0/h1_h[j]->Integral());h1_h[j]->SetLineColor(kGreen-3); h1_h[j]->SetMarkerColor(kGreen-3); h1_h[j]->SetLineWidth(2);
-                helium3_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_H[%d]",j,j),HET,"");  h1_H[j]->Scale(1.0/h1_H[j]->Integral());h1_H[j]->SetLineColor(kGreen-3); h1_H[j]->SetMarkerColor(kGreen-3); h1_H[j]->SetLineWidth(2);
-                carbon_tree ->Draw(Form("log10(L%d_E/Total_E)>>h1_c[%d]",j,j),HET,"");  h1_c[j]->Scale(1.0/h1_c[j]->Integral());h1_c[j]->SetLineColor(kMagenta); h1_c[j]->SetMarkerColor(kMagenta); h1_c[j]->SetLineWidth(2);
+                proton_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_p[%d]",j,j),HET,"");   h1_p[j]->Sumw2(); h1_p[j]->Scale(1.0/h1_p[j]->Integral());h1_p[j]->SetLineColor(kRed);     h1_p[j]->SetMarkerColor(kRed);     h1_p[j]->SetLineWidth(2);
+                deuteron_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_d[%d]",j,j),HET,""); h1_d[j]->Sumw2(); h1_d[j]->Scale(1.0/h1_d[j]->Integral());h1_d[j]->SetLineColor(kBlue);    h1_d[j]->SetMarkerColor(kBlue);    h1_d[j]->SetLineWidth(2);
+                electron_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_e[%d]",j,j),HET,""); h1_e[j]->Sumw2(); h1_e[j]->Scale(1.0/h1_e[j]->Integral());h1_e[j]->SetLineColor(kOrange-3);h1_e[j]->SetMarkerColor(kOrange-3);h1_e[j]->SetLineWidth(2);
+                helium4_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_h[%d]",j,j),HET,"");  h1_h[j]->Sumw2(); h1_h[j]->Scale(1.0/h1_h[j]->Integral());h1_h[j]->SetLineColor(kGreen-3); h1_h[j]->SetMarkerColor(kGreen-3); h1_h[j]->SetLineWidth(2);
+                helium3_tree->Draw(Form("log10(L%d_E/Total_E)>>h1_H[%d]",j,j),HET,"");  h1_H[j]->Sumw2(); h1_H[j]->Scale(1.0/h1_H[j]->Integral());h1_H[j]->SetLineColor(kGreen-3); h1_H[j]->SetMarkerColor(kGreen-3); h1_H[j]->SetLineWidth(2);
+                carbon_tree ->Draw(Form("log10(L%d_E/Total_E)>>h1_c[%d]",j,j),HET,"");  h1_c[j]->Sumw2(); h1_c[j]->Scale(1.0/h1_c[j]->Integral());h1_c[j]->SetLineColor(kMagenta); h1_c[j]->SetMarkerColor(kMagenta); h1_c[j]->SetLineWidth(2);
 
                 h1_e[j]->GetYaxis()->SetRangeUser(0,0.25);h1_e[j]->SetTitle(Form("EdepRatio Distrubution in L%d;log_{10}(Energy Deposit Ratio);Normalized Count",j));
                 h1_e[j]->Draw();
