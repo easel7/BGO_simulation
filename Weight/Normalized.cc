@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
 	}
     // 计算归一化因子
     double norm_factor = nentries / total_weight;
+    cout << "norm_factor" << norm_factor <<  endl;
 
     // 计算归一化权重
     for (Long64_t i = 0; i < nentries; i++) {

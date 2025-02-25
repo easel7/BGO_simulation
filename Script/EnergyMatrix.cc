@@ -10,8 +10,8 @@ void EnergyMatrix()
     auto helium4_tree = (TTree*)helium4_file->Get("B4");
     auto helium3_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Weight/Helium3_PowerLaw.root");
     auto helium3_tree = (TTree*)helium3_file->Get("B4");
-    // auto carbon_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Weight/Carbon_PowerLaw.root");
-    // auto carbon_tree = (TTree*)carbon_file->Get("B4");
+    auto carbon_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Weight/Carbon_PowerLaw.root");
+    auto carbon_tree = (TTree*)carbon_file->Get("B4");
     
     // TCut UBT = "weight*(L0_E>0.0092 && L1_E>0.0092)";
     TCut HET = "weight*(L0_E>0.23 && L1_E >0.23 && L2_E>0.23 && L3_E>0.046)";
@@ -29,7 +29,7 @@ void EnergyMatrix()
     electron_tree->Draw("log10(Total_E):log10(Energy)>>h2_e",HET,""); 
     helium4_tree->Draw("log10(Total_E):log10(Energy)>>h2_h",HET,"");  
     helium3_tree->Draw("log10(Total_E):log10(Energy)>>h2_H",HET,"");  
-    // carbon_tree ->Draw("log10(Total_E):log10(Energy)>>h2_c",HET,"");  
+    carbon_tree ->Draw("log10(Total_E):log10(Energy)>>h2_c",HET,"");  
 
     auto tex = new TLatex(3.4,3.7,"log_{10} Entries");
     tex->SetTextSize(0.03);
@@ -42,7 +42,7 @@ void EnergyMatrix()
             h1_e->SetBinContent(ii+1,jj+1,log10(h2_e->GetBinContent(ii+1,jj+1)));
             h1_h->SetBinContent(ii+1,jj+1,log10(h2_h->GetBinContent(ii+1,jj+1)));
             h1_H->SetBinContent(ii+1,jj+1,log10(h2_H->GetBinContent(ii+1,jj+1)));
-            // h1_c->SetBinContent(ii+1,jj+1,log10(h2_c->GetBinContent(ii+1,jj+1)));
+            h1_c->SetBinContent(ii+1,jj+1,log10(h2_c->GetBinContent(ii+1,jj+1)));
 
         }
     }

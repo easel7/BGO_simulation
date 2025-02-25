@@ -4,7 +4,7 @@ void Check()
     TCut UBT = "(L0_E>0.0092 && L1_E>0.0092)";
     TCut HET = "(L0_E>0.23 && L1_E >0.23 &&   L2_E>0.23 && L3_E>0.046)";
 
-    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_PowerLaw.root");
+    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Carbon_PowerLaw.root");
     auto proton_tree = (TTree*)proton_file->Get("B4");
 
     auto h1_p = new TH1D("h1_p", "h1_p",40,0,4);  
@@ -16,7 +16,7 @@ void Check()
     h1_p->SetTitle("Before Weighted;log_{10}(Energy/GeV);Counts");
     h2_p->SetTitle("Before Weighted;log_{10}(E_dep/GeV);Counts");
 
-    auto proton2_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Weight/Proton_PowerLaw.root");
+    auto proton2_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Weight/Carbon_PowerLaw.root");
     auto proton2_tree = (TTree*)proton2_file->Get("B4");
 
     auto h1_w = new TH1D("h1_w", "h1_w",40,0,4);  
