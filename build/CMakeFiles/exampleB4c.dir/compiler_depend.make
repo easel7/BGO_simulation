@@ -10827,6 +10827,7 @@ CMakeFiles/exampleB4c.dir/src/SteppingAction.cc.o: /Users/xiongzheng/software/B4
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4GPILSelection.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4GeomSplitter.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4GlobalConfig.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4HadronicProcessType.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4IonisParamElm.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4IonisParamMat.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4Isotope.hh \
@@ -11798,6 +11799,8 @@ CMakeFiles/exampleB4c.dir/src/SteppingAction.cc.o: /Users/xiongzheng/software/B4
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/xlocale/_string.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/forward_list:
+
+/Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4HadronicProcessType.hh:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/format:
 

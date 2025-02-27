@@ -1,6 +1,6 @@
 /run/initialize
-/analysis/setFileName B4_He3
-/gps/particle He3
+/analysis/setFileName B4_deuteron
+/gps/particle deuteron
 /gps/ene/type Mono
 /gps/ene/mono 100 GeV
 

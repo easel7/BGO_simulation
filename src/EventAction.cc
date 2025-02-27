@@ -152,6 +152,8 @@ void EventAction::EndOfEventAction(const G4Event* event)
   analysisManager->FillNtupleDColumn(36, fHadrInteractionDepth); // First Hadronic Interaction Depth
   analysisManager->FillNtupleIColumn(37, fHadrInteractionLayer); // First Hadronic Interaction Layer
   analysisManager->FillNtupleIColumn(38, fHadrSecondaries);      // First Hadronic Interaction No Secondaries
+  analysisManager->FillNtupleIColumn(39, fHadronicTag);          // First Hadronic Type
+
   analysisManager->AddNtupleRow();
 }
 

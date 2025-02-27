@@ -34,6 +34,7 @@
 #include "G4VTrajectory.hh"
 #include "G4VTrajectoryPoint.hh"
 #include "G4VProcess.hh"
+#include "G4HadronicProcessType.hh"
 #include "G4Step.hh"
 #include "globals.hh"
 
@@ -63,62 +64,65 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   if (step->GetSecondaryInCurrentStep()->size() == 0) return;
   const G4VProcess* process = step->GetPostStepPoint()->GetProcessDefinedStep();
   G4VPhysicalVolume* volume = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume();         // G4cout << "Volume Name: " << volume->GetName() << G4endl;
-
   if (!process || !volume) return;
-
   if (volume != fDetConstruction->GetAbsorberPV()) return;
   G4ThreeVector position = step->GetPostStepPoint()->GetPosition(); // G4cout << "Position X: " << position.x() << G4endl; G4cout << "Position Y: " << position.y() << G4endl;  G4cout << "Position Z: " << position.z() << G4endl;
   G4double interactionDepth = position.z() + fDetConstruction->GetCalorThickness() / 2;  // Depth in detector G4cout << "Depth Z: " << position.z() + fDetConstruction->GetCalorThickness() / 2  << G4endl;
   G4int interactionLayer = step->GetPreStepPoint()->GetTouchableHandle()->GetCopyNumber(1);  // Layer number, while GetCopyNumber(depth=1) find its mother volume G4cout << "Layer: " << step->GetPreStepPoint()->GetTouchableHandle()->GetCopyNumber(1) << G4endl;
   G4int nSecondaries = step->GetSecondaryInCurrentStep()->size();
   G4ProcessType processType = process->GetProcessType();
+  G4int processSubType = process->GetProcessSubType();
 
+  
   // G4cout << "First Interaction Position: " << fEventAction->GetInteractionDepth() << G4endl; // G4cout << "First Interaction Layer: " << fEventAction->GetInteractionLayer() << G4endl;
  
 
   // Record the first interaction type if the GetInteractionType is initial value
   if (fEventAction && fEventAction->GetInteractionType() == -1) 
   { 
-      if (process->GetProcessType() == fElectromagnetic) 
-      {   
-        fEventAction->SetInteractionType(0); 
-        fEventAction->SetSecondaries(nSecondaries);
-        fEventAction->SetInteractionDepth(interactionDepth);
-        fEventAction->SetInteractionLayer(interactionLayer);
-      }// EM interaction
-      else if (process->GetProcessType() == fHadronic)   
-      { 
-        fEventAction->SetInteractionType(1); 
-        fEventAction->SetSecondaries(nSecondaries);
-        fEventAction->SetInteractionDepth(interactionDepth);
-        fEventAction->SetInteractionLayer(interactionLayer);
-        fEventAction->SetHadrInteractionDepth(interactionDepth);
-        fEventAction->SetHadrInteractionLayer(interactionLayer);
-        fEventAction->SetHadrSecondaries(nSecondaries);
-        fEventAction->SetHadrTag(1);
-      }// HD interaction
-      else                                               
-      { 
-        fEventAction->SetInteractionType(2); 
-        fEventAction->SetSecondaries(nSecondaries);
-        fEventAction->SetInteractionDepth(interactionDepth);
-        fEventAction->SetInteractionLayer(interactionLayer);
-      }// Other interaction
-      // Print the first interaction position / Type / No. Secondaries
-      // G4cout << "First interaction at: " << position/mm  << " mm, Type: " << fEventAction->GetInteractionType() << " #Secondaries = " << fEventAction->GetSecondaries() << G4endl;
+    if (processType == fElectromagnetic) 
+    {   
+      fEventAction->SetInteractionType(0); 
+      fEventAction->SetSecondaries(nSecondaries);
+      fEventAction->SetInteractionDepth(interactionDepth);
+      fEventAction->SetInteractionLayer(interactionLayer);
+    }// EM interaction
+    else if (processType == fHadronic)   
+    { 
+      fEventAction->SetInteractionType(1); 
+      fEventAction->SetSecondaries(nSecondaries);
+      fEventAction->SetInteractionDepth(interactionDepth);
+      fEventAction->SetInteractionLayer(interactionLayer);
+      fEventAction->SetHadrInteractionDepth(interactionDepth);
+      fEventAction->SetHadrInteractionLayer(interactionLayer);
+      fEventAction->SetHadrSecondaries(nSecondaries);
+      fEventAction->SetHadrTag(0);
+      if (processSubType == fHadronInelastic)       {fEventAction->SetHadrTag(1);}
+      else if(processSubType == fHadronElastic)     {fEventAction->SetHadrTag(2);}
+    }// HD interaction
+    else                                               
+    { 
+      fEventAction->SetInteractionType(2); 
+      fEventAction->SetSecondaries(nSecondaries);
+      fEventAction->SetInteractionDepth(interactionDepth);
+      fEventAction->SetInteractionLayer(interactionLayer);
+    }// Other interaction
+    // Print the first interaction position / Type / No. Secondaries
+    // G4cout << "First interaction at: " << position/mm  << " mm, Type: " << fEventAction->GetInteractionType() << " #Secondaries = " << fEventAction->GetSecondaries() << G4endl;
   }
-  if (fEventAction && fEventAction->GetHadrTag() != 1)
+  if (fEventAction && fEventAction->GetHadrTag() == -1)
   {
-      if (process->GetProcessType() == fHadronic)   
-      {
-        fEventAction->SetHadrInteractionDepth(interactionDepth);
-        fEventAction->SetHadrInteractionLayer(interactionLayer);
-        fEventAction->SetHadrSecondaries(nSecondaries);
-        fEventAction->SetHadrTag(1);
-      }
-    
+    if (processType == fHadronic)   
+    {
+      fEventAction->SetHadrInteractionDepth(interactionDepth);
+      fEventAction->SetHadrInteractionLayer(interactionLayer);
+      fEventAction->SetHadrSecondaries(nSecondaries);
+      fEventAction->SetHadrTag(0);
+      if (processSubType == fHadronInelastic)       {fEventAction->SetHadrTag(1);}
+      else if(processSubType == fHadronElastic)     {fEventAction->SetHadrTag(2);}
+      
+    }
   }
-
 }
 
 

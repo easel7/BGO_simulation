@@ -1192,4 +1192,5 @@ CMakeFiles/exampleB4c.dir/src/SteppingAction.cc.o: \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4GPILSelection.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleChange.hh \
   /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ParticleChange.icc \
-  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ProcessType.hh
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4ProcessType.hh \
+  /Users/xiongzheng/software/build/geant4-v11.3.0-install/include/Geant4/G4HadronicProcessType.hh
