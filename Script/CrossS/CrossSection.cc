@@ -21,6 +21,7 @@ void CrossSection()
     TH1D *h1_h[19];    TF1  *fitFunc_h[19];
     TH1D *h1_H[19];    TF1  *fitFunc_H[19];
     TH1D *h1_c[19];    TF1  *fitFunc_c[19];
+    TCut HET = "";
 
     for (int i = 0; i < 19; i++)
     {

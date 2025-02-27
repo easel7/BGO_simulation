@@ -79,7 +79,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
         else if (process->GetProcessType() == fHadronic)   { fEventAction->SetInteractionType(1); }// HD interaction
         else                                               { fEventAction->SetInteractionType(2); }// Other interaction
         // Print the first interaction position / Type / No. Secondaries
-        // G4cout << "First interaction at: " << position/mm  << " mm, Type: " << fEventAction->GetInteractionType() << " #Secondaries = " << fEventAction->GetSecondaries() << G4endl;
+        G4cout << "First interaction at: " << position/mm  << " mm, Type: " << fEventAction->GetInteractionType() << " #Secondaries = " << fEventAction->GetSecondaries() << G4endl;
       }
     }
   }
