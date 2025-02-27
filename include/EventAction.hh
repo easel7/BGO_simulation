@@ -71,6 +71,18 @@ class EventAction : public G4UserEventAction
     void SetInteractionDepth(G4double InteractionDepth) { fInteractionDepth = InteractionDepth; }
     G4double GetInteractionDepth() const { return fInteractionDepth; }
 
+    void SetHadrSecondaries(G4int Secondaries) { fHadrSecondaries = Secondaries;}
+    G4int GetHadrSecondaries() const { return fHadrSecondaries; }
+
+    void SetHadrInteractionLayer(G4int Layer) { fHadrInteractionLayer = Layer; }
+    G4int GetHadrInteractionLayer() const { return fHadrInteractionLayer; }
+
+    void SetHadrInteractionDepth(G4double InteractionDepth) { fHadrInteractionDepth = InteractionDepth; }
+    G4double GetHadrInteractionDepth() const { return fHadrInteractionDepth; }
+
+    void SetHadrTag(G4int Tag) { fHadronicTag = Tag; }
+    G4int GetHadrTag() const { return fHadronicTag; }
+
   private:
     // methods
     CalorHitsCollection* GetHitsCollection(G4int hcID, const G4Event* event) const;
@@ -82,12 +94,16 @@ class EventAction : public G4UserEventAction
     G4int fGapHCID = -1;
 
     G4ThreeVector fFirstInteraction = G4ThreeVector(-1e9, -1e9, -1e9);  // 记录第一个电磁相互作用点
-    G4int fInteractionType = -1;
-    G4int fSecondaries = -1;
-    G4int fInteractionLayer = -1;
     G4double fInteractionDepth = -1;
+    G4int fInteractionLayer = -1;
+    G4int fSecondaries = -1;
+    G4int fInteractionType = -1;
+    
+    G4double fHadrInteractionDepth = -1;
+    G4int fHadrInteractionLayer = -1;
+    G4int fHadrSecondaries = -1;
 
-
+    G4int fHadronicTag=-1; 
 };
 
 }  // namespace B4c

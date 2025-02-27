@@ -92,8 +92,11 @@ RunAction::RunAction()
   analysisManager->CreateNtupleDColumn("Total_L");
   analysisManager->CreateNtupleDColumn("First_Depth"); // Depth ()
   analysisManager->CreateNtupleIColumn("First_Layer"); // Layer (0,1,2...)
-  analysisManager->CreateNtupleIColumn("First_Type"); // Type (0-EM, 1-HD, 2-Others)
   analysisManager->CreateNtupleIColumn("First_Second"); // Number of Secondaries
+  analysisManager->CreateNtupleIColumn("First_Type"); // Type (0-EM, 1-HD, 2-Others)
+  analysisManager->CreateNtupleDColumn("First_Had_Depth"); // Depth ()
+  analysisManager->CreateNtupleIColumn("First_Had_Layer"); // Layer (0,1,2...)
+  analysisManager->CreateNtupleIColumn("First_Had_Second"); // Number of Secondaries
   analysisManager->FinishNtuple();
 }
 

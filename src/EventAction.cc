@@ -78,10 +78,14 @@ void EventAction::PrintEventStatistics(G4double absoEdep, G4double absoTrackLeng
 void EventAction::BeginOfEventAction(const G4Event* /*event*/) 
 {
     fFirstInteraction = G4ThreeVector(-1e9, -1e9, -1e9);  
-    fInteractionType = -1;
-    fSecondaries = -1;
-    fInteractionLayer = -1;
     fInteractionDepth = -1;
+    fInteractionLayer = -1;
+    fSecondaries = -1;
+    fInteractionType = -1;
+    fHadrInteractionDepth = -1;
+    fHadrInteractionLayer = -1;
+    fHadrSecondaries = -1;
+    fHadronicTag=-1; 
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -140,13 +144,14 @@ void EventAction::EndOfEventAction(const G4Event* event)
     }
   }
   // G4cout << "fInteractionDepth = " << fInteractionDepth << G4endl;
-  analysisManager->FillNtupleDColumn(32, fInteractionDepth); // Interaction Depth
-  analysisManager->FillNtupleIColumn(33, fInteractionLayer); // Interaction Layer
-  analysisManager->FillNtupleIColumn(34, fInteractionType); // Interaction Type
-  analysisManager->FillNtupleIColumn(35, fSecondaries); // No Secondaries
+  analysisManager->FillNtupleDColumn(32, fInteractionDepth); // First Interaction Depth
+  analysisManager->FillNtupleIColumn(33, fInteractionLayer); // First Interaction Layer
+  analysisManager->FillNtupleIColumn(34, fSecondaries);      // First Interaction No Secondaries
+  analysisManager->FillNtupleIColumn(35, fInteractionType);  // First Interaction Type
 
-
-
+  analysisManager->FillNtupleDColumn(36, fHadrInteractionDepth); // First Hadronic Interaction Depth
+  analysisManager->FillNtupleIColumn(37, fHadrInteractionLayer); // First Hadronic Interaction Layer
+  analysisManager->FillNtupleIColumn(38, fHadrSecondaries);      // First Hadronic Interaction No Secondaries
   analysisManager->AddNtupleRow();
 }
 

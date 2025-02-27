@@ -28,7 +28,7 @@ void EnergyLong()
     TH1D *h1_H[13][14];
     TH1D *h1_c[13][14];
 
-    for (int i = 12; i < 13; i++) // Deposit Energy Bin
+    for (int i = 6; i < 7; i++) // Deposit Energy Bin
     {
         Energy[i]    =  0.2*i+1.1;
         Energy_LL[i] =  0.2*i+1.0;
@@ -158,6 +158,13 @@ void EnergyLong()
         legend2->AddEntry(gre_H, "HET Helium3", "ep");
         legend2->AddEntry(gre_c, "HET Carbon", "ep");
         legend2->Draw();
+
+        for(int j= 0; j<14 ; j++)
+        {
+            // cout << "Layer = " << j << " , Ratio = " << pow(10,Proton_Ratio[j]) <<  endl;
+
+            cout << scientific << setprecision(2) << pow(10, Proton_Ratio[j]) << " , ";
+        }
         c2->SaveAs(Form("/Users/xiongzheng/software/B4/B4c/Script/EnergyLong/LayerDistribution_%.2f_%.2f.pdf",Energy_LL[i],Energy_UL[i]));
     }
 }
