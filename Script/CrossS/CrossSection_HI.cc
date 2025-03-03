@@ -172,9 +172,9 @@ void CrossSection_HI()
         c1->SaveAs( Form("/Users/xiongzheng/software/B4/B4c/Script/CrossS/CrossSection_HI_%dGeV.pdf",int(Energy[i])) );
     }
     
-    auto c0 = new TCanvas("c0","c0",1200,1200);
+    auto c0 = new TCanvas("c0","c0",900,900);
     auto gre_p = new TGraphErrors(19, Energy, Proton_Section, Energy_Err, Proton_Section_Err);
-    gre_p->SetTitle("Fitted Hadronic Collison Cross Section vs Energy; Kinetic Energy (GeV); Cross Section per Atom (barn)");
+    gre_p->SetTitle("Fitted Hadronic Interaction Cross Section vs Energy; Kinetic Energy (GeV); Cross Section per Atom (barn)");
     gre_p->SetMarkerStyle(20);
     gre_p->SetMarkerColor(kRed);
     gre_p->SetLineColor(kRed);
@@ -201,28 +201,24 @@ void CrossSection_HI()
     gre_H->SetLineColor(kGreen-3);
 
     auto gre_c = new TGraphErrors(19, Energy, Carbon_Section, Energy_Err, Carbon_Section_Err);
-    gre_c->SetMarkerStyle(32);
+    gre_c->SetMarkerStyle(33);
     gre_c->SetMarkerColor(kMagenta);
     gre_c->SetLineColor(kMagenta);
 
     c0->Clear();
     c0->cd();
-    TPad *pad1 = new TPad("pad1", "pad1", 0, 0.5, 1, 1.0);
-    pad1->SetBottomMargin(0); // Upper and lower plot are joined
-    pad1->SetGrid(1, 1);      // Vertical ,Horizontal grid
-    pad1->SetLogy(0);
-    pad1->SetLogx(1);
-    pad1->Draw();             // Draw the upper pad: pad1
-    pad1->cd();               // pad1 becomes the current pad
+    gPad->SetGrid(1, 1);      // Vertical ,Horizontal grid
+    gPad->SetLogy(0);
+    gPad->SetLogx(1);
     gre_p->Draw("AP");
-    gre_p->GetYaxis()->SetRangeUser(-200, 300);
+    gre_p->GetYaxis()->SetRangeUser(0,3);
     gre_p->GetYaxis()->SetNdivisions(505);
     gre_p->GetYaxis()->SetLabelSize(0.05);
-    gre_p->GetYaxis()->SetTitleSize(0.07);
+    gre_p->GetYaxis()->SetTitleSize(0.05);
     gre_p->GetYaxis()->SetTitleOffset(0.5);
 
     gre_d->Draw("PSAME");
-    gre_e->Draw("PSAME");
+    // gre_e->Draw("PSAME");
     gre_h->Draw("PSAME");
     gre_H->Draw("PSAME");
     gre_c->Draw("PSAME");
@@ -231,40 +227,11 @@ void CrossSection_HI()
     legend1->SetNColumns(2);
     legend1->AddEntry(gre_p, "Proton", "ep");
     legend1->AddEntry(gre_d, "Deuteron", "ep");
-    legend1->AddEntry(gre_e, "Electron", "ep");
+    // legend1->AddEntry(gre_e, "Electron", "ep");
     legend1->AddEntry(gre_h, "Helium4", "ep");
     legend1->AddEntry(gre_H, "Helium3", "ep");
     legend1->AddEntry(gre_c, "Carbon", "ep");
-
     legend1->Draw();
-
-    c0->cd();
-    TPad *pad2 = new TPad("pad2", "pad2", 0, 0.0, 1, 0.5);
-    pad2->SetTopMargin(0); 
-    pad2->SetBottomMargin(0.2);
-    pad2->SetGrid(1, 1);      // Vertical ,Horizontal grid
-    pad2->SetLogy(0);
-    pad2->SetLogx(1);
-    pad2->Draw();
-    pad2->cd();       // pad2 becomes the current pad
-    gre_d->Draw("AP");
-    gre_d->GetYaxis()->SetRangeUser(0, 2);
-    gre_d->GetYaxis()->SetNdivisions(505);
-    gre_d->GetYaxis()->SetLabelSize(0.05);
-    gre_d->GetYaxis()->SetTitleSize(0.07);
-    gre_d->GetYaxis()->SetTitleOffset(0.5);
-
-    gre_d->GetXaxis()->SetLabelSize(0.06);
-    gre_d->GetXaxis()->SetTitleSize(0.07);
-
-
-    gre_p->Draw("PSAME");
-
-    auto legend2 = new TLegend(0.75, 0.22, 0.88, 0.42);
-    legend2->AddEntry(gre_p, "Proton", "ep");
-    legend2->AddEntry(gre_d, "Deuteron", "ep");
-    legend2->Draw();
-
 
     c0->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/CrossS/CrossSection_HI.pdf");
 
