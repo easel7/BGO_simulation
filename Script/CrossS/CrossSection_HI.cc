@@ -211,7 +211,11 @@ void CrossSection_HI()
     gPad->SetLogy(0);
     gPad->SetLogx(1);
     gre_p->Draw("AP");
+<<<<<<< Updated upstream
     gre_p->GetYaxis()->SetRangeUser(0,3);
+=======
+    gre_p->GetYaxis()->SetRangeUser(0, 2);
+>>>>>>> Stashed changes
     gre_p->GetYaxis()->SetNdivisions(505);
     gre_p->GetYaxis()->SetLabelSize(0.05);
     gre_p->GetYaxis()->SetTitleSize(0.05);
@@ -223,7 +227,7 @@ void CrossSection_HI()
     gre_H->Draw("PSAME");
     gre_c->Draw("PSAME");
 
-    auto legend1 = new TLegend(0.60, 0.58, 0.88, 0.78);
+    auto legend1 = new TLegend(0.60, 0.12, 0.88, 0.32);
     legend1->SetNColumns(2);
     legend1->AddEntry(gre_p, "Proton", "ep");
     legend1->AddEntry(gre_d, "Deuteron", "ep");
@@ -233,6 +237,10 @@ void CrossSection_HI()
     legend1->AddEntry(gre_c, "Carbon", "ep");
     legend1->Draw();
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     c0->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/CrossS/CrossSection_HI.pdf");
 
 

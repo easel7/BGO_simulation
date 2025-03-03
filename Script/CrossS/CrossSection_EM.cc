@@ -201,7 +201,7 @@ void CrossSection_EM()
     gre_H->SetLineColor(kGreen-3);
 
     auto gre_c = new TGraphErrors(19, Energy, Carbon_Section, Energy_Err, Carbon_Section_Err);
-    gre_c->SetMarkerStyle(32);
+    gre_c->SetMarkerStyle(33);
     gre_c->SetMarkerColor(kMagenta);
     gre_c->SetLineColor(kMagenta);
 
