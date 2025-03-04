@@ -113,7 +113,6 @@ void EnergyLong()
         auto gre_H = new TGraphAsymmErrors(14,Layer,Helium3_Ratio ,Layer_Err,Layer_Err,Helium3_Ratio_LL ,Helium3_Ratio_UL);
         auto gre_c = new TGraphAsymmErrors(14,Layer,Carbon_Ratio ,Layer_Err,Layer_Err,Carbon_Ratio_LL ,Carbon_Ratio_UL);
 
-
         gre_e->SetTitle(Form("Deposit Energy 10^{%.1f} - 10^{%.1f} GeV ; BGO Layer; log10(Deposit Energy Ratio)",Energy_LL[i],Energy_UL[i]));
         gre_e->SetMarkerStyle(22);
         
