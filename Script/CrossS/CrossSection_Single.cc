@@ -3,9 +3,9 @@ void CrossSection_Single()
     auto file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_100GeV.root");
     auto tree = (TTree*)file->Get("B4");
     auto c1 = new TCanvas("c1","c1",1800,600);
-    auto *h0 = new TH1D("h0","h0",40,0,100);
-    auto *h1 = new TH1D("h1","h1",30,0,300);
-    auto *h2 = new TH1D("h2","h2",30,0,300);
+    auto *h0 = new TH1D("h0","h0",350,0,350);
+    auto *h1 = new TH1D("h1","h1",350,0,350);
+    auto *h2 = new TH1D("h2","h2",350,0,350);
 
     TCut EM  = "First_Type==0";
     TCut HD  = "First_Had_Depth>=0";
@@ -19,10 +19,27 @@ void CrossSection_Single()
     h1->SetTitle("100 GeV Proton - Hadronic Depth Distribution;Depth(mm);Counts");
     h2->SetTitle("100 GeV Proton - Inelastic Hadronic Depth Distribution;Depth(mm);Counts");
 
+    TH1D *hC0 = (TH1D*)h0->Clone(); 
+    TH1D *hC1 = (TH1D*)h1->Clone(); 
+    TH1D *hC2 = (TH1D*)h2->Clone(); 
 
-    TF1 *fitFunc0 = new TF1("fitFunc0", "[0]*exp(-x/[1])", 0, 70);
-    TF1 *fitFunc1 = new TF1("fitFunc1", "[0]*exp(-x/[1])", 0, 250);
-    TF1 *fitFunc2 = new TF1("fitFunc2", "[0]*exp(-x/[1])", 0, 200);
+    hC0->SetTitle("100 GeV Proton - Electromagnetic Depth Distribution;Depth(mm);N_{Survive}");
+    hC1->SetTitle("100 GeV Proton - Hadronic Depth Distribution;Depth(mm);N_{Survive}");
+    hC2->SetTitle("100 GeV Proton - Inelastic Hadronic Depth Distribution;Depth(mm);N_{Survive}");
+
+    cout << "total h0 = " << h0->Integral() << endl;
+    for(int ii=1 ;ii<=350 ; ii++)
+    {
+        hC0->SetBinContent(ii,1e4 - h0->Integral(1,ii));
+        hC1->SetBinContent(ii,1e4 - h1->Integral(1,ii));
+        hC2->SetBinContent(ii,1e4 - h2->Integral(1,ii));
+
+        cout << "h0 = " << h0->GetBinContent(ii) << " , hC0 = " << hC0->GetBinContent(ii) << endl;
+    }
+
+    TF1 *fitFunc0 = new TF1("fitFunc0", "[0]*exp(-x/[1])", 0, 30);
+    TF1 *fitFunc1 = new TF1("fitFunc1", "[0]*exp(-x/[1])", 0, 35);
+    TF1 *fitFunc2 = new TF1("fitFunc2", "[0]*exp(-x/[1])", 0, 35);
 
     TLatex latex;
     latex.SetTextSize(0.04);
@@ -31,42 +48,41 @@ void CrossSection_Single()
 
     c1->Clear();
     c1->Divide(3,1);
-
     c1->cd(1);
     gPad->SetLogy();
     gStyle->SetOptFit(1111);
 
-    h0->Draw();
+    hC0->Draw();
     fitFunc0->SetParameters(100, 10); // 初始参数：振幅=100, λ=10 cm
-    h0->Fit(fitFunc0, "R"); // 进行拟合
+    hC0->Fit(fitFunc0, "R"); // 进行拟合
     double constant0   = fitFunc0->GetParameter(0);
     double lambda0     = fitFunc0->GetParameter(1);
     double lambda0_err = fitFunc0->GetParError(1);
-    latex.DrawLatex(5,100,"Fitting Function: P=[0]*exp(-x/[1])");
+    latex.DrawLatex(5,2000,"Fitting Function: P=[0]*exp(-x/[1])");
     
     c1->cd(2);
     gPad->SetLogy();
     gStyle->SetOptFit(1111);
 
-    h1->Draw();
+    hC1->Draw();
     fitFunc1->SetParameters(100, 10); // 初始参数：振幅=100, λ=10 cm
-    h1->Fit(fitFunc1, "R"); // 进行拟合
+    hC1->Fit(fitFunc1, "R"); // 进行拟合
     double constant1   = fitFunc1->GetParameter(0);
     double lambda1     = fitFunc1->GetParameter(1);
     double lambda1_err = fitFunc1->GetParError(1);
-    latex.DrawLatex(5,1000,"Fitting Function: P=[0]*exp(-x/[1])");
+
 
     c1->cd(3);
     gPad->SetLogy();
     gStyle->SetOptFit(1111);
 
-    h2->Draw();
+    hC2->Draw();
     fitFunc2->SetParameters(100, 10); // 初始参数：振幅=100, λ=10 cm
-    h2->Fit(fitFunc2, "R"); // 进行拟合
+    hC2->Fit(fitFunc2, "R"); // 进行拟合
     double constant2   = fitFunc2->GetParameter(0);
     double lambda2     = fitFunc2->GetParameter(1);
     double lambda2_err = fitFunc2->GetParError(1);
-    latex.DrawLatex(5,1000,"Fitting Function: P=[0]*exp(-x/[1])");
+
 
     double n_BGO = TMath::Na()*7.13/ (1245.8344/19.); // cm-3
     double em_section = 1 / lambda0 / n_BGO * 1e25; // barn, mm = 1e-1 cm, 1e24 barn = 1 cm^2
