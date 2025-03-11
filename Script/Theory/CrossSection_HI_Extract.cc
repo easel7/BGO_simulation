@@ -72,7 +72,6 @@ void CrossSection_HI_Extract()
         auto electron_tree = (TTree*)electron_file->Get("B4");
         h1_e[i] = new TH1D(Form("h1_e[%d]",i),Form("h1_e[%d]",i),35,0,35);
         hC_e[i] = new TH1D(Form("hC_e[%d]",i),Form("hC_e[%d]",i),35,0,35);
-
         fitFunc_e[i] = new TF1(Form("fitFunc_e[%d]",i), "[0]*exp(-x/[1])", 0, 35);
         fitFunc_e[i]->SetParameters(1e4, 15); 
         electron_tree->Draw(Form("First_Had_Depth>>h1_e[%d]",i),HI, "");
