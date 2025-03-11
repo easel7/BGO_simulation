@@ -66,11 +66,11 @@ void Vertex()
         for (int jj=1 ; jj<=14 ;jj++)
         {
                 hC_p[i]->SetBinContent(jj,1e4-h1_p[i]->Integral(2,jj+1));  
-                hC_d[i]->SetBinContent(jj,1e4-h1_d[i]->Integral(0,jj+1));  
-                hC_e[i]->SetBinContent(jj,1e4-h1_e[i]->Integral(0,jj+1));  
-                hC_h[i]->SetBinContent(jj,1e4-h1_h[i]->Integral(0,jj+1));  
-                hC_H[i]->SetBinContent(jj,1e4-h1_H[i]->Integral(0,jj+1));  
-                hC_c[i]->SetBinContent(jj,1e4-h1_c[i]->Integral(0,jj+1));  
+                hC_d[i]->SetBinContent(jj,1e4-h1_d[i]->Integral(2,jj+1));  
+                hC_e[i]->SetBinContent(jj,1e4-h1_e[i]->Integral(2,jj+1));  
+                hC_h[i]->SetBinContent(jj,1e4-h1_h[i]->Integral(2,jj+1));  
+                hC_H[i]->SetBinContent(jj,1e4-h1_H[i]->Integral(2,jj+1));  
+                hC_c[i]->SetBinContent(jj,1e4-h1_c[i]->Integral(2,jj+1));  
                 // cout << hC_p[i] ->GetBinContent(jj) <<  endl;
                 // cout << h1_p[i]->FindBin(0)<<  endl; // 找到 x=0 对应的 bin 索引
         }
@@ -78,10 +78,12 @@ void Vertex()
         {                
             N_proton[i][jj] = h1_p[i]->GetBinContent(jj+2);
             N_deuteron[i][jj] = h1_d[i]->GetBinContent(jj+2);
-    
             if(jj==9)
-            N_proton[i][jj] = h1_p[i]->GetBinContent(14)+h1_p[i]->GetBinContent(13)+h1_p[i]->GetBinContent(12);
-            
+            {
+                N_proton[i][jj] = h1_p[i]->GetBinContent(15)+h1_p[i]->GetBinContent(14)+h1_p[i]->GetBinContent(13)+h1_p[i]->GetBinContent(12)+h1_p[i]->GetBinContent(11);
+                N_deuteron[i][jj] = h1_d[i]->GetBinContent(15)+h1_d[i]->GetBinContent(14)+h1_d[i]->GetBinContent(13)+h1_d[i]->GetBinContent(12)+h1_d[i]->GetBinContent(11);
+            }
+            cout << N_proton[i][jj] << ", " <<  N_deuteron[i][jj] << endl;
         }
 
         h1_p[i]->SetLineWidth(2);h1_p[i]->SetLineColor(kRed);

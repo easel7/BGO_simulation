@@ -17,7 +17,6 @@ void Extract()
     auto hist4 = (TH1D*)file4->Get("h4");  
     auto hist9 = (TH1D*)file4->Get("h7");  
 
-
     auto file5 = TFile::Open("/Users/xiongzheng/software/Hadr00/build/Carbon_BGO.root");
     auto hist5 = (TH1D*)file5->Get("h4");  
     auto hist0 = (TH1D*)file5->Get("h7");  

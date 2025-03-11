@@ -62,7 +62,7 @@ void gaussians() {
     double total_helium[7]={1.93E+06,1.15E+06,6.17E+05,3.05E+05,1.20E+05,5.30E+04,2.31E+04};
 
     double section_proton[7]={680,659,659,645,645,659,659};
-    double section_deuteron[7]={890,887,887,882,883,890,890};
+    double section_deuteron[7]={886.16,886.84,886.57,887.36,889.31,892.04,898.63};
     double section_helium[7]={1105,1102,1102,1137,1137,1166,1166};
 
     double section_proton_reso[7]={3.12E-02,4.49E-02,4.49E-02,5.53E-02,5.53E-02,8.40E-02,8.40E-02};
