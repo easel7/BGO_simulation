@@ -23,7 +23,7 @@ void optimize_cross_section_limits(TH1D* h_blue, TH1D* h_red, TH1D* h_green, dou
             double sum_green = h_green->Integral(bin_low, bin_high);
 
             double total = sum_blue + sum_red + sum_green;
-            if (total < 1000) continue; // 统计量必须大于 1000
+            if (total < 50) continue; // 统计量必须大于 1000
 
             double contamination = (sum_red + sum_green) / total;
             if (contamination >= 0.05) continue; // 污染率必须小于 0.05
@@ -35,7 +35,7 @@ void optimize_cross_section_limits(TH1D* h_blue, TH1D* h_red, TH1D* h_green, dou
                 if (significance > best_s) {
                     best_s = significance;
                     best_c = contamination;
-                    best_sta = total;
+                    best_sta = sum_blue;
                     best_low = low_edge;
                     best_high = high_edge;
                 }
