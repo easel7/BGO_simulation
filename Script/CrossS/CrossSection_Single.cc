@@ -3,9 +3,9 @@ void CrossSection_Single()
     auto file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_100GeV.root");
     auto tree = (TTree*)file->Get("B4");
     auto c1 = new TCanvas("c1","c1",1800,600);
-    auto *h0 = new TH1D("h0","h0",350,0,350);
-    auto *h1 = new TH1D("h1","h1",350,0,350);
-    auto *h2 = new TH1D("h2","h2",350,0,350);
+    auto *h0 = new TH1D("h0","h0",200,0,100);
+    auto *h1 = new TH1D("h1","h1",200,0,100);
+    auto *h2 = new TH1D("h2","h2",200,0,100);
 
     TCut EM  = "First_Type==0";
     TCut HD  = "First_Had_Depth>=0";
@@ -49,56 +49,56 @@ void CrossSection_Single()
     c1->Clear();
     c1->Divide(3,1);
     c1->cd(1);
-    gPad->SetLogy();
+    // gPad->SetLogy();
     gStyle->SetOptFit(1111);
 
-    hC0->Draw();
+    h2->Draw();
     fitFunc0->SetParameters(100, 10); // 初始参数：振幅=100, λ=10 cm
-    hC0->Fit(fitFunc0, "R"); // 进行拟合
-    double constant0   = fitFunc0->GetParameter(0);
-    double lambda0     = fitFunc0->GetParameter(1);
-    double lambda0_err = fitFunc0->GetParError(1);
-    latex.DrawLatex(5,2000,"Fitting Function: P=[0]*exp(-x/[1])");
+    // h0->Fit(fitFunc0, "R"); // 进行拟合
+    // double constant0   = fitFunc0->GetParameter(0);
+    // double lambda0     = fitFunc0->GetParameter(1);
+    // double lambda0_err = fitFunc0->GetParError(1);
+    // latex.DrawLatex(5,2000,"Fitting Function: P=[0]*exp(-x/[1])");
     
-    c1->cd(2);
-    gPad->SetLogy();
-    gStyle->SetOptFit(1111);
+    // c1->cd(2);
+    // gPad->SetLogy();
+    // gStyle->SetOptFit(1111);
 
-    hC1->Draw();
-    fitFunc1->SetParameters(100, 10); // 初始参数：振幅=100, λ=10 cm
-    hC1->Fit(fitFunc1, "R"); // 进行拟合
-    double constant1   = fitFunc1->GetParameter(0);
-    double lambda1     = fitFunc1->GetParameter(1);
-    double lambda1_err = fitFunc1->GetParError(1);
-
-
-    c1->cd(3);
-    gPad->SetLogy();
-    gStyle->SetOptFit(1111);
-
-    hC2->Draw();
-    fitFunc2->SetParameters(100, 10); // 初始参数：振幅=100, λ=10 cm
-    hC2->Fit(fitFunc2, "R"); // 进行拟合
-    double constant2   = fitFunc2->GetParameter(0);
-    double lambda2     = fitFunc2->GetParameter(1);
-    double lambda2_err = fitFunc2->GetParError(1);
+    // hC1->Draw();
+    // fitFunc1->SetParameters(100, 10); // 初始参数：振幅=100, λ=10 cm
+    // hC1->Fit(fitFunc1, "R"); // 进行拟合
+    // double constant1   = fitFunc1->GetParameter(0);
+    // double lambda1     = fitFunc1->GetParameter(1);
+    // double lambda1_err = fitFunc1->GetParError(1);
 
 
-    double n_BGO = TMath::Na()*7.13/ (1245.8344/19.); // cm-3
-    double em_section = 1 / lambda0 / n_BGO * 1e25; // barn, mm = 1e-1 cm, 1e24 barn = 1 cm^2
-    double em_section_err = em_section * lambda0_err/lambda0; // barn
-    double hd_section = 1 / lambda1 / n_BGO * 1e25; // barn, mm = 1e-1 cm, 1e24 barn = 1 cm^2
-    double hd_section_err = hd_section * lambda1_err/lambda1; // barn
-    double hi_section = 1 / lambda2 / n_BGO * 1e25; // barn, mm = 1e-1 cm, 1e24 barn = 1 cm^2
-    double hi_section_err = hi_section * lambda2_err/lambda2; // barn
+    // c1->cd(3);
+    // gPad->SetLogy();
+    // gStyle->SetOptFit(1111);
 
-    cout << "EM Interaction Constant: " << constant0  << ",EM Lambda: " << lambda0 << " ± " << lambda0_err << " mm " << endl;
-    cout << "Nuclear Collsion Constant: " << constant1  << ",HD Lambda: " << lambda1 << " ± " << lambda1_err << " mm " << endl;
-    cout << "Nuclear Interaction Constant: " << constant2  << ",HI Lambda: " << lambda2 << " ± " << lambda2_err << " mm " << endl;
+    // hC2->Draw();
+    // fitFunc2->SetParameters(100, 10); // 初始参数：振幅=100, λ=10 cm
+    // hC2->Fit(fitFunc2, "R"); // 进行拟合
+    // double constant2   = fitFunc2->GetParameter(0);
+    // double lambda2     = fitFunc2->GetParameter(1);
+    // double lambda2_err = fitFunc2->GetParError(1);
 
-    cout << "EM Section : " << em_section << " ± " << em_section_err << " barn" << endl;
-    cout << "Nuclear Collsion Section : " << hd_section << " ± " << hd_section_err << " barn" << endl;
-    cout << "Nuclear Interaction Section : " << hi_section << " ± " << hi_section_err << " barn" << endl;
 
-    c1->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/CrossS/CrossSection_Proton.pdf");
+    // double n_BGO = TMath::Na()*7.13/ (1245.8344/19.); // cm-3
+    // double em_section = 1 / lambda0 / n_BGO * 1e25; // barn, mm = 1e-1 cm, 1e24 barn = 1 cm^2
+    // double em_section_err = em_section * lambda0_err/lambda0; // barn
+    // double hd_section = 1 / lambda1 / n_BGO * 1e25; // barn, mm = 1e-1 cm, 1e24 barn = 1 cm^2
+    // double hd_section_err = hd_section * lambda1_err/lambda1; // barn
+    // double hi_section = 1 / lambda2 / n_BGO * 1e25; // barn, mm = 1e-1 cm, 1e24 barn = 1 cm^2
+    // double hi_section_err = hi_section * lambda2_err/lambda2; // barn
+
+    // cout << "EM Interaction Constant: " << constant0  << ",EM Lambda: " << lambda0 << " ± " << lambda0_err << " mm " << endl;
+    // cout << "Nuclear Collsion Constant: " << constant1  << ",HD Lambda: " << lambda1 << " ± " << lambda1_err << " mm " << endl;
+    // cout << "Nuclear Interaction Constant: " << constant2  << ",HI Lambda: " << lambda2 << " ± " << lambda2_err << " mm " << endl;
+
+    // cout << "EM Section : " << em_section << " ± " << em_section_err << " barn" << endl;
+    // cout << "Nuclear Collsion Section : " << hd_section << " ± " << hd_section_err << " barn" << endl;
+    // cout << "Nuclear Interaction Section : " << hi_section << " ± " << hi_section_err << " barn" << endl;
+
+    // c1->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/CrossS/CrossSection_Proton.pdf");
 }

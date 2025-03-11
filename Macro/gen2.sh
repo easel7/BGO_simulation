@@ -1,6 +1,6 @@
 #!/bin/bash
-Tag=(Proton Deuteron Electron Helium4 Helium3)
-particle=(proton deuteron e- alpha He3)
+Tag=(Gamma) #Proton Deuteron Electron Helium4 Helium3
+particle=(gamma) # proton deuteron e- alpha He3
 
 for i in "${!Tag[@]}"; do
   # Generate the corresponding macro file for the current particle

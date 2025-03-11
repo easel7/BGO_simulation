@@ -57,7 +57,7 @@ void CrossSection_HD_Extract()
         h1_p[i] = new TH1D(Form("h1_p[%d]",i),Form("h1_p[%d]",i),35,0,35);
         hC_p[i] = new TH1D(Form("hC_p[%d]",i),Form("hC_p[%d]",i),35,0,35);
         proton_tree->Draw(Form("First_Had_Depth>>h1_p[%d]",i),HD,"");
-        fitFunc_p[i] = new TF1(Form("fitFunc_p[%d]",i), "[0]*exp(-x/[1])", 0,35);
+        fitFunc_p[i] = new TF1(Form("fitFunc_p[%d]",i), "[0]*exp(-x/[1])",0, 10);
         fitFunc_p[i]->SetParameters(1e4, 15); 
 
         auto deuteron_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Deuteron_%dGeV.root",int(Energy[i])));
@@ -65,7 +65,7 @@ void CrossSection_HD_Extract()
         h1_d[i] = new TH1D(Form("h1_d[%d]",i),Form("h1_d[%d]",i),35,0,35);
         hC_d[i] = new TH1D(Form("hC_d[%d]",i),Form("hC_d[%d]",i),35,0,35);
         deuteron_tree->Draw(Form("First_Had_Depth>>h1_d[%d]",i),HD, "");
-        fitFunc_d[i] = new TF1(Form("fitFunc_d[%d]",i), "[0]*exp(-x/[1])", 0,35);
+        fitFunc_d[i] = new TF1(Form("fitFunc_d[%d]",i), "[0]*exp(-x/[1])",0, 10);
         fitFunc_d[i]->SetParameters(1e4, 15); 
 
         auto electron_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Electron_%dGeV.root",int(Energy[i])));
@@ -73,7 +73,7 @@ void CrossSection_HD_Extract()
         h1_e[i] = new TH1D(Form("h1_e[%d]",i),Form("h1_e[%d]",i),35,0,35);
         hC_e[i] = new TH1D(Form("hC_e[%d]",i),Form("hC_e[%d]",i),35,0,35);
 
-        fitFunc_e[i] = new TF1(Form("fitFunc_e[%d]",i), "[0]*exp(-x/[1])", 0, 35);
+        fitFunc_e[i] = new TF1(Form("fitFunc_e[%d]",i), "[0]*exp(-x/[1])",0, 10);
         fitFunc_e[i]->SetParameters(1e4, 15); 
         electron_tree->Draw(Form("First_Had_Depth>>h1_e[%d]",i),HD, "");
 
@@ -82,7 +82,7 @@ void CrossSection_HD_Extract()
         h1_h[i] = new TH1D(Form("h1_h[%d]",i),Form("h1_h[%d]",i),35,0,35);
         hC_h[i] = new TH1D(Form("hC_h[%d]",i),Form("hC_h[%d]",i),35,0,35);
         helium4_tree->Draw(Form("First_Had_Depth>>h1_h[%d]",i),HD, "");
-        fitFunc_h[i] = new TF1(Form("fitFunc_h[%d]",i), "[0]*exp(-x/[1])", 0,35);
+        fitFunc_h[i] = new TF1(Form("fitFunc_h[%d]",i), "[0]*exp(-x/[1])",0, 10);
         fitFunc_h[i]->SetParameters(1e4, 15); 
 
         auto helium3_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Helium3_%dGeV.root",int(Energy[i])));
@@ -90,7 +90,7 @@ void CrossSection_HD_Extract()
         h1_H[i] = new TH1D(Form("h1_H[%d]",i),Form("h1_H[%d]",i),35,0,35);
         hC_H[i] = new TH1D(Form("hC_H[%d]",i),Form("hC_H[%d]",i),35,0,35);
         helium3_tree->Draw(Form("First_Had_Depth>>h1_H[%d]",i),HD, "");
-        fitFunc_H[i] = new TF1(Form("fitFunc_H[%d]",i), "[0]*exp(-x/[1])", 0,35);
+        fitFunc_H[i] = new TF1(Form("fitFunc_H[%d]",i), "[0]*exp(-x/[1])",0, 10);
         fitFunc_H[i]->SetParameters(1e4, 15); 
 
         auto carbon_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Carbon_%dGeV.root",int(Energy[i])));
@@ -98,7 +98,7 @@ void CrossSection_HD_Extract()
         h1_c[i] = new TH1D(Form("h1_c[%d]",i),Form("h1_c[%d]",i),35,0,35);
         hC_c[i] = new TH1D(Form("hC_c[%d]",i),Form("hC_c[%d]",i),35,0,35);
         carbon_tree->Draw(Form("First_Had_Depth>>h1_c[%d]",i),HD, "");
-        fitFunc_c[i] = new TF1(Form("fitFunc_c[%d]",i), "[0]*exp(-x/[1])", 0,35);
+        fitFunc_c[i] = new TF1(Form("fitFunc_c[%d]",i), "[0]*exp(-x/[1])",0, 10);
         fitFunc_c[i]->SetParameters(1e4, 1); 
 
         for (int jj=1 ; jj<=35 ;jj++)
@@ -215,26 +215,26 @@ void CrossSection_HD_Extract()
     }
 
     auto file1 = TFile::Open("/Users/xiongzheng/software/Hadr00/build/proton_BGO.root");
-    auto hist1 = (TH1D*)file1->Get("h5");  //
-    auto hist6 = (TH1D*)file1->Get("h2");  
+    auto hist1 = (TH1D*)file1->Get("h6");  //
+    auto hist6 = (TH1D*)file1->Get("h3");  
 
     auto file2 = TFile::Open("/Users/xiongzheng/software/Hadr00/build/deuteron_BGO.root");
-    auto hist2 = (TH1D*)file2->Get("h5");  
-    auto hist7 = (TH1D*)file2->Get("h2");  
+    auto hist2 = (TH1D*)file2->Get("h6");  
+    auto hist7 = (TH1D*)file2->Get("h3");  
 
     auto file3 = TFile::Open("/Users/xiongzheng/software/Hadr00/build/alpha_BGO.root");
-    auto hist3 = (TH1D*)file3->Get("h5");  
-    auto hist8 = (TH1D*)file3->Get("h2");  
+    auto hist3 = (TH1D*)file3->Get("h6");  
+    auto hist8 = (TH1D*)file3->Get("h3");  
 
 
     auto file4 = TFile::Open("/Users/xiongzheng/software/Hadr00/build/He3_BGO.root");
-    auto hist4 = (TH1D*)file4->Get("h5");  
-    auto hist9 = (TH1D*)file4->Get("h2");  
+    auto hist4 = (TH1D*)file4->Get("h6");  
+    auto hist9 = (TH1D*)file4->Get("h3");  
 
 
     auto file5 = TFile::Open("/Users/xiongzheng/software/Hadr00/build/Carbon_BGO.root");
-    auto hist5 = (TH1D*)file5->Get("h5");  
-    auto hist0 = (TH1D*)file5->Get("h2");  
+    auto hist5 = (TH1D*)file5->Get("h6");  
+    auto hist0 = (TH1D*)file5->Get("h3");  
 
     int Nbins = hist1->GetNbinsX();
     double KN_Energy[60] = {0};
@@ -333,7 +333,7 @@ void CrossSection_HD_Extract()
     gPad->SetLogx(1);
     gre_p->Draw("AP");
     gre_p->GetXaxis()->SetLimits(1,1e5);
-    gre_p->GetYaxis()->SetRangeUser(0, 1.7);
+    gre_p->GetYaxis()->SetRangeUser(0, 2);
     gre_p->GetYaxis()->SetNdivisions(505);
     gre_p->GetYaxis()->SetLabelSize(0.05);
     gre_p->GetYaxis()->SetTitleSize(0.05);
@@ -359,7 +359,7 @@ void CrossSection_HD_Extract()
     legend1->AddEntry(gre_c, "Carbon", "ep");
     legend1->Draw();
 
-    auto legend2 = new TLegend(0.12, 0.12, 0.52, 0.32);
+    auto legend2 = new TLegend(0.12, 0.12, 0.88, 0.32);
     legend2->SetNColumns(2);
     legend2->AddEntry(gre1, "GEANT4 Proton", "l");
     legend2->AddEntry(gre2, "GEANT4 Deuteron", "l");

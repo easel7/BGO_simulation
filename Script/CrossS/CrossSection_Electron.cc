@@ -1,6 +1,6 @@
 void CrossSection_Electron()
 {
-    auto file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Electron_100GeV.root");
+    auto file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Gamma_100GeV.root");
     auto tree = (TTree*)file->Get("B4");
     auto c1 = new TCanvas("c1","c1",1800,600);
     auto *h0 = new TH1D("h0","h0",30,0,30);
@@ -15,17 +15,17 @@ void CrossSection_Electron()
     tree->Draw("First_Had_Depth>>h1",HD,"");
     tree->Draw("First_Had_Depth>>h2",HI,"");
 
-    h0->SetTitle("100 GeV Electron - Electromagnetic Depth Distribution;Depth(mm);Counts");
-    h1->SetTitle("100 GeV Electron - Hadronic Depth Distribution;Depth(mm);Counts");
-    h2->SetTitle("100 GeV Electron - Inelastic Hadronic Depth Distribution;Depth(mm);Counts");
+    h0->SetTitle("100 GeV Gamma - Electromagnetic Depth Distribution;Depth(mm);Counts");
+    h1->SetTitle("100 GeV Gamma - Hadronic Depth Distribution;Depth(mm);Counts");
+    h2->SetTitle("100 GeV Gamma - Inelastic Hadronic Depth Distribution;Depth(mm);Counts");
 
     TH1D *hC0 = (TH1D*)h0->Clone(); 
     TH1D *hC1 = (TH1D*)h1->Clone(); 
     TH1D *hC2 = (TH1D*)h2->Clone(); 
 
-    hC0->SetTitle("100 GeV Electron - Electromagnetic Depth Distribution;Depth(mm);N_{Survive}");
-    hC1->SetTitle("100 GeV Electron - Hadronic Depth Distribution;Depth(mm);N_{Survive}");
-    hC2->SetTitle("100 GeV Electron - Inelastic Hadronic Depth Distribution;Depth(mm);N_{Survive}");
+    hC0->SetTitle("100 GeV Gamma - Electromagnetic Depth Distribution;Depth(mm);N_{Survive}");
+    hC1->SetTitle("100 GeV Gamma - Hadronic Depth Distribution;Depth(mm);N_{Survive}");
+    hC2->SetTitle("100 GeV Gamma - Inelastic Hadronic Depth Distribution;Depth(mm);N_{Survive}");
 
     cout << "total h0 = " << h0->Integral() << endl;
     for(int ii=1 ;ii<=30 ; ii++)
@@ -52,9 +52,9 @@ void CrossSection_Electron()
     gPad->SetLogy();
     gStyle->SetOptFit(1111);
 
-    hC0->Draw();
+    h0->Draw();
     fitFunc0->SetParameters(100, 10); // 初始参数：振幅=100, λ=10 cm
-    hC0->Fit(fitFunc0, "R"); // 进行拟合
+    h0->Fit(fitFunc0, "R"); // 进行拟合
     double constant0   = fitFunc0->GetParameter(0);
     double lambda0     = fitFunc0->GetParameter(1);
     double lambda0_err = fitFunc0->GetParError(1);
@@ -100,5 +100,5 @@ void CrossSection_Electron()
     cout << "Nuclear Collsion Section : " << hd_section << " ± " << hd_section_err << " barn" << endl;
     cout << "Nuclear Interaction Section : " << hi_section << " ± " << hi_section_err << " barn" << endl;
 
-    c1->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/CrossS/CrossSection_Electron.pdf");
+    c1->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/CrossS/CrossSection_Gamma.pdf");
 }

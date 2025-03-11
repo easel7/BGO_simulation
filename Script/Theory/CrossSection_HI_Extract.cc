@@ -103,12 +103,12 @@ void CrossSection_HI_Extract()
 
         for (int jj=1 ; jj<=35 ;jj++)
         {
-            hC_p[i]->SetBinContent(jj,1e4-h1_p[i]->Integral(0,jj));
-            hC_d[i]->SetBinContent(jj,1e4-h1_d[i]->Integral(0,jj));
-            hC_e[i]->SetBinContent(jj,1e4-h1_e[i]->Integral(0,jj));
-            hC_h[i]->SetBinContent(jj,1e4-h1_h[i]->Integral(0,jj));
-            hC_H[i]->SetBinContent(jj,1e4-h1_H[i]->Integral(0,jj));
-            hC_c[i]->SetBinContent(jj,1e4-h1_c[i]->Integral(0,jj));
+            hC_p[i]->SetBinContent(jj,1e4-h1_p[i]->Integral(0,jj));hC_p[i]->GetYaxis()->CenterTitle();hC_p[i]->GetXaxis()->CenterTitle();
+            hC_d[i]->SetBinContent(jj,1e4-h1_d[i]->Integral(0,jj));hC_d[i]->GetYaxis()->CenterTitle();hC_d[i]->GetXaxis()->CenterTitle();
+            hC_e[i]->SetBinContent(jj,1e4-h1_e[i]->Integral(0,jj));hC_e[i]->GetYaxis()->CenterTitle();hC_e[i]->GetXaxis()->CenterTitle();
+            hC_h[i]->SetBinContent(jj,1e4-h1_h[i]->Integral(0,jj));hC_h[i]->GetYaxis()->CenterTitle();hC_h[i]->GetXaxis()->CenterTitle();
+            hC_H[i]->SetBinContent(jj,1e4-h1_H[i]->Integral(0,jj));hC_H[i]->GetYaxis()->CenterTitle();hC_H[i]->GetXaxis()->CenterTitle();
+            hC_c[i]->SetBinContent(jj,1e4-h1_c[i]->Integral(0,jj));hC_c[i]->GetYaxis()->CenterTitle();hC_c[i]->GetXaxis()->CenterTitle();
         }
 
         auto c1 = new TCanvas("c1","c1",2000,1500);
@@ -128,7 +128,7 @@ void CrossSection_HI_Extract()
         proton_lambda_err[i] = fitFunc_p[i]->GetParError(1);
         Proton_Section[i] = 1 / (proton_lambda[i] * n_BGO) * 1e25; // Convert to barn
         Proton_Section_Err[i] = Proton_Section[i] * proton_lambda_err[i] / proton_lambda[i];
-        cout << "Proton " << Energy[i] << " GeV: Sigma = " << Proton_Section[i] << " ± " << Proton_Section_Err[i] << " barn" << endl;
+        cout << "Proton " << Energy[i] << " GeV: Sigma = " << Proton_Section[i]*1e3 << " ± " << Proton_Section_Err[i] << " mbarn" << endl;
 
         // Process Deuteron Data
         c1->cd(2);
@@ -145,7 +145,7 @@ void CrossSection_HI_Extract()
         deuteron_lambda_err[i] = fitFunc_d[i]->GetParError(1);
         Deuteron_Section[i] = 1 / (deuteron_lambda[i] * n_BGO) * 1e25;
         Deuteron_Section_Err[i] = Deuteron_Section[i] * deuteron_lambda_err[i] / deuteron_lambda[i];
-        cout << "Deuteron " << Energy[i] << " GeV: Sigma = " << Deuteron_Section[i] << " ± " << Deuteron_Section_Err[i] << " barn" << endl;
+        cout << "Deuteron " << Energy[i] << " GeV: Sigma = " << Deuteron_Section[i]*1e3 << " ± " << Deuteron_Section_Err[i] << " mbarn" << endl;
 
         c1->cd(3);
         electron_file->cd();
@@ -161,7 +161,7 @@ void CrossSection_HI_Extract()
         electron_lambda_err[i] = fitFunc_e[i]->GetParError(1);
         Electron_Section[i] = 1 / (electron_lambda[i] * n_BGO) * 1e25;
         Electron_Section_Err[i] = Electron_Section[i] * electron_lambda_err[i] / electron_lambda[i];
-        cout << "Electron " << Energy[i] << " GeV: Sigma = " << Electron_Section[i] << " ± " << Electron_Section_Err[i] << " barn" << endl;
+        cout << "Electron " << Energy[i] << " GeV: Sigma = " << Electron_Section[i]*1e3 << " ± " << Electron_Section_Err[i] << " mbarn" << endl;
         
         c1->cd(4);
         helium4_file->cd();
@@ -178,7 +178,7 @@ void CrossSection_HI_Extract()
 
         Helium4_Section[i] = 1 / (helium4_lambda[i] * n_BGO) * 1e25;
         Helium4_Section_Err[i] = Helium4_Section[i] * helium4_lambda_err[i] / helium4_lambda[i];
-        cout << "Helium4 " << Energy[i] << " GeV: Sigma = " << Helium4_Section[i] << " ± " << Helium4_Section_Err[i] << " barn" << endl;
+        cout << "Helium4 " << Energy[i] << " GeV: Sigma = " << Helium4_Section[i]*1e3 << " ± " << Helium4_Section_Err[i] << " mbarn" << endl;
 
         c1->cd(5);
         helium3_file->cd();
@@ -193,7 +193,7 @@ void CrossSection_HI_Extract()
         helium3_lambda_err[i] = fitFunc_H[i]->GetParError(1);        
         Helium3_Section[i] = 1 / (helium3_lambda[i] * n_BGO) * 1e25;
         Helium3_Section_Err[i] = Helium3_Section[i] * helium3_lambda_err[i] / helium3_lambda[i];
-        cout << "Helium3 " << Energy[i] << " GeV: Sigma = " << Helium3_Section[i] << " ± " << Helium3_Section_Err[i] << " barn" << endl;
+        cout << "Helium3 " << Energy[i] << " GeV: Sigma = " << Helium3_Section[i]*1e3 << " ± " << Helium3_Section_Err[i] << " mbarn" << endl;
 
         c1->cd(6);
         carbon_file->cd();
@@ -210,27 +210,26 @@ void CrossSection_HI_Extract()
 
         Carbon_Section[i] = 1 / (carbon_lambda[i] * n_BGO) * 1e25;
         Carbon_Section_Err[i] = Carbon_Section[i] * carbon_lambda_err[i] / carbon_lambda[i];
-        cout << "Carbon " << Energy[i] << " GeV: Sigma = " << Carbon_Section[i] << " ± " << Carbon_Section_Err[i] << " barn" << endl;
+        cout << "Carbon " << Energy[i] << " GeV: Sigma = " << Carbon_Section[i]*1e3 << " ± " << Carbon_Section_Err[i] << " mbarn" << endl;
         c1->SaveAs( Form("/Users/xiongzheng/software/B4/B4c/Script/Theory/CrossSection_HI_%dGeV.pdf",int(Energy[i])) );
     }
 
     auto file1 = TFile::Open("/Users/xiongzheng/software/Hadr00/build/proton_BGO.root");
-    auto hist1 = (TH1D*)file1->Get("h4");  //
-    auto hist6 = (TH1D*)file1->Get("h1");  
+    auto hist1 = (TH1D*)file1->Get("h4");
+    auto hist6 = (TH1D*)file1->Get("h1");
 
     auto file2 = TFile::Open("/Users/xiongzheng/software/Hadr00/build/deuteron_BGO.root");
-    auto hist2 = (TH1D*)file2->Get("h4");  
-    auto hist7 = (TH1D*)file2->Get("h1");  
+    auto hist2 = (TH1D*)file2->Get("h4");
+    auto hist7 = (TH1D*)file2->Get("h1");
 
     auto file3 = TFile::Open("/Users/xiongzheng/software/Hadr00/build/alpha_BGO.root");
-    auto hist3 = (TH1D*)file3->Get("h4");  
-    auto hist8 = (TH1D*)file3->Get("h1");  
+    auto hist3 = (TH1D*)file3->Get("h4");
+    auto hist8 = (TH1D*)file3->Get("h1");
 
 
     auto file4 = TFile::Open("/Users/xiongzheng/software/Hadr00/build/He3_BGO.root");
-    auto hist4 = (TH1D*)file4->Get("h4");  
+    auto hist4 = (TH1D*)file4->Get("h4");
     auto hist9 = (TH1D*)file4->Get("h1");  
-
 
     auto file5 = TFile::Open("/Users/xiongzheng/software/Hadr00/build/Carbon_BGO.root");
     auto hist5 = (TH1D*)file5->Get("h4");  
@@ -332,7 +331,7 @@ void CrossSection_HI_Extract()
     gPad->SetLogy(0);
     gPad->SetLogx(1);
     gre_p->Draw("AP");
-    gre_p->GetXaxis()->SetLimits(1,1e5);
+    gre_p->GetXaxis()->SetLimits(8,3e3);
     gre_p->GetYaxis()->SetRangeUser(0, 1.7);
     gre_p->GetYaxis()->SetNdivisions(505);
     gre_p->GetYaxis()->SetLabelSize(0.05);
@@ -375,7 +374,7 @@ void CrossSection_HI_Extract()
     gPad->SetLogy(0);
     gPad->SetLogx(1);
     gr_p->Draw("AP");
-    gr_p->GetXaxis()->SetLimits(1,1e5);
+    gr_p->GetXaxis()->SetLimits(8,3e3);
     gr_p->GetYaxis()->SetRangeUser(0, 250);
     gr_p->GetYaxis()->SetNdivisions(505);
     gr_p->GetYaxis()->SetLabelSize(0.05);
