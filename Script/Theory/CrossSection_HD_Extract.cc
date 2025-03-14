@@ -43,7 +43,7 @@ void CrossSection_HD_Extract()
     TH1D *h1_c[19]; TH1D *hC_c[19]; TF1  *fitFunc_c[19];
 
     TCut EM = "First_Type==0";
-    TCut HD = "First_Had_Depth>=0";
+    TCut HD = "First_Had_Depth>=0 && First_Had_Type==2";
     TCut HI = "First_Had_Depth>=0 && First_Had_Type==1";
 
     for (int i =0; i < 19; i++)
