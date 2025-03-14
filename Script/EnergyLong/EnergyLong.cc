@@ -33,7 +33,7 @@ void EnergyLong()
         Energy[i]    =  0.2*i+1.1;
         Energy_LL[i] =  0.2*i+1.0;
         Energy_UL[i] =  0.2*i+1.2;
-        TCut HET = Form("weight*( ((L2_E >0.0092 && L10_E >0.0092 && L12_E >0.0092)  || (L3_E >0.0092 && L11_E >0.0092 && L13_E >0.0092))  && log10(Total_E)>%.2f && log10(Total_E)<=%.2f)",Energy_LL[i],Energy_UL[i]);
+        TCut HET = Form("(log10(Total_E)>%.2f && log10(Total_E)<=%.2f)",Energy_LL[i],Energy_UL[i]);
         cout << "Deposit Energy Range = [ " << Energy_LL[i] << " , " << Energy_UL[i] << " ]"<< endl;
         auto c1 = new TCanvas("c1","c1",2000,1200);
         c1->Clear();
