@@ -16,7 +16,7 @@ void Check()
     h1_p->SetTitle("Before Weighted;log_{10}(Energy/GeV);Counts");
     h2_p->SetTitle("Before Weighted;log_{10}(E_dep/GeV);Counts");
 
-    auto proton2_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Weight/Carbon_PowerLaw.root");
+    auto proton2_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Weight/Proton_PowerLaw.root");
     auto proton2_tree = (TTree*)proton2_file->Get("B4");
 
     auto h1_w = new TH1D("h1_w", "h1_w",40,0,4);  
@@ -39,9 +39,6 @@ void Check()
     c2->cd();
     gStyle->SetOptStat(0);
     h2_p->Draw();
-
-
-
 
     auto c4 = new TCanvas("c4","c4",900,900);
     c4->Clear();

@@ -28,12 +28,12 @@ void EnergyLong()
     TH1D *h1_H[13][14];
     TH1D *h1_c[13][14];
 
-    for (int i = 6; i < 7; i++) // Deposit Energy Bin
+    for (int i = 0; i < 13; i++) // Deposit Energy Bin
     {
         Energy[i]    =  0.2*i+1.1;
         Energy_LL[i] =  0.2*i+1.0;
         Energy_UL[i] =  0.2*i+1.2;
-        TCut HET = Form("weight*(L0_E>0.23 && L1_E >0.23 && L2_E>0.23 && L3_E>0.046 && log10(Total_E)>%.2f && log10(Total_E)<=%.2f)",Energy_LL[i],Energy_UL[i]);
+        TCut HET = Form("weight*( ((L2_E >0.0092 && L10_E >0.0092 && L12_E >0.0092)  || (L3_E >0.0092 && L11_E >0.0092 && L13_E >0.0092))  && log10(Total_E)>%.2f && log10(Total_E)<=%.2f)",Energy_LL[i],Energy_UL[i]);
         cout << "Deposit Energy Range = [ " << Energy_LL[i] << " , " << Energy_UL[i] << " ]"<< endl;
         auto c1 = new TCanvas("c1","c1",2000,1200);
         c1->Clear();
