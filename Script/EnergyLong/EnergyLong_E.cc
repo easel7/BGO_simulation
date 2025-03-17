@@ -33,31 +33,28 @@ void EnergyLong_E()
         Energy[i]    =  0.2*i+1.1;
         Energy_LL[i] =  0.2*i+1.0;
         Energy_UL[i] =  0.2*i+1.2;
-        TCut HET = Form("(log10(Total_E)>%.2f && log10(Total_E)<=%.2f)",Energy_LL[i],Energy_UL[i]);
+        // TCut HET = Form(" (log10(Total_E)>%.2f && log10(Total_E)<=%.2f)",Energy_LL[i],Energy_UL[i]);
+        TCut HET = Form(" First_Had_Layer>0 && (log10(Total_E)>%.2f && log10(Total_E)<=%.2f)",Energy_LL[i],Energy_UL[i]);
+
         cout << "Deposit Energy Range = [ " << Energy_LL[i] << " , " << Energy_UL[i] << " ]"<< endl;
         auto c1 = new TCanvas("c1","c1",2000,1200);
         c1->Clear();
         c1->Divide(5,3);
         gStyle->SetOptStat(0);
 
-        auto line0_MIP = new TLine(log10(0.023),0,log10(0.023),0.2);
-        auto line1_MIP = new TLine(log10(0.023*4),0,log10(0.023*4),0.2);
-        auto line2_MIP = new TLine(log10(0.023*36),0,log10(0.023*36),0.2);
-        line1_MIP->SetLineStyle(2);
-        line2_MIP->SetLineStyle(7);
+
 
         for (int j= 0; j<15 ; j++) // Layer
         {
-
             c1->cd(j+1);
             if(j<=13) 
             {
-                h1_p[i][j] = new TH1D(Form("h1_p[%d][%d]",i,j), Form("h1_p[%d][%d]",i,j),50,-2.5,2.5);  
-                h1_d[i][j] = new TH1D(Form("h1_d[%d][%d]",i,j), Form("h1_d[%d][%d]",i,j),50,-2.5,2.5);  
-                h1_e[i][j] = new TH1D(Form("h1_e[%d][%d]",i,j), Form("h1_e[%d][%d]",i,j),50,-2.5,2.5);  
-                h1_h[i][j] = new TH1D(Form("h1_h[%d][%d]",i,j), Form("h1_h[%d][%d]",i,j),50,-2.5,2.5);  
-                h1_H[i][j] = new TH1D(Form("h1_H[%d][%d]",i,j), Form("h1_H[%d][%d]",i,j),50,-2.5,2.5);  
-                h1_c[i][j] = new TH1D(Form("h1_c[%d][%d]",i,j), Form("h1_c[%d][%d]",i,j),50,-2.5,2.5);  
+                h1_p[i][j] = new TH1D(Form("h1_p[%d][%d]",i,j), Form("h1_p[%d][%d]",i,j),60,-2.5,3.5);  
+                h1_d[i][j] = new TH1D(Form("h1_d[%d][%d]",i,j), Form("h1_d[%d][%d]",i,j),60,-2.5,3.5);  
+                h1_e[i][j] = new TH1D(Form("h1_e[%d][%d]",i,j), Form("h1_e[%d][%d]",i,j),60,-2.5,3.5);  
+                h1_h[i][j] = new TH1D(Form("h1_h[%d][%d]",i,j), Form("h1_h[%d][%d]",i,j),60,-2.5,3.5);  
+                h1_H[i][j] = new TH1D(Form("h1_H[%d][%d]",i,j), Form("h1_H[%d][%d]",i,j),60,-2.5,3.5);  
+                h1_c[i][j] = new TH1D(Form("h1_c[%d][%d]",i,j), Form("h1_c[%d][%d]",i,j),60,-2.5,3.5);  
 
 
                 proton_tree  ->Draw(Form("log10(L%d_E)>>h1_p[%d][%d]",j,i,j),HET,""); h1_p[i][j]->Sumw2(); h1_p[i][j]->Scale(1.0/h1_p[i][j]->Integral());h1_p[i][j]->SetLineColor(kRed);     h1_p[i][j]->SetMarkerColor(kRed);     h1_p[i][j]->SetLineWidth(2); 
@@ -68,13 +65,19 @@ void EnergyLong_E()
                 carbon_tree  ->Draw(Form("log10(L%d_E)>>h1_c[%d][%d]",j,i,j),HET,""); h1_c[i][j]->Sumw2(); h1_c[i][j]->Scale(1.0/h1_c[i][j]->Integral());h1_c[i][j]->SetLineColor(kMagenta); h1_c[i][j]->SetMarkerColor(kMagenta); h1_c[i][j]->SetLineWidth(2);
 
                 
-                h1_e[i][j]->GetYaxis()->SetRangeUser(0,h1_e[i][j]->GetMaximum()*1.2);h1_e[i][j]->SetTitle(Form("EdepRatio Distrubution in L%d;log_{10}(Energy Deposit/GeV);Normalized Count",j));
-                h1_e[i][j]->Draw("");
-                h1_h[i][j]->Draw("same");
+                h1_h[i][j]->GetYaxis()->SetRangeUser(0,h1_h[i][j]->GetMaximum()*1.2);h1_h[i][j]->SetTitle(Form("EdepRatio Distrubution in L%d;log_{10}(Energy Deposit/GeV);Normalized Count",j));
+                // h1_e[i][j]->Draw("");
+                h1_h[i][j]->Draw("");
                 h1_H[i][j]->Draw("same");
                 h1_c[i][j]->Draw("same");
                 h1_d[i][j]->Draw("same");
                 h1_p[i][j]->Draw("same");
+
+                auto line0_MIP = new TLine(log10(0.023),0,log10(0.023),h1_h[i][j]->GetMaximum()*1.2);
+                auto line1_MIP = new TLine(log10(0.023*4),0,log10(0.023*4),h1_h[i][j]->GetMaximum()*1.2);
+                auto line2_MIP = new TLine(log10(0.023*36),0,log10(0.023*36),h1_h[i][j]->GetMaximum()*1.2);
+                line1_MIP->SetLineStyle(2);
+                line2_MIP->SetLineStyle(7);
                 line0_MIP->Draw();
                 line1_MIP->Draw();
                 line2_MIP->Draw();
@@ -97,22 +100,25 @@ void EnergyLong_E()
                 Layer[j] = 0.5 + j;
                 Layer_Err[j] = 0.5;
             }
-            else // (j==14)    
+            if(j==14)  
             {
                 TLatex *tex = new TLatex(0.1,0.9,Form("Deposit Energy[%.2fGeV, %.2fGeV]",pow(10,Energy_LL[i]),pow(10,Energy_UL[i])));tex->SetNDC();tex->Draw(); 
                 auto legend1 = new TLegend(0.12, 0.12, 0.88, 0.88);
                 legend1->AddEntry(h1_p[i][0], "Proton", "l");
                 legend1->AddEntry(h1_d[i][0], "Deuteron", "l");
-                legend1->AddEntry(h1_e[i][0], "Electron", "l");
+                // legend1->AddEntry(h1_e[i][0], "Electron", "l");
                 legend1->AddEntry(h1_h[i][0], "Helium4", "l");         
                 legend1->AddEntry(h1_H[i][0], "Helium3", "l");         
                 legend1->AddEntry(h1_c[i][0], "Carbon", "l");         
                 legend1->Draw();       
             }
         }
+        c1->Update();
         c1->SaveAs(Form("/Users/xiongzheng/software/B4/B4c/Script/EnergyLong/EnergyLong_%.2f_%.2f.pdf",Energy_LL[i],Energy_UL[i]));
-
-
+    }
+    
+    for (int i = 0; i < 13; i++) // Deposit Energy Bin    
+    {
         auto c2 = new TCanvas("c2","c2",1000,1000);
         // c2->cd();
         auto gre_p = new TGraphAsymmErrors(14,Layer,Proton_Ratio  ,Layer_Err,Layer_Err,Proton_Ratio_LL  ,Proton_Ratio_UL);
@@ -122,8 +128,9 @@ void EnergyLong_E()
         auto gre_H = new TGraphAsymmErrors(14,Layer,Helium3_Ratio ,Layer_Err,Layer_Err,Helium3_Ratio_LL ,Helium3_Ratio_UL);
         auto gre_c = new TGraphAsymmErrors(14,Layer,Carbon_Ratio ,Layer_Err,Layer_Err,Carbon_Ratio_LL ,Carbon_Ratio_UL);
 
-        gre_e->SetTitle(Form("Deposit Energy 10^{%.1f} - 10^{%.1f} GeV ; BGO Layer; log10(Deposit Energy/GeV)",Energy_LL[i],Energy_UL[i]));
-        gre_e->SetMarkerStyle(22);
+        gre_h->SetTitle(Form("Deposit Energy 10^{%.1f} - 10^{%.1f} GeV ; BGO Layer; log10(Deposit Energy/GeV)",Energy_LL[i],Energy_UL[i]));
+        gre_h->SetMarkerStyle(22);
+        gre_h->GetYaxis()->SetRangeUser(-2.5,3);
         
         gre_e->SetMarkerColor(kOrange-3);
         gre_e->SetLineColor(kOrange-3);
@@ -150,8 +157,8 @@ void EnergyLong_E()
         gre_H->SetLineWidth(2);
         gre_c->SetLineWidth(2);
 
-        gre_e->Draw("AP");
-        gre_h->Draw("PSAME");
+        // gre_e->Draw("AP");
+        gre_h->Draw("AP");
         gre_H->Draw("PSAME");
         gre_c->Draw("PSAME");
         gre_d->Draw("PSAME");
@@ -161,18 +168,18 @@ void EnergyLong_E()
         legend2->SetNColumns(2);
         legend2->AddEntry(gre_p, "HET Proton", "ep");
         legend2->AddEntry(gre_d, "HET Deuteron", "ep");
-        legend2->AddEntry(gre_e, "HET Electron", "ep");
+        // legend2->AddEntry(gre_e, "HET Electron", "ep");
         legend2->AddEntry(gre_h, "HET Helium4", "ep");
         legend2->AddEntry(gre_H, "HET Helium3", "ep");
         legend2->AddEntry(gre_c, "HET Carbon", "ep");
         legend2->Draw();
 
-        for(int j= 0; j<14 ; j++)
-        {
-            // cout << "Layer = " << j << " , Ratio = " << pow(10,Proton_Ratio[j]) <<  endl;
+        // for(int j= 0; j<14 ; j++)
+        // {
+        //     // cout << "Layer = " << j << " , Ratio = " << pow(10,Proton_Ratio[j]) <<  endl;
 
-            cout << scientific << setprecision(2) << pow(10, Proton_Ratio[j]) << " , ";
-        }
+        //     cout << scientific << setprecision(2) << pow(10, Proton_Ratio[j]) << " , ";
+        // }
         c2->SaveAs(Form("/Users/xiongzheng/software/B4/B4c/Script/EnergyLong/LayerDistribution_%.2f_%.2f.pdf",Energy_LL[i],Energy_UL[i]));
     }
 }

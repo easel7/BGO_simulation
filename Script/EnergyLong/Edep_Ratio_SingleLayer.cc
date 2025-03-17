@@ -31,7 +31,7 @@ void Edep_Ratio_SingleLayer()
     carbon_tree->Draw("log10(L5_E/Total_E)>>h1_c",HET,"");
 
 
-    h1_p->Sumw2(); h1_p->Scale(1.0/h1_p->Integral());h1_p->SetLineColor(kRed);     h1_p->SetMarkerColor(kRed);     h1_p->SetLineWidth(2);h1_p->GetYaxis()->SetRangeUser(0,0.25);h1_p->SetTitle("Deposit 100 GeV - 160 GeV EdepRatio Distrubution in L5;log_{10}(Energy Deposit in Layer/ Total Deposit);Normalized Count");
+    h1_p->Sumw2(); h1_p->Scale(1.0/h1_p->Integral());h1_p->SetLineColor(kRed);     h1_p->SetMarkerColor(kRed);     h1_p->SetLineWidth(2);h1_p->GetYaxis()->SetRangeUser(0,0.75);h1_p->SetTitle("Deposit 100 GeV - 160 GeV EdepRatio Distrubution in L5;log_{10}(Energy Deposit in Layer/ Total Deposit);Normalized Count");
     h1_d->Sumw2(); h1_d->Scale(1.0/h1_d->Integral());h1_d->SetLineColor(kBlue);    h1_d->SetMarkerColor(kBlue);    h1_d->SetLineWidth(2);
     h1_e->Sumw2(); h1_e->Scale(1.0/h1_e->Integral());h1_e->SetLineColor(kOrange-3);h1_e->SetMarkerColor(kOrange-3);h1_e->SetLineWidth(2);
     h1_h->Sumw2(); h1_h->Scale(1.0/h1_h->Integral());h1_h->SetLineColor(kGreen-3); h1_h->SetMarkerColor(kGreen-3); h1_h->SetLineWidth(2);
