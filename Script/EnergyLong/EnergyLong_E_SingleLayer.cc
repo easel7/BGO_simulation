@@ -31,7 +31,7 @@ void EnergyLong_E_SingleLayer()
     TH1D *h1_H[13][14];     TH1D *h2_H[13][14];
     TH1D *h1_c[13][14];     TH1D *h2_c[13][14];
 
-    for (int i = 0; i < 13; i++) // Deposit Energy Bin
+    for (int i = 0; i < 1; i++) // Deposit Energy Bin
     {
         Energy[i]    =  0.2*i+1.1;
         Energy_Err[i] =  0.1; 
