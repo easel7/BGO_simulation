@@ -35,8 +35,8 @@ void Efficiency_UBT()
     TH1D *h1_H[19]; TH1D *h2_H[19]; TH1D *h3_H[19]; TH1D *h4_H[19];
     TH1D *h1_c[19]; TH1D *h2_c[19]; TH1D *h3_c[19]; TH1D *h4_c[19];
 
-    TCut UBT = "(L0_E>0.0092 && L1_E>0.0092)";
     TCut HET = "(L0_E>0.23 && L1_E >0.23 && L2_E>0.23 && L3_E>0.046)";
+    TCut UBT = "(L0_E>0.0092 && L1_E>0.0092)";
     TCut MIT = "(L2_E >0.0092 && L10_E >0.0092 && L12_E >0.0092)  || (L3_E >0.0092 && L11_E >0.0092 && L13_E >0.0092)";
 
     for (int i = 0; i < 19; i++)
@@ -86,6 +86,8 @@ void Efficiency_UBT()
         Electron_Eff_UBT[i] = h3_e[i]->Integral()/h1_e[i]->Integral();
         Electron_Eff_MIT[i] = h4_e[i]->Integral()/h1_e[i]->Integral();
 
+        cout << "Energy = " << int(Energy[i]) << " GeV !" << " ele HET eff : " << h2_e[i]->Integral() <<" ele MIP eff : " << h4_e[i]->Integral() <<endl;
+
 
         auto helium4_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Helium4_%dGeV.root",int(Energy[i])));
         auto helium4_tree = (TTree*)helium4_file->Get("B4");
@@ -101,7 +103,7 @@ void Efficiency_UBT()
         Helium4_Eff_UBT[i] = h3_h[i]->Integral()/h1_h[i]->Integral();
         Helium4_Eff_MIT[i] = h4_h[i]->Integral()/h1_h[i]->Integral();
 
-        cout << "Energy = " << int(Energy[i]) << " GeV !" << " He4 HET eff : " << h2_h[i]->Integral() <<" He4 UBT eff : " << h3_h[i]->Integral() <<endl;
+        // cout << "Energy = " << int(Energy[i]) << " GeV !" << " He4 HET eff : " << h2_h[i]->Integral() <<" He4 UBT eff : " << h3_h[i]->Integral() <<endl;
 
         auto helium3_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Helium3_%dGeV.root",int(Energy[i])));
         auto helium3_tree = (TTree*)helium3_file->Get("B4");
