@@ -1,6 +1,6 @@
 void Edep_TrackLength_Single()
 {
-    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Electron_100GeV.root");
+    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_100GeV.root");
     auto proton_tree = (TTree*)proton_file->Get("B4");
     auto c1 = new TCanvas("c1","c1",2000,1200);
 

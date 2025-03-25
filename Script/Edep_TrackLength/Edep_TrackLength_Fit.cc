@@ -1,6 +1,6 @@
 void Edep_TrackLength_Fit()
 {
-    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Electron_100GeV.root");
+    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_100GeV.root");
     auto proton_tree = (TTree*)proton_file->Get("B4");
     auto c1 = new TCanvas("c1","c1",1200,1200);
 
@@ -10,14 +10,14 @@ void Edep_TrackLength_Fit()
     TCut UBT = "(L0_E>0.0092 && L1_E>0.0092)";
     TCut HET = "(L0_E>0.23 && L1_E >0.23 &&   L2_E>0.23 && L3_E>0.046)";
 
-    proton_tree->Draw("L6_E:L6_L  >>L0",UBT,"colz");
-    proton_tree->Draw("L6_E:L6_L   >>L1",UBT,"profs");
+    proton_tree->Draw("L3_E:L3_L  >>L0",HET,"colz");
+    proton_tree->Draw("L3_E:L3_L   >>L1",HET,"profs");
 
 
     c1->Clear();
 
-    gStyle->SetOptStat(0);
-    L0->SetTitle("100 GeV ELectron Edep vs TrackLength in L6;TrackLength(m);Energy(GeV)");
+    gStyle->SetOptStat(1111);
+    L0->SetTitle("100 GeV Proton Edep vs TrackLength in L6;TrackLength(m);Energy(GeV)");
     L0->Draw("colz");
     L1->SetLineColor(kRed);
     L1->SetLineWidth(2);
@@ -28,7 +28,6 @@ void Edep_TrackLength_Fit()
     // Get slope parameter from fit
     double slope = fitFunc->GetParameter(1);
     double slope_err = fitFunc->GetParError(1);
-
 
     // Add slope text to the canvas
     TLatex *tex = new TLatex();

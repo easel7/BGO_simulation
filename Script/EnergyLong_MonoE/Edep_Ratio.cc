@@ -119,7 +119,7 @@ void Edep_Ratio()
         fitFunc_c[i]->Draw("same");
         Carbon_Edep[i]     = fitFunc_c[i]->GetParameter(1);
         Carbon_Edep_Err[i] = fitFunc_c[i]->GetParameter(2);
-        c1->SaveAs( Form("/Users/xiongzheng/software/B4/B4c/Script/EnergyDep/EnergyDeposit_%dGeV.pdf",int(Energy[i])) );
+        c1->SaveAs( Form("/Users/xiongzheng/software/B4/B4c/Script/EnergyLong_MonoE/EnergyLong_MonoEosit_%dGeV.pdf",int(Energy[i])) );
 
     }
     auto c0 = new TCanvas("c0","c0",900,600);
@@ -181,6 +181,6 @@ void Edep_Ratio()
     legend1->AddEntry(gre_c, "HET Carbon", "ep");
     legend1->Draw();
 
-    c0->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/EnergyDep/EnergyDeposit.pdf");
+    c0->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/EnergyLong_MonoE/EnergyLong_MonoEosit.pdf");
    
 }

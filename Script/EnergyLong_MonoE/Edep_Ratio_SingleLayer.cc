@@ -96,7 +96,7 @@ void Edep_Ratio_SingleLayer()
     legend1->AddEntry(h1_c, "Carbon", "el");         
 
     legend1->Draw();       
-    c1->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/EnergyDep/Edep_Ratio_SingleLayer_16_50_84.pdf");
+    c1->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/EnergyLong_MonoE/Edep_Ratio_SingleLayer_16_50_84.pdf");
 
 
     auto c2 = new TCanvas("c2","c2",900,600);
@@ -119,6 +119,6 @@ void Edep_Ratio_SingleLayer()
 
     legend1->Draw();       
 
-    c2->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/EnergyDep/Edep_Ratio_SingleLayer_logNormal.pdf");
+    c2->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/EnergyLong_MonoE/Edep_Ratio_SingleLayer_logNormal.pdf");
 
 }

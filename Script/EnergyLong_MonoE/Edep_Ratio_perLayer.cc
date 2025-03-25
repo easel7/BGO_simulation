@@ -111,7 +111,7 @@ void Edep_Ratio_perLayer()
             }
 
         }
-        c1->SaveAs( Form("/Users/xiongzheng/software/B4/B4c/Script/EnergyDep/Edep_Ratio_perLayer_%dGeV.pdf",int(Energy[i])));
+        c1->SaveAs( Form("/Users/xiongzheng/software/B4/B4c/Script/EnergyLong_MonoE/Edep_Ratio_perLayer_%dGeV.pdf",int(Energy[i])));
         
         auto c2 = new TCanvas("c2","c2",1000,1000);
         // c2->cd();
@@ -166,7 +166,7 @@ void Edep_Ratio_perLayer()
         legend2->AddEntry(gre_c, "HET Carbon", "ep");
         legend2->Draw();
 
-        c2->SaveAs( Form("/Users/xiongzheng/software/B4/B4c/Script/EnergyDep/Edep_Ratio_BGOLayer_%dGeV.pdf",int(Energy[i])));
+        c2->SaveAs( Form("/Users/xiongzheng/software/B4/B4c/Script/EnergyLong_MonoE/Edep_Ratio_BGOLayer_%dGeV.pdf",int(Energy[i])));
 
     }
 }
