@@ -15,6 +15,7 @@ void Edep_Ratio_SingleLayer()
 
     TCut UBT = "(L0_E>0.0092 && L1_E>0.0092)";
     TCut HET = "(L0_E>0.23 && L1_E >0.23 && L2_E>0.23 && L3_E>0.046)";
+    TCut NOT = "";
 
     auto h1_p = new TH1D("h1_p","h1_p",50,-5,0);  
     auto h1_d = new TH1D("h1_d","h1_d",50,-5,0);  
@@ -23,12 +24,12 @@ void Edep_Ratio_SingleLayer()
     auto h1_H = new TH1D("h1_H","h1_H",50,-5,0);  
     auto h1_c = new TH1D("h1_c","h1_c",50,-5,0);  
 
-    proton_tree->Draw("log10(L0_E/Total_E)>>h1_p",HET,"");
+    proton_tree->Draw("log10(L0_E/Total_E)>>h1_p"  ,HET,"");
     deuteron_tree->Draw("log10(L0_E/Total_E)>>h1_d",HET,"");
     electron_tree->Draw("log10(L0_E/Total_E)>>h1_e",HET,"");
-    helium4_tree->Draw("log10(L0_E/Total_E)>>h1_h",HET,"");
-    helium3_tree->Draw("log10(L0_E/Total_E)>>h1_H",HET,"");
-    carbon_tree->Draw("log10(L0_E/Total_E)>>h1_c",HET,"");
+    helium4_tree->Draw("log10(L0_E/Total_E)>>h1_h" ,HET,"");
+    helium3_tree->Draw("log10(L0_E/Total_E)>>h1_H" ,HET,"");
+    carbon_tree->Draw("log10(L0_E/Total_E)>>h1_c"  ,HET,"");
 
 
     h1_p->Sumw2(); h1_p->Scale(1.0/h1_p->Integral());h1_p->SetLineColor(kRed);     h1_p->SetMarkerColor(kRed);     h1_p->SetLineWidth(2);h1_p->GetYaxis()->SetRangeUser(0,0.25);h1_p->SetTitle("100 GeV incident EdepRatio Distrubution in L0;log_{10}(Energy Deposit in Layer/ Total Deposit);Normalized Count");

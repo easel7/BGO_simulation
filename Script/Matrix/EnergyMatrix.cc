@@ -93,6 +93,6 @@ void EnergyMatrix()
     h1_c->Draw("colz");
     tex->Draw();
 
-    c1->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/EnergyMatrix.pdf");
+    c1->SaveAs("/Users/xiongzheng/software/B4/B4c/Script/Matrix/EnergyMatrix.pdf");
 
 }
