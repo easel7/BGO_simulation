@@ -86,7 +86,7 @@ void Efficiency_UBT()
         Electron_Eff_UBT[i] = h3_e[i]->Integral()/h1_e[i]->Integral();
         Electron_Eff_MIT[i] = h4_e[i]->Integral()/h1_e[i]->Integral();
 
-        cout << "Energy = " << int(Energy[i]) << " GeV !" << " ele HET eff : " << h2_e[i]->Integral() <<" ele MIP eff : " << h4_e[i]->Integral() <<endl;
+        cout << "Energy = " << int(Energy[i]) << " GeV !  ele Total eff : " << h1_e[i]->Integral() << " ele HET eff : " <<  h2_e[i]->Integral() <<" ele UBT eff : " << h3_e[i]->Integral() <<" ele MIP eff : " << h4_e[i]->Integral() <<endl;
 
 
         auto helium4_file = TFile::Open(Form("/Users/xiongzheng/software/B4/B4c/Root/Helium4_%dGeV.root",int(Energy[i])));
