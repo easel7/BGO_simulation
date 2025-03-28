@@ -1,4 +1,4 @@
-void Edep_Ratio()
+void Edep_Ekin()
 {
     double Proton_Edep[19]={0};
     double Proton_Edep_Err[19]={0};
