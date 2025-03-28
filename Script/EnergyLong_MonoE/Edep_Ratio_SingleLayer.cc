@@ -1,16 +1,16 @@
 void Edep_Ratio_SingleLayer()
 {
-    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_100GeV.root");
+    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_10GeV.root");
     auto proton_tree = (TTree*)proton_file->Get("B4");
-    auto deuteron_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Deuteron_100GeV.root");
+    auto deuteron_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Deuteron_10GeV.root");
     auto deuteron_tree = (TTree*)deuteron_file->Get("B4");
-    auto electron_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Electron_100GeV.root");
+    auto electron_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Electron_10GeV.root");
     auto electron_tree = (TTree*)electron_file->Get("B4");
-    auto helium4_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Helium4_100GeV.root");
+    auto helium4_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Helium4_10GeV.root");
     auto helium4_tree = (TTree*)helium4_file->Get("B4");
-    auto helium3_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Helium3_100GeV.root");
+    auto helium3_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Helium3_10GeV.root");
     auto helium3_tree = (TTree*)helium3_file->Get("B4");
-    auto carbon_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Carbon_100GeV.root");
+    auto carbon_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Carbon_10GeV.root");
     auto carbon_tree = (TTree*)carbon_file->Get("B4");
 
     TCut UBT = "(L0_E>0.0092 && L1_E>0.0092)";
@@ -48,12 +48,12 @@ void Edep_Ratio_SingleLayer()
     auto c1 = new TCanvas("c1","c1",900,600);
     c1->cd();
     c1->Clear();
-    h1_p->Draw();
-    h1_d->Draw("same");
-    h1_e->Draw("same");
-    h1_h->Draw("same");
-    h1_H->Draw("same");
-    h1_c->Draw("same");
+    h1_p->Draw();      h1_p->SetStats(kTrue); 
+    h1_d->Draw("same");h1_d->SetStats(kFALSE); 
+    h1_e->Draw("same");h1_e->SetStats(kFALSE); 
+    h1_h->Draw("same");h1_h->SetStats(kFALSE); 
+    h1_H->Draw("same");h1_H->SetStats(kFALSE); 
+    h1_c->Draw("same");h1_c->SetStats(kFALSE); 
 
     double quantiles[3] = {0.16, 0.50, 0.84};  // Percentiles
     double p_values[3];  // Will store the x-values corresponding to the percentiles

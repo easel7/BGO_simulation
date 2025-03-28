@@ -71,7 +71,6 @@ void Edep_Ratio_perLayer()
                 h1_d[j]->Draw("same");
 
 
-                
                 double quantiles[3] = {0.16, 0.50, 0.84};  // Percentiles
                 double p_values[3];  h1_p[j]->GetQuantiles(3, p_values, quantiles);
                 double d_values[3];  h1_d[j]->GetQuantiles(3, d_values, quantiles);

@@ -81,7 +81,7 @@ void Efficiency_UBT()
         electron_tree->Draw(Form("Total_E/Energy>>h1_e[%d]",i),"","");
         electron_tree->Draw(Form("Total_E/Energy>>h2_e[%d]",i), HET,"");
         electron_tree->Draw(Form("Total_E/Energy>>h3_e[%d]",i), UBT,"");
-        electron_tree->Draw(Form("Total_E/Energy>>h4_e[%d]",i), UBT,"");
+        electron_tree->Draw(Form("Total_E/Energy>>h4_e[%d]",i), MIT,"");
         Electron_Eff_HET[i] = h2_e[i]->Integral()/h1_e[i]->Integral();
         Electron_Eff_UBT[i] = h3_e[i]->Integral()/h1_e[i]->Integral();
         Electron_Eff_MIT[i] = h4_e[i]->Integral()/h1_e[i]->Integral();
