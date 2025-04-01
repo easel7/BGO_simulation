@@ -1,16 +1,16 @@
 void Edep_Ratio_SingleLayer()
 {
-    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Proton_PowerLaw.root");
+    auto proton_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Weight/Proton_PowerLaw.root");
     auto proton_tree = (TTree*)proton_file->Get("B4");
-    auto deuteron_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Deuteron_PowerLaw.root");
+    auto deuteron_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Weight/Deuteron_PowerLaw.root");
     auto deuteron_tree = (TTree*)deuteron_file->Get("B4");
-    auto electron_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Electron_PowerLaw.root");
+    auto electron_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Weight/Electron_PowerLaw.root");
     auto electron_tree = (TTree*)electron_file->Get("B4");
-    auto helium4_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Helium4_PowerLaw.root");
+    auto helium4_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Weight/Helium4_PowerLaw.root");
     auto helium4_tree = (TTree*)helium4_file->Get("B4");
-    auto helium3_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Helium3_PowerLaw.root");
+    auto helium3_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Weight/Helium3_PowerLaw.root");
     auto helium3_tree = (TTree*)helium3_file->Get("B4");
-    auto carbon_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Root/Carbon_PowerLaw.root");
+    auto carbon_file = TFile::Open("/Users/xiongzheng/software/B4/B4c/Weight/Carbon_PowerLaw.root");
     auto carbon_tree = (TTree*)carbon_file->Get("B4");
 
     TCut UBT = "(L0_E>0.0092 && L1_E>0.0092)";
