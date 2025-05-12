@@ -74,7 +74,7 @@ void EnergyLong_E_SingleLayer()
         proton_tree  ->Draw(Form("First_Had_Second>>h2_p[%d][%d]",i,0),HET,""); h2_p[i][0]->Sumw2(); h2_p[i][0]->Scale(1.0/h2_p[i][0]->Integral());h2_p[i][0]->SetLineColor(kRed);     h2_p[i][0]->SetMarkerColor(kRed);     h2_p[i][0]->SetLineWidth(2); 
         deuteron_tree->Draw(Form("First_Had_Second>>h2_d[%d][%d]",i,0),HET,""); h2_d[i][0]->Sumw2(); h2_d[i][0]->Scale(1.0/h2_d[i][0]->Integral());h2_d[i][0]->SetLineColor(kBlue);    h2_d[i][0]->SetMarkerColor(kBlue);    h2_d[i][0]->SetLineWidth(2);
         electron_tree->Draw(Form("First_Had_Second>>h2_e[%d][%d]",i,0),HET,""); h2_e[i][0]->Sumw2(); h2_e[i][0]->Scale(1.0/h2_e[i][0]->Integral());h2_e[i][0]->SetLineColor(kOrange-3);h2_e[i][0]->SetMarkerColor(kOrange-3);h2_e[i][0]->SetLineWidth(2);
-        helium4_tree ->Draw(Form("First_Had_Second>>h2_h[%d][%d]",i,0),HET,""); h2_h[i][0]->Sumw2(); h2_h[i][0]->Scale(1.0/h2_h[i][0]->Integral());h2_h[i][0]->SetLineColor(kGreen-3); h2_h[i][0]->SetMarkerColor(kGreen-3); h2_h[i][0]->SetLineWidth(2);
+        helium4_tree ->Draw(Form("First_Second>>h2_h[%d][%d]",i,0),HET,""); h2_h[i][0]->Sumw2(); h2_h[i][0]->Scale(1.0/h2_h[i][0]->Integral());h2_h[i][0]->SetLineColor(kGreen-3); h2_h[i][0]->SetMarkerColor(kGreen-3); h2_h[i][0]->SetLineWidth(2);
         helium3_tree ->Draw(Form("First_Had_Second>>h2_H[%d][%d]",i,0),HET,""); h2_H[i][0]->Sumw2(); h2_H[i][0]->Scale(1.0/h2_H[i][0]->Integral());h2_H[i][0]->SetLineColor(kGreen-3); h2_H[i][0]->SetMarkerColor(kGreen-3); h2_H[i][0]->SetLineWidth(2);
         carbon_tree  ->Draw(Form("First_Had_Second>>h2_c[%d][%d]",i,0),HET,""); h2_c[i][0]->Sumw2(); h2_c[i][0]->Scale(1.0/h2_c[i][0]->Integral());h2_c[i][0]->SetLineColor(kMagenta); h2_c[i][0]->SetMarkerColor(kMagenta); h2_c[i][0]->SetLineWidth(2);
 
@@ -101,12 +101,12 @@ void EnergyLong_E_SingleLayer()
         cout << "Integral peak (-2.5,-0.7)= " <<  h1_d[i][0]->Integral(1,18) << " ,  Ratio of 1 Secondary : " << h2_d[i][0]->Integral(1,1) <<  endl;
         cout << "Integral peak (-2.5,-0.5)= " <<  h1_h[i][0]->Integral(1,20) << " ,  Ratio of 1 Secondary : " << h2_h[i][0]->Integral(1,1) <<  endl;
 
-        // h1_e[i][0]->Draw("");
-        h1_h[i][0]->Draw("");
-        h1_H[i][0]->Draw("SAME");
-        h1_d[i][0]->Draw("SAME");
-        h1_p[i][0]->Draw("SAME");
-        h1_c[i][0]->Draw("SAME");
+        h1_e[i][0]->Draw("");
+        // h1_h[i][0]->Draw("SAME");
+        // h1_H[i][0]->Draw("SAME");
+        // h1_d[i][0]->Draw("SAME");
+        // h1_p[i][0]->Draw("SAME");
+        // h1_c[i][0]->Draw("SAME");
         line0_MIP->Draw();
         line1_MIP->Draw();
         line2_MIP->Draw();
@@ -189,21 +189,21 @@ void EnergyLong_E_SingleLayer()
         gre_H->SetLineWidth(2);
         gre_c->SetLineWidth(2);
 
-        // gre_e->Draw("AP");
-        gre_h->Draw("AP");
-        gre_H->Draw("PSAME");
-        gre_c->Draw("PSAME");
-        gre_d->Draw("PSAME");
-        gre_p->Draw("PSAME");
+        gre_e->Draw("AP");
+        // gre_h->Draw("PSAME");
+        // gre_H->Draw("PSAME");
+        // gre_c->Draw("PSAME");
+        // gre_d->Draw("PSAME");
+        // gre_p->Draw("PSAME");
 
         auto legend2 = new TLegend(0.72, 0.12, 0.88, 0.32);
         legend2->SetNColumns(2);
-        legend2->AddEntry(gre_p, "HET Proton", "ep");
-        legend2->AddEntry(gre_d, "HET Deuteron", "ep");
-        // legend2->AddEntry(gre_e, "HET Electron", "ep");
-        legend2->AddEntry(gre_h, "HET Helium4", "ep");
-        legend2->AddEntry(gre_H, "HET Helium3", "ep");
-        legend2->AddEntry(gre_c, "HET Carbon", "ep");
+        // legend2->AddEntry(gre_p, "HET Proton", "ep");
+        // legend2->AddEntry(gre_d, "HET Deuteron", "ep");
+        legend2->AddEntry(gre_e, "HET Electron", "ep");
+        // legend2->AddEntry(gre_h, "HET Helium4", "ep");
+        // legend2->AddEntry(gre_H, "HET Helium3", "ep");
+        // legend2->AddEntry(gre_c, "HET Carbon", "ep");
         legend2->Draw();
 
     
